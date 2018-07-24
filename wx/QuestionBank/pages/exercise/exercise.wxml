@@ -17,6 +17,7 @@
         <text>{{subject_range[subject_index].name}}</text>
     </picker>
 
+    <!-- 选择题 -->
     <view class='tab_item' hidden='{{!tabs[0].show}}'>
 
         <view>{{choice.question}}</view>
@@ -42,15 +43,28 @@
 
         <view hidden='{{!choosed}}' style='margin-top:100rpx;'>
             <view style='margin-bottom: 30rpx'>正确答案： {{choice.answer}}</view>
-            <view>{{choice.comment}}</view>
+            <text decode='true'>{{choice.comment}}</text>
         </view>
 
         <button hidden='{{!choosed}}' style='margin-top:50rpx;' bindtap='choiceInit'>NEXT</button>
 
     </view>
 
+    <!-- 判断题 -->
     <view class='tab_view' hidden='{{!tabs[1].show}}'>
-        <text>填空题</text>
+        <view>{{judge.question}}</view>
+
+        <radio-group style='margin: 50rpx auto' bindchange='judgeOnChange'>
+            <radio style='width:150rpx;' checked='{{checked}}'>T</radio>
+            <radio style='width:150rpx;' checked='{{checked}}'>F</radio>
+        </radio-group>
+
+        <view hidden='{{!choosed}}' style='margin-top:100rpx;'>
+            <view style='margin-bottom: 30rpx'>正确答案： {{judge.answer}}</view>
+            <text decode='true'>{{judge.comment}}</text>
+        </view>
+
+        <button hidden='{{!choosed}}' style='margin-top:50rpx;' bindtap='judgeInit'>NEXT</button>
     </view>
     <view class='tab_view' hidden='{{!tabs[2].show}}'>
         <text>简答题</text>

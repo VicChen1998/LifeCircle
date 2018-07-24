@@ -10,6 +10,8 @@ Page({
         subject_index: 0,
 
         choice: null,
+        judge: null,
+
         checked: false,
         choosed: false,
     },
@@ -42,6 +44,9 @@ Page({
             tabs: this.data.tabs,
             currentTab: newTab
         })
+
+        if (this.data.tabs[newTab].name == '判断')
+            this.judgeInit()
     },
 
     subjectOnChange: function(options) {
@@ -80,6 +85,37 @@ Page({
             choosed: true
         })
     },
+
+    judgeInit: function() {
+        wx.request({
+            url: app.globalData.host + 'exercise/get_judge',
+            success: response => {
+                if (response.data.status == 'success') {
+                    this.setData({
+                        judge: response.data.judge,
+                        checked: false,
+                        choosed: false
+                    })
+                    if (this.data.subject_range.length != 0) {
+                        for (let i in this.data.subject_range) {
+                            if (this.data.choice.subject.id == this.data.subject_range[i].id) {
+                                this.setData({
+                                    subject_index: i
+                                })
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    },
+
+    judgeOnChange: function() {
+        this.setData({
+            choosed: true
+        })
+    }
 
 
 

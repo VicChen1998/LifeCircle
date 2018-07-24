@@ -14,7 +14,7 @@ App({
             'name': '选择',
             'show': true
         }, {
-            'name': '填空',
+            'name': '判断',
             show: false
         }, {
             'name': '简答',

@@ -68,6 +68,29 @@ Page({
                 }
             }
         })
+    },
 
+    submit_judge: function(options) {
+        let data = options.detail.value
+        data.openid = app.globalData.userInfo.openid
+        data.subject_id = this.data.subject_range[this.data.subject_index].id
+        wx.request({
+            url: app.globalData.host + 'upload/judge',
+            method: 'POST',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: data,
+            success: response => {
+                if (response.data.status == 'success') {
+                    wx.showToast({
+                        title: '提交成功！'
+                    })
+                    this.setData({
+                        empty: ''
+                    })
+                }
+            }
+        })
     }
 })

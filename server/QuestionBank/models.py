@@ -121,3 +121,33 @@ class Choice(models.Model):
     def random():
         index = random.randint(0, Choice.objects.count() - 1)
         return Choice.objects.all()[index]
+
+
+# 填空题
+class Judge(models.Model):
+    # 所属学科
+    subject = models.ForeignKey(Subject)
+    # 题目
+    question = models.CharField(max_length=128)
+    # 答案
+    answer = models.CharField(max_length=1)
+    # 解析
+    comment = models.CharField(max_length=128)
+    # 提交者
+    author = models.ForeignKey(User)
+
+    class Meta:
+        db_table = 'QB_Judge'
+
+    def dict(self):
+        return {
+            'subject': self.subject.dict(),
+            'question': self.question,
+            'answer': self.answer,
+            'comment': self.comment,
+        }
+
+    @staticmethod
+    def random():
+        index = random.randint(0, Judge.objects.count() - 1)
+        return Judge.objects.all()[index]

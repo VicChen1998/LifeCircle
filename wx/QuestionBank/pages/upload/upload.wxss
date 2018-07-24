@@ -23,7 +23,7 @@ textarea {
     border-bottom: 1rpx solid #f0f0f0;
 }
 
-.choice_answer {
+.choice_answer, .judge_answer {
     width: 80%;
     height: 50rpx;
     margin: 50rpx 20rpx;
