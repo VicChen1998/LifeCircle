@@ -1,0 +1,42 @@
+<view class='topbar'>
+    <open-data type='userAvatarUrl' class='avatar'></open-data>
+    <view class='topbar_info'>
+        <view>
+            <view>选择题</view>
+            <view>120</view>
+        </view>
+        <view>
+            <view>填空题</view>
+            <view>89</view>
+        </view>
+        <view>
+            <view>简答题</view>
+            <view>12</view>
+        </view>
+    </view>
+    <view class='motto'>
+        <text>{{motto.content}}</text>
+        <text style='float: right'>— {{motto.author}}</text>
+    </view>
+</view>
+
+<view class='menu'>
+    <view class='menuitem'>
+        <view class='title'>学院</view>
+        <picker range='{{college_range}}' value='{{college_index}}' range-key='name'>
+            <view>{{college_range[college_index].name}}</view>
+        </picker>
+    </view>
+    <view class='menuitem'>
+        <view class='title'>专业</view>
+        <picker range='{{major_range}}' value='{{major_index}}' range-key='name'>
+            <view>{{major_range[major_index].name}}</view>
+        </picker>
+    </view>
+    <view class='menuitem'>
+        <view class='title'>班级</view>
+        <picker range='{{class_range}}' value='{{class_index}}' range-key='name'>
+            <view>{{class_range[class_index].name}}</view>
+        </picker>
+    </view>
+</view>

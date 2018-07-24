@@ -1,0 +1,64 @@
+<view class='tab'>
+    <view style='display: flex;'>
+        <block wx:for='{{tabs}}' wx:for-item='tab'>
+            <view class='tab_text' bindtap='tabOnChange' data-index='{{index}}'>{{tab.name}}</view>
+        </block>
+    </view>
+    <view style='display: flex;'>
+        <block wx:for='{{tabs}}' wx:for-item='tab'>
+            <view class='tab_indicator {{tab.show ? "tab_indicator_show" : ""}}'></view>
+        </block>
+    </view>
+</view>
+
+<view style='margin: 30rpx'>
+
+    <picker range='{{subject_range}}' value='{{subject_index}}' range-key='name' class='subject_picker' bindchange='subjectOnChange'>
+        <text>{{subject_range[subject_index].name}}</text>
+    </picker>
+
+    <view class='tab_item' hidden='{{!tabs[0].show}}'>
+        <form bindsubmit='submit_choice'>
+            <textarea auto-height='true' placeholder='题目' name='question' style='min-height: 100rpx' value='{{empty}}'></textarea>
+
+            <view class='option_item'>
+                <view class='option_title'>A</view>
+                <input class='option_content' name='option_A' value='{{empty}}'></input>
+            </view>
+
+            <view class='option_item'>
+                <view class='option_title'>B</view>
+                <input class='option_content' name='option_B' value='{{empty}}'></input>
+            </view>
+
+            <view class='option_item'>
+                <view class='option_title'>C</view>
+                <input class='option_content' name='option_C' value='{{empty}}'></input>
+            </view>
+
+            <view class='option_item'>
+                <view class='option_title'>D</view>
+                <input class='option_content' name='option_D' value='{{empty}}'></input>
+            </view>
+
+            <radio-group class='choice_answer' name='answer'>
+                <text>答案</text>
+                <radio value="A">A</radio>
+                <radio value="B">B</radio>
+                <radio value="C">C</radio>
+                <radio value="D">D</radio>
+            </radio-group>
+
+            <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 125rpx' value='{{empty}}'></textarea>
+
+            <button formType="submit">提交</button>
+        </form>
+    </view>
+
+    <view class='tab_view' hidden='{{!tabs[1].show}}'>
+        <text>填空题</text>
+    </view>
+    <view class='tab_view' hidden='{{!tabs[2].show}}'>
+        <text>简答题</text>
+    </view>
+</view>

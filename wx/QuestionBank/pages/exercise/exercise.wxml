@@ -1,0 +1,58 @@
+<view class='tab'>
+    <view style='display: flex;'>
+        <block wx:for='{{tabs}}' wx:for-item='tab'>
+            <view class='tab_text' bindtap='tabOnChange' data-index='{{index}}'>{{tab.name}}</view>
+        </block>
+    </view>
+    <view style='display: flex;'>
+        <block wx:for='{{tabs}}' wx:for-item='tab'>
+            <view class='tab_indicator {{tab.show ? "tab_indicator_show" : ""}}'></view>
+        </block>
+    </view>
+</view>
+
+<view style='margin: 30rpx'>
+
+    <picker range='{{subject_range}}' value='{{subject_index}}' range-key='name' class='subject_picker' bindchange='subjectOnChange'>
+        <text>{{subject_range[subject_index].name}}</text>
+    </picker>
+
+    <view class='tab_item' hidden='{{!tabs[0].show}}'>
+
+        <view>{{choice.question}}</view>
+
+        <radio-group bindchange='choiceOnChange'>
+            <label class='radio_item'>
+                <radio checked='{{checked}}' />
+                <view class='radio_text'>{{choice.option_A}}</view>
+            </label>
+            <label class='radio_item'>
+                <radio checked='{{checked}}' />
+                <view class='radio_text'>{{choice.option_B}}</view>
+            </label>
+            <label class='radio_item'>
+                <radio checked='{{checked}}' />
+                <view class='radio_text'>{{choice.option_C}}</view>
+            </label>
+            <label class='radio_item'>
+                <radio checked='{{checked}}' />
+                <view class='radio_text'>{{choice.option_D}}</view>
+            </label>
+        </radio-group>
+
+        <view hidden='{{!choosed}}' style='margin-top:100rpx;'>
+            <view style='margin-bottom: 30rpx'>正确答案： {{choice.answer}}</view>
+            <view>{{choice.comment}}</view>
+        </view>
+
+        <button hidden='{{!choosed}}' style='margin-top:50rpx;' bindtap='choiceInit'>NEXT</button>
+
+    </view>
+
+    <view class='tab_view' hidden='{{!tabs[1].show}}'>
+        <text>填空题</text>
+    </view>
+    <view class='tab_view' hidden='{{!tabs[2].show}}'>
+        <text>简答题</text>
+    </view>
+</view>

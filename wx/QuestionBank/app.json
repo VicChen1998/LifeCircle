@@ -1,0 +1,44 @@
+{
+    "pages": [
+        "pages/exercise/exercise",
+        "pages/homework/homework",
+        "pages/upload/upload",
+        "pages/settings/settings"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#0096ff",
+        "navigationBarTitleText": "大学生出题库",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#8a8a8a",
+        "selectedColor": "#2c2c2c",
+        "list": [
+            {
+                "pagePath": "pages/exercise/exercise",
+                "text": "刷题",
+                "iconPath": "images/pen.png",
+                "selectedIconPath": "images/pen_fill.png"
+            },
+            {
+                "pagePath": "pages/homework/homework",
+                "text": "作业",
+                "iconPath": "images/pen.png",
+                "selectedIconPath": "images/pen_fill.png"
+            },
+            {
+                "pagePath": "pages/upload/upload",
+                "text": "出题",
+                "iconPath": "images/pen.png",
+                "selectedIconPath": "images/pen_fill.png"
+            },
+            {
+                "pagePath": "pages/settings/settings",
+                "text": "我的",
+                "iconPath": "images/me.png",
+                "selectedIconPath": "images/me_fill.png"
+            }
+        ]
+    }
+}
