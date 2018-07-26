@@ -18,7 +18,9 @@ Page({
         choosed: false,
 
         fillAnswerVisiable: false,
-        discussAnswerVisiable: false
+        discussAnswerVisiable: false,
+
+        empty: '',
     },
 
     onLoad: function(options) {
@@ -39,8 +41,8 @@ Page({
         }
     },
 
-    onReady: function(options){
-        this.choiceInit()        
+    onReady: function(options) {
+        this.choiceInit()
     },
 
     tabOnChange: function(event) {
@@ -109,7 +111,7 @@ Page({
                     })
                     if (this.data.subject_range.length != 0) {
                         for (var i in this.data.subject_range) {
-                            if (this.data.choice.subject.id == this.data.subject_range[i].id) {
+                            if (this.data.judge.subject.id == this.data.subject_range[i].id) {
                                 this.setData({
                                     subject_index: i
                                 })
@@ -135,11 +137,12 @@ Page({
                 if (response.data.status == 'success') {
                     this.setData({
                         fill: response.data.fill,
-                        fillAnswerVisiable: false
+                        fillAnswerVisiable: false,
+                        empty: ''
                     })
                     if (this.data.subject_range.length != 0) {
                         for (var i in this.data.subject_range) {
-                            if (this.data.choice.subject.id == this.data.subject_range[i].id) {
+                            if (this.data.fill.subject.id == this.data.subject_range[i].id) {
                                 this.setData({
                                     subject_index: i
                                 })
@@ -168,7 +171,7 @@ Page({
                 })
                 if (this.data.subject_range.length != 0) {
                     for (var i in this.data.subject_range) {
-                        if (this.data.choice.subject.id == this.data.subject_range[i].id) {
+                        if (this.data.discuss.subject.id == this.data.subject_range[i].id) {
                             this.setData({
                                 subject_index: i
                             })

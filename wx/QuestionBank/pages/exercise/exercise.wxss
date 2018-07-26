@@ -5,7 +5,7 @@ radio-group {
 
 .radio_item {
     min-width: 40%;
-    margin: 50rpx 20rpx 0;
+    padding: 50rpx 20rpx 0;
     display: flex;
     align-items: center;
 }
@@ -14,7 +14,7 @@ radio-group {
     margin-left: 15rpx;
 }
 
-.fill_item{
+.fill_item {
     margin: 20rpx 0;
 }
 
@@ -32,7 +32,7 @@ radio-group {
     text-align: right;
 }
 
-.fill_answer{
+.fill_answer {
     margin-right: 30rpx;
 }
 
@@ -42,4 +42,37 @@ radio-group {
     margin: 50rpx auto;
     padding-left: 20rpx;
     border-left: 1rpx solid #ddd;
+}
+
+@keyframes show {
+    from {
+        bottom: -50rpx;
+        transform: rotate(-90deg);
+    }
+
+    to {
+        bottom: 0;
+        transform: none;
+    }
+}
+
+.next {
+    width: 80rpx;
+    height: 80rpx;
+    padding: 25rpx 60rpx;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    margin-left: -100rpx;
+    animation: show 300ms;
+}
+
+.ok {
+    width: 80rpx;
+    height: 80rpx;
+    padding: 25rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    animation: show 300ms;
 }

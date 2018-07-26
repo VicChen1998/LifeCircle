@@ -1,6 +1,6 @@
 .topbar {
-    height: 350rpx;
-    background: #0096ff;
+    height: 380rpx;
+    background: linear-gradient(#0096ff,#0086ff);
     box-shadow: 0 5rpx 10rpx #ccc;
 }
 

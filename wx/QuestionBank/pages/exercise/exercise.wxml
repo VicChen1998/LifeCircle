@@ -42,12 +42,12 @@
             </label>
         </radio-group>
 
-        <view hidden='{{!choosed}}' style='margin-top:100rpx;'>
+        <view hidden='{{!choosed}}' style='margin:100rpx 0 120rpx;'>
             <view style='margin-bottom: 30rpx'>正确答案： {{choice.answer}}</view>
             <text decode='true'>{{choice.comment}}</text>
         </view>
 
-        <button hidden='{{!choosed}}' style='margin-top:50rpx;' bindtap='choiceInit'>NEXT</button>
+        <image src='/images/next.png' hidden='{{!choosed}}' class='next' bindtap='choiceInit'></image>
 
     </view>
 
@@ -59,13 +59,13 @@
                 <view class='fill_question'>{{question}}</view>
             </block>
             <block wx:if='{{fill.answer[index].length > 0}}'>
-                <input class='fill_input'></input>
+                <input class='fill_input' value='{{empty}}'></input>
             </block>
         </view>
 
-        <button hidden='{{fillAnswerVisiable}}' style='margin-top:50rpx;' bindtap='fillOnAnswer'>答案</button>
+        <image src='/images/ok.png' class='ok' bindtap='fillOnAnswer'></image>
 
-        <view hidden='{{!fillAnswerVisiable}}' style='margin-top:100rpx'>
+        <view hidden='{{!fillAnswerVisiable}}' style='margin:100rpx 0 120rpx'>
             <view style='margin-bottom: 30rpx'>
                 <text>正确答案：</text>
                 <text wx:for='{{fill.answer}}' wx:for-item='answer' class='fill_answer'>{{answer}}</text>
@@ -73,7 +73,7 @@
 
             <text decode='true'>{{fill.comment}}</text>
 
-            <button style='margin-top:50rpx;' bindtap='fillInit'>NEXT</button>
+            <image src='/images/next.png' class='next' bindtap='fillInit'></image>
         </view>
 
     </view>
@@ -83,33 +83,34 @@
     <view class='tab_view' hidden='{{!tabs[2].show}}'>
         <view>{{judge.question}}</view>
 
-        <radio-group style='margin: 50rpx auto' bindchange='judgeOnChange'>
+        <radio-group style='margin:50rpx 0; float:right' bindchange='judgeOnChange'>
             <radio style='width:150rpx;' checked='{{checked}}'>T</radio>
             <radio style='width:150rpx;' checked='{{checked}}'>F</radio>
         </radio-group>
 
-        <view hidden='{{!choosed}}' style='margin-top:100rpx;'>
+        <view hidden='{{!choosed}}' style='margin:100rpx 0 120rpx'>
             <view style='margin-bottom: 30rpx'>正确答案： {{judge.answer}}</view>
             <text decode='true'>{{judge.comment}}</text>
         </view>
 
-        <button hidden='{{!choosed}}' style='margin-top:50rpx;' bindtap='judgeInit'>NEXT</button>
+        <image src='/images/next.png' hidden='{{!choosed}}' class='next' bindtap='judgeInit'></image>
     </view>
 
+    <!-- 简答题 -->
     <view class='tab_view' hidden='{{!tabs[3].show}}'>
         <view>{{discuss.question}}</view>
 
-        <textarea auto-height='true' class='discuss_textarea' value='答：'></textarea>
+        <textarea auto-height='true' class='discuss_textarea' placeholder='答：'></textarea>
 
-        <button hidden='{{discussAnswerVisiable}}' style='margin-top:50rpx;' bindtap='discussOnAnswer'>答案</button>
+        <image src='/images/ok.png' class='ok' bindtap='discussOnAnswer'></image>
 
-        <view hidden='{{!discussAnswerVisiable}}' style='margin-top:50rpx'>
+        <view hidden='{{!discussAnswerVisiable}}' style='margin:50rpx 0 120rpx'>
             <view style='margin-bottom: 30rpx'>
                 <view>参考答案：</view>
                 <text decode='true'>{{discuss.answer}}</text>
             </view>
 
-            <button style='margin-top:50rpx;' bindtap='discussInit'>NEXT</button>
+            <image src='/images/next.png' class='next' bindtap='discussInit'></image>
         </view>
     </view>
 </view>
