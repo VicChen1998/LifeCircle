@@ -3,7 +3,7 @@ import random
 
 from django.http import HttpResponse
 
-from QuestionBank.models import Choice, Fill, Judge
+from QuestionBank.models import Choice, Fill, Judge, Discuss
 
 
 def get_choice(request):
@@ -18,4 +18,9 @@ def get_judge(request):
 
 def get_fill(request):
     response = {'status': 'success', 'fill': Fill.random().dict()}
+    return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def get_discuss(request):
+    response = {'status': 'success', 'discuss': Discuss.random().dict()}
     return HttpResponse(json.dumps(response), content_type='application/json')

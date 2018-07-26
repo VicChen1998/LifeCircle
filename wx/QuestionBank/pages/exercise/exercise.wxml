@@ -66,7 +66,6 @@
         <button hidden='{{fillAnswerVisiable}}' style='margin-top:50rpx;' bindtap='fillOnAnswer'>答案</button>
 
         <view hidden='{{!fillAnswerVisiable}}' style='margin-top:100rpx'>
-
             <view style='margin-bottom: 30rpx'>
                 <text>正确答案：</text>
                 <text wx:for='{{fill.answer}}' wx:for-item='answer' class='fill_answer'>{{answer}}</text>
@@ -98,6 +97,19 @@
     </view>
 
     <view class='tab_view' hidden='{{!tabs[3].show}}'>
-        <text>简答题</text>
+        <view>{{discuss.question}}</view>
+
+        <textarea auto-height='true' class='discuss_textarea' value='答：'></textarea>
+
+        <button hidden='{{discussAnswerVisiable}}' style='margin-top:50rpx;' bindtap='discussOnAnswer'>答案</button>
+
+        <view hidden='{{!discussAnswerVisiable}}' style='margin-top:50rpx'>
+            <view style='margin-bottom: 30rpx'>
+                <view>参考答案：</view>
+                <text decode='true'>{{discuss.answer}}</text>
+            </view>
+
+            <button style='margin-top:50rpx;' bindtap='discussInit'>NEXT</button>
+        </view>
     </view>
 </view>

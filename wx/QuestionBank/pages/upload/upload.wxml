@@ -100,6 +100,12 @@
 
     <!-- 简答题 -->
     <view class='tab_view' hidden='{{!tabs[3].show}}'>
-        <text>简答题</text>
+        <form bindsubmit='submit_discuss'>
+            <textarea auto-height='true' placeholder='题目' name='question' style='min-height: 120rpx; margin-bottom: 50rpx;' value='{{empty}}'></textarea>
+
+            <textarea auto-height='true' placeholder='答案' name='answer' style='min-height: 500rpx' value='{{empty}}'></textarea>
+
+            <button formType="submit">提交</button>
+        </form>
     </view>
 </view>

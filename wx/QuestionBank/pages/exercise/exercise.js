@@ -12,11 +12,13 @@ Page({
         choice: null,
         judge: null,
         fill: null,
+        discuss: null,
 
         checked: false,
         choosed: false,
 
         fillAnswerVisiable: false,
+        discussAnswerVisiable: false
     },
 
     onLoad: function(options) {
@@ -52,6 +54,8 @@ Page({
             this.fillInit()
         if (this.data.tabs[newTab].name == '判断')
             this.judgeInit()
+        if (this.data.tabs[newTab].name == '简答')
+            this.discussInit()
     },
 
     subjectOnChange: function(event) {
@@ -149,6 +153,34 @@ Page({
     fillOnAnswer: function() {
         this.setData({
             fillAnswerVisiable: true
+        })
+    },
+
+    discussInit: function() {
+        wx.request({
+            url: app.globalData.host + 'exercise/get_discuss',
+            success: response => {
+                this.setData({
+                    discuss: response.data.discuss,
+                    discussAnswerVisiable: false
+                })
+                if (this.data.subject_range.length != 0) {
+                    for (var i in this.data.subject_range) {
+                        if (this.data.choice.subject.id == this.data.subject_range[i].id) {
+                            this.setData({
+                                subject_index: i
+                            })
+                            break;
+                        }
+                    }
+                }
+            }
+        })
+    },
+
+    discussOnAnswer: function() {
+        this.setData({
+            discussAnswerVisiable: true
         })
     }
 })

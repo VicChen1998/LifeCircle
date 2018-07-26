@@ -2,7 +2,7 @@ import json
 
 from django.http import HttpResponse
 
-from QuestionBank.models import User, UserProfile, Subject, Choice, Fill, Judge
+from QuestionBank.models import User, UserProfile, Subject, Choice, Fill, Judge, Discuss
 
 
 def choice(request):
@@ -52,6 +52,19 @@ def fill(request):
                         question=text,
                         answer=answer,
                         comment=request.POST['comment'])
+
+    response = {'status': 'success'}
+    return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def discuss(request):
+    user = User.objects.get(username=request.POST['openid'])
+    subject = Subject.objects.get(id=request.POST['subject_id'])
+
+    Discuss.objects.create(author=user,
+                           subject=subject,
+                           question=request.POST['question'],
+                           answer=request.POST['answer'])
 
     response = {'status': 'success'}
     return HttpResponse(json.dumps(response), content_type='application/json')

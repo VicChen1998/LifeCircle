@@ -35,3 +35,11 @@ radio-group {
 .fill_answer{
     margin-right: 30rpx;
 }
+
+.discuss_textarea {
+    width: 95%;
+    min-height: 300rpx;
+    margin: 50rpx auto;
+    padding-left: 20rpx;
+    border-left: 1rpx solid #ddd;
+}

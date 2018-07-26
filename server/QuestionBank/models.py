@@ -180,3 +180,29 @@ class Fill(models.Model):
     def random():
         index = random.randint(0, Fill.objects.count() - 1)
         return Fill.objects.all()[index]
+
+
+class Discuss(models.Model):
+    # 所属学科
+    subject = models.ForeignKey(Subject)
+    # 题目
+    question = models.CharField(max_length=128)
+    # 答案
+    answer = models.CharField(max_length=512)
+    # 提交者
+    author = models.ForeignKey(User)
+
+    class Meta:
+        db_table = 'QB_Discuss'
+
+    def dict(self):
+        return {
+            'subject': self.subject.dict(),
+            'question': self.question,
+            'answer': self.answer,
+        }
+
+    @staticmethod
+    def random():
+        index = random.randint(0, Discuss.objects.count() - 1)
+        return Discuss.objects.all()[index]

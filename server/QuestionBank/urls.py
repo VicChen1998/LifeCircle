@@ -15,10 +15,11 @@ urlpatterns = [
     url(r'^upload/choice$', upload.choice),
     url(r'^upload/judge', upload.judge),
     url(r'^upload/fill', upload.fill),
+    url(r'^upload/discuss', upload.discuss),
 
     # 获取题目
     url(r'^exercise/get_choice', exercise.get_choice),
     url(r'^exercise/get_judge', exercise.get_judge),
-    url(r'^exercise/get_fill', exercise.get_fill),
+    url(r'^exercise/get_discuss', exercise.get_discuss),
 
 ]
