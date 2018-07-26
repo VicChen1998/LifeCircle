@@ -37,8 +37,10 @@ Page({
                 })
             }
         }
+    },
 
-        this.choiceInit()
+    onReady: function(options){
+        this.choiceInit()        
     },
 
     tabOnChange: function(event) {
@@ -50,11 +52,11 @@ Page({
             currentTab: newTab
         })
 
-        if (this.data.tabs[newTab].name == '填空')
+        if (this.data.tabs[newTab].name == '填空' && this.data.fill == null)
             this.fillInit()
-        if (this.data.tabs[newTab].name == '判断')
+        if (this.data.tabs[newTab].name == '判断' && this.data.judge == null)
             this.judgeInit()
-        if (this.data.tabs[newTab].name == '简答')
+        if (this.data.tabs[newTab].name == '简答' && this.data.discuss == null)
             this.discussInit()
     },
 

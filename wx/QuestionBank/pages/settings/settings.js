@@ -40,6 +40,11 @@ Page({
                 })
             }
         })
+    },
 
+    toMyUpload: function(event) {
+        wx.navigateTo({
+            url: '/pages/settings/myupload/myupload'
+        })
     }
 })

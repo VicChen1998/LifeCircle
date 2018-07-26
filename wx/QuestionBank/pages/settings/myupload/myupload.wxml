@@ -1,0 +1,71 @@
+<view>
+    <view class='type'>
+        <view class='topbar'>选择</view>
+        <view wx:for='{{choice_list}}' wx:for-item='choice' wx:key='question' class='item' data-index='{{index}}' bindtap='choiceOnDetail'>
+            <image src='/images/more.png' class='more'></image>
+            <view class='question'>
+                <text>{{choice.question}}</text>
+                <text class='choice_answer' hidden='{{index!=choiceShowDetail}}'>{{choice.answer}}</text>
+            </view>
+            <view hidden='{{index!=choiceShowDetail}}' class='choice_options'>
+                <text class='option'>A {{choice.option_A}}</text>
+                <text class='option'>B {{choice.option_B}}</text>
+                <text class='option'>C {{choice.option_C}}</text>
+                <text class='option'>D {{choice.option_D}}</text>
+            </view>
+            <view hidden='{{index!=choiceShowDetail}}' class='comment'>
+                <text decode='true'>{{choice.comment}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class='type'>
+        <view class='topbar'>填空</view>
+        <view wx:for='{{fill_list}}' wx:for-item='fill' wx:key='question' class='item' data-index='{{index}}' bindtap='fillOnDetail'>
+            <block wx:if='{{fill.comment.length > 0}}'>
+                <image src='/images/more.png' class='more'></image>
+            </block>
+            <view class='question'>
+                <block wx:for='{{fill.question}}' wx:for-item='question'>
+                    <block wx:if='{{question.length > 0}}'>
+                        <text>{{question}}</text>
+                    </block>
+                    <block wx:if='{{fill.answer[index].length > 0}}'>
+                        <text class='fill_answer'>{{fill.answer[index]}}</text>
+                    </block>
+                </block>
+            </view>
+            <view hidden='{{index!=fillShowDetail}}' class='comment'>
+                <text decode='true'>{{fill.comment}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class='type'>
+        <view class='topbar'>判断</view>
+        <view wx:for='{{judge_list}}' wx:for-item='judge' wx:key='question' class='item' data-index='{{index}}' bindtap='judgeOnDetail'>
+            <block wx:if='{{judge.comment.length > 0}}'>
+                <image src='/images/more.png' class='more'></image>
+            </block>
+            <view class='question'>
+                <text>{{judge.question}}</text>
+                <text class='choice_answer' hidden='{{index!=judgeShowDetail}}'>{{judge.answer}}</text>
+            </view>
+            <view hidden='{{index!=judgeShowDetail}}' class='comment'>
+                <text decode='true'>{{judge.comment}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class='type'>
+        <view class='topbar'>简答</view>
+        <view wx:for='{{discuss_list}}' wx:for-item='discuss' wx:key='question' class='item' data-index='{{index}}' bindtap='discussOnDetail'>
+            <image src='/images/more.png' class='more'></image>
+            <view class='question'>{{discuss.question}}</view>
+            <view hidden='{{index!=discussShowDetail}}' class='comment'>
+                <text decode='true'>{{discuss.answer}}</text>
+            </view>
+        </view>
+    </view>
+
+</view>

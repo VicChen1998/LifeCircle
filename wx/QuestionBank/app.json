@@ -3,7 +3,8 @@
         "pages/exercise/exercise",
         "pages/homework/homework",
         "pages/upload/upload",
-        "pages/settings/settings"
+        "pages/settings/settings",
+        "pages/settings/myupload/myupload"
     ],
     "window": {
         "backgroundTextStyle": "light",

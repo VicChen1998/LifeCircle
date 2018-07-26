@@ -23,36 +23,42 @@
 <view class='menu'>
 
     <view class='menuitem'>
-        <view class='title'>学院</view>
-        <picker range='{{college_range}}' value='{{college_index}}' range-key='name' class='menuitem_content'>
+        <view class='menu_title'>学院</view>
+        <picker range='{{college_range}}' value='{{college_index}}' range-key='name' class='menu_picker'>
             <view>{{college_range[college_index].name}}</view>
         </picker>
     </view>
 
     <view class='menuitem'>
-        <view class='title'>专业</view>
-        <picker range='{{major_range}}' value='{{major_index}}' range-key='name' class='menuitem_content'>
+        <view class='menu_title'>专业</view>
+        <picker range='{{major_range}}' value='{{major_index}}' range-key='name' class='menu_picker'>
             <view>{{major_range[major_index].name}}</view>
         </picker>
     </view>
 
     <view class='menuitem'>
-        <view class='title'>班级</view>
-        <picker range='{{class_range}}' value='{{class_index}}' range-key='name' class='menuitem_content'>
+        <view class='menu_title'>班级</view>
+        <picker range='{{class_range}}' value='{{class_index}}' range-key='name' class='menu_picker'>
             <view>{{class_range[class_index].name}}</view>
         </picker>
     </view>
 
     <view class='menuitem'>
-        <view class='title'>姓名</view>
-        <view class='menuitem_text'>
+        <view class='menu_title'>姓名</view>
+        <view class='menu_text'>
         </view>
     </view>
 
     <view class='menuitem'>
-        <view class='title'>学号</view>
-        <view class='menuitem_text'>
+        <view class='menu_title'>学号</view>
+        <view class='menu_text'>
         </view>
     </view>
+
+    <view class='menuitem' bindtap='toMyUpload'>
+        <view class='menu_title'>我出的题</view>
+        <image src='/images/more.png' class='more'></image>
+    </view>
+
 
 </view>

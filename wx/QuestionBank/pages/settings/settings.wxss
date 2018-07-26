@@ -38,7 +38,7 @@
     border-bottom: 1rpx solid #f4f4f4;
 }
 
-.title {
+.menu_title {
     width: 25%;
     height: 100rpx;
     line-height: 100rpx;
@@ -47,12 +47,19 @@
     float: left;
 }
 
-.menuitem_content {
+.menu_picker {
     width: 60%;
     height: 100rpx;
     margin-right: 8%;
     line-height: 100rpx;
     text-align: center;
     color: #666;
+    float: right;
+}
+
+.more {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 20rpx;
     float: right;
 }
