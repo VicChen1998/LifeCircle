@@ -123,7 +123,7 @@ class Choice(models.Model):
         return Choice.objects.all()[index]
 
 
-# 填空题
+# 判断题
 class Judge(models.Model):
     # 所属学科
     subject = models.ForeignKey(Subject)
@@ -151,3 +151,32 @@ class Judge(models.Model):
     def random():
         index = random.randint(0, Judge.objects.count() - 1)
         return Judge.objects.all()[index]
+
+
+class Fill(models.Model):
+    # 所属学科
+    subject = models.ForeignKey(Subject)
+    # 题目
+    question = models.CharField(max_length=128)
+    # 答案
+    answer = models.CharField(max_length=128)
+    # 解析
+    comment = models.CharField(max_length=128)
+    # 提交者
+    author = models.ForeignKey(User)
+
+    class Meta:
+        db_table = 'QB_Fill'
+
+    def dict(self):
+        return {
+            'subject': self.subject.dict(),
+            'question': self.question.split('\t')[:-1],
+            'answer': self.answer.split('\t')[:-1],
+            'comment': self.comment,
+        }
+
+    @staticmethod
+    def random():
+        index = random.randint(0, Fill.objects.count() - 1)
+        return Fill.objects.all()[index]

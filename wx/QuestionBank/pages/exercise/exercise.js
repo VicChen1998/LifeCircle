@@ -11,9 +11,12 @@ Page({
 
         choice: null,
         judge: null,
+        fill: null,
 
         checked: false,
         choosed: false,
+
+        fillAnswerVisiable: false,
     },
 
     onLoad: function(options) {
@@ -36,8 +39,8 @@ Page({
         this.choiceInit()
     },
 
-    tabOnChange: function(options) {
-        let newTab = options.target.dataset.index
+    tabOnChange: function(event) {
+        let newTab = event.target.dataset.index
         this.data.tabs[this.data.currentTab].show = false
         this.data.tabs[newTab].show = true
         this.setData({
@@ -45,13 +48,15 @@ Page({
             currentTab: newTab
         })
 
+        if (this.data.tabs[newTab].name == '填空')
+            this.fillInit()
         if (this.data.tabs[newTab].name == '判断')
             this.judgeInit()
     },
 
-    subjectOnChange: function(options) {
+    subjectOnChange: function(event) {
         this.setData({
-            subject_index: options.detail.value
+            subject_index: event.detail.value
         })
     },
 
@@ -66,7 +71,7 @@ Page({
                         choosed: false
                     })
                     if (this.data.subject_range.length != 0) {
-                        for (let i in this.data.subject_range) {
+                        for (var i in this.data.subject_range) {
                             if (this.data.choice.subject.id == this.data.subject_range[i].id) {
                                 this.setData({
                                     subject_index: i
@@ -97,7 +102,7 @@ Page({
                         choosed: false
                     })
                     if (this.data.subject_range.length != 0) {
-                        for (let i in this.data.subject_range) {
+                        for (var i in this.data.subject_range) {
                             if (this.data.choice.subject.id == this.data.subject_range[i].id) {
                                 this.setData({
                                     subject_index: i
@@ -115,8 +120,35 @@ Page({
         this.setData({
             choosed: true
         })
+    },
+
+    fillInit: function() {
+        wx.request({
+            url: app.globalData.host + 'exercise/get_fill',
+            success: response => {
+                if (response.data.status == 'success') {
+                    this.setData({
+                        fill: response.data.fill,
+                        fillAnswerVisiable: false
+                    })
+                    if (this.data.subject_range.length != 0) {
+                        for (var i in this.data.subject_range) {
+                            if (this.data.choice.subject.id == this.data.subject_range[i].id) {
+                                this.setData({
+                                    subject_index: i
+                                })
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    },
+
+    fillOnAnswer: function() {
+        this.setData({
+            fillAnswerVisiable: true
+        })
     }
-
-
-
 })

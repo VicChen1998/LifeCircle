@@ -17,6 +17,7 @@
         <text>{{subject_range[subject_index].name}}</text>
     </picker>
 
+
     <!-- 选择题 -->
     <view class='tab_item' hidden='{{!tabs[0].show}}'>
         <form bindsubmit='submit_choice'>
@@ -50,16 +51,39 @@
                 <radio value="D">D</radio>
             </radio-group>
 
-            <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 125rpx' value='{{empty}}'></textarea>
+            <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 120rpx' value='{{empty}}'></textarea>
 
             <button formType="submit">提交</button>
         </form>
     </view>
 
-    <!-- 判断题 -->
+
+    <!-- 填空题 -->
     <view class='tab_view' hidden='{{!tabs[1].show}}'>
+        <form bindsubmit='submit_fill'>
+            <view style='display:flex; flex-direction: column'>
+                <view wx:for='{{fill_items}}'>
+                    <textarea style='min-height: 50rpx' auto-height='true' placeholder='题目' value='{{empty}}' bindblur='fillTextOnBlur' data-index='{{index}}'></textarea>
+                    <input class='fill_answer' placeholder='答案' value='{{empty}}' bindblur='fillAnswerOnBlur' data-index='{{index}}'></input>
+                </view>
+            </view>
+
+            <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 120rpx; margin-top:50rpx;' value='{{empty}}'></textarea>
+
+            <button form-type='submit'>提交</button>
+        </form>
+        <view style='position:fixed; bottom:20rpx;'>
+            <image src='/images/add.png' class='icon' bindtap='fillOnAdd'></image>
+            <image src='/images/remove.png' class='icon' bindtap='fillOnRemove'></image>
+        </view>
+
+    </view>
+
+
+    <!-- 判断题 -->
+    <view class='tab_view' hidden='{{!tabs[2].show}}'>
         <form bindsubmit='submit_judge'>
-            <textarea auto-height='true' placeholder='题目' name='question' style='min-height: 100rpx' value='{{empty}}'></textarea>
+            <textarea auto-height='true' placeholder='题目' name='question' style='min-height: 50rpx' value='{{empty}}'></textarea>
 
             <radio-group class='judge_answer' style='width:50%' name='answer'>
                 <text>答案</text>
@@ -67,14 +91,15 @@
                 <radio value="F">F</radio>
             </radio-group>
 
-            <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 125rpx' value='{{empty}}'></textarea>
+            <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 120rpx' value='{{empty}}'></textarea>
 
             <button formType="submit">提交</button>
         </form>
     </view>
 
+
     <!-- 简答题 -->
-    <view class='tab_view' hidden='{{!tabs[2].show}}'>
+    <view class='tab_view' hidden='{{!tabs[3].show}}'>
         <text>简答题</text>
     </view>
 </view>

@@ -17,6 +17,7 @@
         <text>{{subject_range[subject_index].name}}</text>
     </picker>
 
+
     <!-- 选择题 -->
     <view class='tab_item' hidden='{{!tabs[0].show}}'>
 
@@ -50,8 +51,37 @@
 
     </view>
 
-    <!-- 判断题 -->
+
+    <!-- 填空题 -->
     <view class='tab_view' hidden='{{!tabs[1].show}}'>
+        <view wx:for='{{fill.question}}' wx:for-item='question' class='fill_item'>
+            <block wx:if='{{question[index].length > 0}}'>
+                <view class='fill_question'>{{question}}</view>
+            </block>
+            <block wx:if='{{fill.answer[index].length > 0}}'>
+                <input class='fill_input'></input>
+            </block>
+        </view>
+
+        <button hidden='{{fillAnswerVisiable}}' style='margin-top:50rpx;' bindtap='fillOnAnswer'>答案</button>
+
+        <view hidden='{{!fillAnswerVisiable}}' style='margin-top:100rpx'>
+
+            <view style='margin-bottom: 30rpx'>
+                <text>正确答案：</text>
+                <text wx:for='{{fill.answer}}' wx:for-item='answer' class='fill_answer'>{{answer}}</text>
+            </view>
+
+            <text decode='true'>{{fill.comment}}</text>
+
+            <button style='margin-top:50rpx;' bindtap='fillInit'>NEXT</button>
+        </view>
+
+    </view>
+
+
+    <!-- 判断题 -->
+    <view class='tab_view' hidden='{{!tabs[2].show}}'>
         <view>{{judge.question}}</view>
 
         <radio-group style='margin: 50rpx auto' bindchange='judgeOnChange'>
@@ -66,7 +96,8 @@
 
         <button hidden='{{!choosed}}' style='margin-top:50rpx;' bindtap='judgeInit'>NEXT</button>
     </view>
-    <view class='tab_view' hidden='{{!tabs[2].show}}'>
+
+    <view class='tab_view' hidden='{{!tabs[3].show}}'>
         <text>简答题</text>
     </view>
 </view>

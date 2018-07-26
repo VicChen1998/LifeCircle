@@ -14,11 +14,14 @@ App({
             'name': '选择',
             'show': true
         }, {
+            'name': '填空',
+            'show': false,
+        }, {
             'name': '判断',
-            show: false
+            'show': false
         }, {
             'name': '简答',
-            show: false
+            'show': false
         }],
 
     },
