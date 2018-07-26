@@ -8,10 +8,7 @@ Page({
         judge_list: null,
         discuss_list: null,
 
-        choiceShowDetail: -1,
-        fillShowDetail: -1,
-        judgeShowDetail: -1,
-        discussShowDetail: -1,
+        show_detail: [-1, -1, -1, -1],
     },
 
     onLoad: function(options) {
@@ -35,27 +32,19 @@ Page({
         })
     },
 
-    choiceOnDetail: function(event) {
-        this.setData({
-            choiceShowDetail: event.currentTarget.dataset.index
-        })
-    },
-    
-    fillOnDetail: function(event) {
-        this.setData({
-            fillShowDetail: event.currentTarget.dataset.index
-        })
-    },
-
-    judgeOnDetail: function(event) {
-        this.setData({
-            judgeShowDetail: event.currentTarget.dataset.index
-        })
-    },
-
-    discussOnDetail: function(event) {
-        this.setData({
-            discussShowDetail: event.currentTarget.dataset.index
-        })
+    onDetail: function(event) {
+        let type_index = event.currentTarget.dataset.type_index
+        let index = event.currentTarget.dataset.index
+        if (index == this.data.show_detail[type_index]) {
+            this.data.show_detail[type_index] = -1
+            this.setData({
+                show_detail: this.data.show_detail
+            })
+        } else {
+            this.data.show_detail[type_index] = index
+            this.setData({
+                show_detail: this.data.show_detail
+            })
+        }
     }
 })

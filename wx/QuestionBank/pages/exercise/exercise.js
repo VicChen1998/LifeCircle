@@ -68,6 +68,19 @@ Page({
         })
     },
 
+    changeSubject: function(subject_id) {
+        if (this.data.subject_range.length != 0) {
+            for (var i in this.data.subject_range) {
+                if (subject_id == this.data.subject_range[i].id) {
+                    this.setData({
+                        subject_index: i
+                    })
+                    break;
+                }
+            }
+        }
+    },
+
     choiceInit: function() {
         wx.request({
             url: app.globalData.host + 'exercise/get_choice',
@@ -78,16 +91,7 @@ Page({
                         checked: false,
                         choosed: false
                     })
-                    if (this.data.subject_range.length != 0) {
-                        for (var i in this.data.subject_range) {
-                            if (this.data.choice.subject.id == this.data.subject_range[i].id) {
-                                this.setData({
-                                    subject_index: i
-                                })
-                                break;
-                            }
-                        }
-                    }
+                    this.changeSubject(response.data.choice.subject.id)
                 }
             }
         })
@@ -109,16 +113,7 @@ Page({
                         checked: false,
                         choosed: false
                     })
-                    if (this.data.subject_range.length != 0) {
-                        for (var i in this.data.subject_range) {
-                            if (this.data.judge.subject.id == this.data.subject_range[i].id) {
-                                this.setData({
-                                    subject_index: i
-                                })
-                                break;
-                            }
-                        }
-                    }
+                    this.changeSubject(response.data.judge.subject.id)
                 }
             }
         })
@@ -140,16 +135,7 @@ Page({
                         fillAnswerVisiable: false,
                         empty: ''
                     })
-                    if (this.data.subject_range.length != 0) {
-                        for (var i in this.data.subject_range) {
-                            if (this.data.fill.subject.id == this.data.subject_range[i].id) {
-                                this.setData({
-                                    subject_index: i
-                                })
-                                break;
-                            }
-                        }
-                    }
+                    this.changeSubject(response.data.fill.subject.id)
                 }
             }
         })
@@ -169,16 +155,7 @@ Page({
                     discuss: response.data.discuss,
                     discussAnswerVisiable: false
                 })
-                if (this.data.subject_range.length != 0) {
-                    for (var i in this.data.subject_range) {
-                        if (this.data.discuss.subject.id == this.data.subject_range[i].id) {
-                            this.setData({
-                                subject_index: i
-                            })
-                            break;
-                        }
-                    }
-                }
+                this.changeSubject(response.data.discuss.subject.id)
             }
         })
     },

@@ -55,50 +55,25 @@ Page({
 
     submit_choice: function(event) {
         let data = event.detail.value
+        if (data.question.length == 0 || data.answer.length == 0 ||
+            data.option_A.length == 0 || data.option_B.length == 0 || data.option_C.length == 0) {
+            this.showAlert()
+            return
+        }
         data.openid = app.globalData.userInfo.openid
         data.subject_id = this.data.subject_range[this.data.subject_index].id
-        wx.request({
-            url: app.globalData.host + 'upload/choice',
-            method: 'POST',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: data,
-            success: response => {
-                if (response.data.status == 'success') {
-                    wx.showToast({
-                        title: '提交成功！'
-                    })
-                    this.setData({
-                        empty: ''
-                    })
-                }
-            }
-        })
+        this.submit('choice', data)
     },
 
     submit_judge: function(event) {
         let data = event.detail.value
+        if (data.question.length == 0 || data.answer.length == 0) {
+            this.showAlert()
+            return
+        }
         data.openid = app.globalData.userInfo.openid
         data.subject_id = this.data.subject_range[this.data.subject_index].id
-        wx.request({
-            url: app.globalData.host + 'upload/judge',
-            method: 'POST',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: data,
-            success: response => {
-                if (response.data.status == 'success') {
-                    wx.showToast({
-                        title: '提交成功！'
-                    })
-                    this.setData({
-                        empty: ''
-                    })
-                }
-            }
-        })
+        this.submit('judge', data)
     },
 
     fillOnAdd: function(event) {
@@ -132,6 +107,11 @@ Page({
 
     submit_fill: function(event) {
 
+        if (this.data.fill_items[0].text.length == 0 || this.data.fill_items[0].answer.length == 0) {
+            this.showAlert()
+            return
+        }
+
         var data = {
             'openid': app.globalData.userInfo.openid,
             'subject_id': this.data.subject_range[this.data.subject_index].id,
@@ -139,13 +119,28 @@ Page({
             'comment': event.detail.value.comment
         }
 
+        this.submit('fill', data)
+    },
+
+    submit_discuss: function(event) {
+        let data = event.detail.value
+        if (data.question.length == 0 || data.answer.length == 0) {
+            this.showAlert()
+            return
+        }
+        data.openid = app.globalData.userInfo.openid
+        data.subject_id = this.data.subject_range[this.data.subject_index].id
+        this.submit('discuss', data)
+    },
+
+    submit: function(url, data) {
         wx.request({
-            url: app.globalData.host + 'upload/fill',
+            url: app.globalData.host + 'upload/' + url,
+            data: data,
             method: 'POST',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
-            data: data,
             success: response => {
                 if (response.data.status == 'success') {
                     wx.showToast({
@@ -159,27 +154,10 @@ Page({
         })
     },
 
-    submit_discuss: function(event) {
-        let data = event.detail.value
-        data.openid = app.globalData.userInfo.openid
-        data.subject_id = this.data.subject_range[this.data.subject_index].id
-        wx.request({
-            url: app.globalData.host + 'upload/discuss',
-            method: 'POST',
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: data,
-            success: response => {
-                if (response.data.status == 'success') {
-                    wx.showToast({
-                        title: '提交成功！'
-                    })
-                    this.setData({
-                        empty: ''
-                    })
-                }
-            }
+    showAlert() {
+        wx.showToast({
+            title: '请完整填写题目',
+            icon: 'none'
         })
     }
 
