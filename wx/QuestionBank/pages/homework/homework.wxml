@@ -1,1 +1,25 @@
-<text>作业界面</text>
+<view class='container'>
+
+    <view class='navigationBar'>
+        <view class='navigationBarTitle'>大学生出题库</view>
+    </view>
+
+    <view hidden='{{!hasUserInfo}}'>
+        <!-- 学生界面 -->
+        <view hidden='{{userInfo.isTeacher}}'>学生</view>
+
+        <!-- 教师界面 -->
+        <view hidden='{{!userInfo.isTeacher}}'>
+            <image src='/images/add.png' class='assign' bindtap='toAssign'></image>
+
+            <view wx:for='{{homework_list}}' wx:for-item='homework' class='item'>
+                <view class='name'>Linux操作系统 {{homework.name}}</view>
+                <view class='detail'>
+                    <view>选择 5 填空 5 判断5 简答2 已交43/47人</view>
+                    <view>班级</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</view>

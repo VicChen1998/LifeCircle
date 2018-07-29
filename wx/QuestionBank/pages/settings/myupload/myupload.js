@@ -46,5 +46,9 @@ Page({
                 show_detail: this.data.show_detail
             })
         }
+    },
+
+    onBack: function(event) {
+        wx.navigateBack()
     }
 })

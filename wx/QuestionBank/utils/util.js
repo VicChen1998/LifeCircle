@@ -18,7 +18,7 @@ const getAbsoluteLength = str => {
     var absolute = 0;
     for (var i = 0; i < str.length; i++) {
         if (str.charCodeAt(i) < 128)
-            absolute +=1
+            absolute += 1
         else
             absolute += 2
     }
@@ -27,6 +27,5 @@ const getAbsoluteLength = str => {
 
 module.exports = {
     formatTime: formatTime,
-    getAbsoluteLength: getAbsoluteLength
-
+    getAbsoluteLength: getAbsoluteLength,
 }

@@ -105,16 +105,17 @@ class Choice(models.Model):
     class Meta:
         db_table = 'QB_Choice'
 
-    def dict(self):
+    def dict(self, with_answer=True):
         return {
+            'id': self.id,
             'subject': self.subject.dict(),
             'question': self.question,
             'option_A': self.option_A,
             'option_B': self.option_B,
             'option_C': self.option_C,
             'option_D': self.option_D,
-            'answer': self.answer,
-            'comment': self.comment,
+            'answer': self.answer if with_answer else None,
+            'comment': self.comment if with_answer else None,
         }
 
     @staticmethod
@@ -139,12 +140,13 @@ class Judge(models.Model):
     class Meta:
         db_table = 'QB_Judge'
 
-    def dict(self):
+    def dict(self, with_answer=True):
         return {
+            'id': self.id,
             'subject': self.subject.dict(),
             'question': self.question,
-            'answer': self.answer,
-            'comment': self.comment,
+            'answer': self.answer if with_answer else None,
+            'comment': self.comment if with_answer else None,
         }
 
     @staticmethod
@@ -168,12 +170,13 @@ class Fill(models.Model):
     class Meta:
         db_table = 'QB_Fill'
 
-    def dict(self):
+    def dict(self, with_answer=True):
         return {
+            'id': self.id,
             'subject': self.subject.dict(),
             'question': self.question.split('\t')[:-1],
-            'answer': self.answer.split('\t')[:-1],
-            'comment': self.comment,
+            'answer': self.answer.split('\t')[:-1] if with_answer else None,
+            'comment': self.comment if with_answer else None,
         }
 
     @staticmethod
@@ -195,11 +198,12 @@ class Discuss(models.Model):
     class Meta:
         db_table = 'QB_Discuss'
 
-    def dict(self):
+    def dict(self, with_answer=True):
         return {
+            'id': self.id,
             'subject': self.subject.dict(),
             'question': self.question,
-            'answer': self.answer,
+            'answer': self.answer if with_answer else None,
         }
 
     @staticmethod

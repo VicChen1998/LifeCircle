@@ -1,6 +1,5 @@
-const util = require('../../utils/util.js')
-
 const app = getApp()
+const requireCallback = require('../../utils/requireCallback.js')
 
 Page({
 
@@ -24,17 +23,7 @@ Page({
             tabs: app.globalData.tabs
         })
 
-        if (app.globalData.hasSubject)
-            this.setData({
-                subject_range: app.globalData.subject
-            })
-        else {
-            app.uploadGetSubjectCallback = () => {
-                this.setData({
-                    subject_range: app.globalData.subject
-                })
-            }
-        }
+        requireCallback.requireSubject(this, 2)
     },
 
     tabOnChange: function(event) {

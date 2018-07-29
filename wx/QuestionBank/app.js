@@ -24,6 +24,9 @@ App({
             'show': false
         }],
 
+        requireUserinfo: [null, null, null, null],
+        requireSubject: [null, null, null, null]
+
     },
 
     onLaunch: function() {
@@ -40,8 +43,10 @@ App({
                         if (response.data.status == 'success') {
                             this.globalData.userInfo = response.data.userInfo
                             this.globalData.hasUserInfo = true
-                            if (this.settingsGetUserInfoCallback)
-                                this.settingsGetUserInfoCallback()
+                            for (var i in this.globalData.requireUserinfo) {
+                                if (this.globalData.requireUserinfo[i])
+                                    this.globalData.requireUserinfo[i]()
+                            }
                         }
                     }
                 })
@@ -54,10 +59,10 @@ App({
             success: response => {
                 this.globalData.subject = response.data.subject
                 this.globalData.hasSubject = true
-                if (this.exerciseGetSubjectCallback)
-                    this.exerciseGetSubjectCallback()
-                if (this.uploadGetSubjectCallback)
-                    this.uploadGetSubjectCallback()
+                for (var i in this.globalData.requireSubject) {
+                    if (this.globalData.requireSubject[i])
+                        this.globalData.requireSubject[i]()
+                }
             }
         })
     }

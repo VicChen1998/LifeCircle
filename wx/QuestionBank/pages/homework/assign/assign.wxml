@@ -1,0 +1,122 @@
+<image src='/images/more.png' class='navigationBack' bindtap='onBack' style='top:50rpx;'></image>
+
+<view style='padding: 50rpx 20rpx 200rpx 20rpx'>
+
+    <view hidden='{{questions[0].length==0}}' class='type'>
+        <view class='type_title'>选择题</view>
+        <checkbox-group bindchange='onChecked' data-typeindex='0'>
+            <view wx:for='{{questions[0]}}' wx:for-item='choice' class='item' data-typeindex='0' data-index='{{index}}' bindtap='onDetail'>
+                <view class='question'>
+                    <checkbox value='{{index}}' checked='{{checked_index[0][index] == index}}' />
+                    <text>{{index+1}}. {{choice.question}}</text>
+                    <text class='choice_answer' hidden='{{index!=show_detail[0]}}'>{{choice.answer}}</text>
+                </view>
+                <view hidden='{{index!=show_detail[0]}}' class='choice_options'>
+                    <text class='option'>A {{choice.option_A}}</text>
+                    <text class='option'>B {{choice.option_B}}</text>
+                    <text class='option'>C {{choice.option_C}}</text>
+                    <text class='option'>D {{choice.option_D}}</text>
+                </view>
+            </view>
+        </checkbox-group>
+    </view>
+
+    <view hidden='{{questions[1].length==0}}' class='type'>
+        <view class='type_title'>填空题</view>
+        <checkbox-group bindchange='onChecked' data-typeindex='1'>
+            <view wx:for='{{questions[1]}}' wx:for-item='fill' class='item'>
+                <checkbox value='{{index}}' checked='{{checked_index[1][index] == index}}'></checkbox>
+                <text>{{index+1}}.</text>
+                <block wx:for='{{fill.question}}' wx:for-item='question'>
+                    <block wx:if='{{question.length > 0}}'>
+                        <text>{{question}}</text>
+                    </block>
+                    <block wx:if='{{fill.answer[index].length > 0}}'>
+                        <text class='fill_answer'>{{fill.answer[index]}}</text>
+                    </block>
+                </block>
+            </view>
+        </checkbox-group>
+    </view>
+
+    <view hidden='{{questions[2].length==0}}' class='type'>
+        <view class='type_title'>判断题</view>
+        <checkbox-group bindchange='onChecked' data-typeindex='2'>
+            <view wx:for='{{questions[2]}}' wx:for-item='judge' class='item'>
+                <view class='question'>
+                    <checkbox value='{{index}}' checked='{{checked_index[2][index] == index}}'></checkbox>
+                    <text>{{index+1}}. {{judge.question}}</text>
+                    <text class='choice_answer'>{{judge.answer}}</text>
+                </view>
+            </view>
+        </checkbox-group>
+    </view>
+
+    <view hidden='{{questions[3].length==0}}' class='type'>
+        <view class='type_title'>简答题</view>
+        <checkbox-group bindchange='onChecked' data-typeindex='3'>
+            <view wx:for='{{questions[3]}}' wx:for-item='discuss' class='item' data-typeindex='3' data-index='{{index}}' bindtap='onDetail'>
+                <view class='question'>
+                    <checkbox value='{{index}}' checked='{{checked_index[3][index] == index}}'></checkbox>
+                    <text>{{index+1}}. {{discuss.question}}</text>
+                </view>
+                <view hidden='{{index!=show_detail[3]}}' class='comment'>
+                    <text decode='true'>{{discuss.answer}}</text>
+                </view>
+            </view>
+        </checkbox-group>
+    </view>
+
+</view>
+
+
+
+<view class='footbar typebar'>
+    <view class='typebar_item' style='margin-left: 25rpx;'>
+        <view class='type_name'>选择</view>
+        <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='0'>
+            <picker-view-column>
+                <view wx:for='{{num_range[0]}}'>{{item}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+
+    <view class='typebar_item'>
+        <view class='type_name'>填空</view>
+        <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='1'>
+            <picker-view-column>
+                <view wx:for='{{num_range[1]}}'>{{item}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+
+    <view class='typebar_item'>
+        <view class='type_name'>判断</view>
+        <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='2'>
+            <picker-view-column>
+                <view wx:for='{{num_range[2]}}'>{{item}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+
+    <view class='typebar_item'>
+        <view class='type_name'>简答</view>
+        <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='3'>
+            <picker-view-column>
+                <view wx:for='{{num_range[3]}}'>{{item}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+
+    <view class='generate' bindtap='onGenerate'>生成</view>
+</view>
+
+<view class='footbar buttonbar'>
+    <view class='foot_button' style='width:250%'>
+        <input class='homework_name' placeholder='{{default_name}}' bindblur='onNameBlur'></input>
+    </view>
+    <view class='foot_button' bindtap='onCheckedAll'>全选</view>
+    <view class='foot_button' bindtap='onCheckedInvert'>反选</view>
+    <view class='foot_button' bindtap='onSave'>暂存</view>
+    <view class='foot_button' bindtap='onAssign'>布置</view>
+</view>

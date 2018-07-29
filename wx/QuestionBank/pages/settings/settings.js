@@ -1,8 +1,10 @@
 const app = getApp()
+const requireCallback = require('../../utils/requireCallback.js')
 
 Page({
 
     data: {
+        hasUserInfo: false,
         userInfo: null,
 
         motto: {
@@ -22,15 +24,9 @@ Page({
     },
 
     onLoad: function(options) {
-        if (app.globalData.hasUserInfo) {
-            this.data.userInfo = app.globalData.userInfo
-        } else {
-            app.settingsGetUserInfoCallback = () => {
-                this.setData({
-                    userInfo: app.globalData.userInfo
-                })
-            }
-        }
+
+        requireCallback.requireUserInfo(this, 3)
+
 
         wx.request({
             url: app.globalData.host + 'public/get_college',

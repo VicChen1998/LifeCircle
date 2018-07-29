@@ -50,12 +50,6 @@
     color: #0096ff;
 }
 
-.comment {
-    margin: 10rpx 0;
-    font-size: 25rpx;
-    color: #666;
-}
-
 .fill_answer {
     margin: 0 10rpx;
     padding: 0 15rpx;

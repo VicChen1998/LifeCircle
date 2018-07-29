@@ -4,10 +4,12 @@
         "pages/homework/homework",
         "pages/upload/upload",
         "pages/settings/settings",
-        "pages/settings/myupload/myupload"
+        "pages/settings/myupload/myupload",
+        "pages/homework/assign/assign"
     ],
     "window": {
         "backgroundTextStyle": "light",
+        "navigationStyle": "custom",
         "navigationBarBackgroundColor": "#0096ff",
         "navigationBarTitleText": "大学生出题库",
         "navigationBarTextStyle": "black"

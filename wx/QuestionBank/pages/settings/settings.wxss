@@ -1,7 +1,7 @@
 .topbar {
     height: 380rpx;
     background: linear-gradient(#0096ff,#0086ff);
-    box-shadow: 0 5rpx 10rpx #ccc;
+    box-shadow: 0 5rpx 5rpx #ccc;
 }
 
 .avatar {
@@ -12,6 +12,7 @@
     border-radius: 50%;
     overflow: hidden;
     float: left;
+    z-index: 999;
 }
 
 .topbar_info {

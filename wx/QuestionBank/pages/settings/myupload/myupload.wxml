@@ -1,71 +1,80 @@
-<view>
-    <view class='type'>
-        <view class='topbar'>选择</view>
-        <view wx:for='{{choice_list}}' wx:for-item='choice' class='item' data-type_index='0' data-index='{{index}}' bindtap='onDetail'>
-            <image src='/images/more.png' class='more'></image>
-            <view class='question'>
-                <text>{{choice.question}}</text>
-                <text class='choice_answer' hidden='{{index!=show_detail[0]}}'>{{choice.answer}}</text>
-            </view>
-            <view hidden='{{index!=show_detail[0]}}' class='choice_options'>
-                <text class='option'>A {{choice.option_A}}</text>
-                <text class='option'>B {{choice.option_B}}</text>
-                <text class='option'>C {{choice.option_C}}</text>
-                <text class='option'>D {{choice.option_D}}</text>
-            </view>
-            <view hidden='{{index!=show_detail[0]}}' class='comment'>
-                <text decode='true'>{{choice.comment}}</text>
-            </view>
-        </view>
+<view class='container'>
+
+    <view class='navigationBar'>
+        <image src='/images/more.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>我出的题</view>
     </view>
 
-    <view class='type'>
-        <view class='topbar'>填空</view>
-        <view wx:for='{{fill_list}}' wx:for-item='fill' class='item' data-type_index='1' data-index='{{index}}' bindtap='onDetail'>
-            <block wx:if='{{fill.comment.length > 0}}'>
+    <view>
+        <view class='type'>
+            <view class='topbar'>选择</view>
+            <view wx:for='{{choice_list}}' wx:for-item='choice' class='item' data-type_index='0' data-index='{{index}}' bindtap='onDetail'>
                 <image src='/images/more.png' class='more'></image>
-            </block>
-            <view class='question'>
-                <block wx:for='{{fill.question}}' wx:for-item='question'>
-                    <block wx:if='{{question.length > 0}}'>
-                        <text>{{question}}</text>
-                    </block>
-                    <block wx:if='{{fill.answer[index].length > 0}}'>
-                        <text class='fill_answer'>{{fill.answer[index]}}</text>
-                    </block>
+                <view class='question'>
+                    <text>{{choice.question}}</text>
+                    <text class='choice_answer' hidden='{{index!=show_detail[0]}}'>{{choice.answer}}</text>
+                </view>
+                <view hidden='{{index!=show_detail[0]}}' class='choice_options'>
+                    <text class='option'>A {{choice.option_A}}</text>
+                    <text class='option'>B {{choice.option_B}}</text>
+                    <text class='option'>C {{choice.option_C}}</text>
+                    <text class='option'>D {{choice.option_D}}</text>
+                </view>
+                <view hidden='{{index!=show_detail[0]}}' class='comment'>
+                    <text decode='true'>{{choice.comment}}</text>
+                </view>
+            </view>
+        </view>
+
+        <view class='type'>
+            <view class='topbar'>填空</view>
+            <view wx:for='{{fill_list}}' wx:for-item='fill' class='item' data-type_index='1' data-index='{{index}}' bindtap='onDetail'>
+                <block wx:if='{{fill.comment.length > 0}}'>
+                    <image src='/images/more.png' class='more'></image>
                 </block>
-            </view>
-            <view hidden='{{index!=show_detail[1]}}' class='comment'>
-                <text decode='true'>{{fill.comment}}</text>
+                <view class='question'>
+                    <block wx:for='{{fill.question}}' wx:for-item='question'>
+                        <block wx:if='{{question.length > 0}}'>
+                            <text>{{question}}</text>
+                        </block>
+                        <block wx:if='{{fill.answer[index].length > 0}}'>
+                            <text class='fill_answer'>{{fill.answer[index]}}</text>
+                        </block>
+                    </block>
+                </view>
+                <view hidden='{{index!=show_detail[1]}}' class='comment'>
+                    <text decode='true'>{{fill.comment}}</text>
+                </view>
             </view>
         </view>
-    </view>
 
-    <view class='type'>
-        <view class='topbar'>判断</view>
-        <view wx:for='{{judge_list}}' wx:for-item='judge' class='item' data-type_index='2' data-index='{{index}}' bindtap='onDetail'>
-            <block wx:if='{{judge.comment.length > 0}}'>
+        <view class='type'>
+            <view class='topbar'>判断</view>
+            <view wx:for='{{judge_list}}' wx:for-item='judge' class='item' data-type_index='2' data-index='{{index}}' bindtap='onDetail'>
+                <block wx:if='{{judge.comment.length > 0}}'>
+                    <image src='/images/more.png' class='more'></image>
+                </block>
+                <view class='question'>
+                    <text>{{judge.question}}</text>
+                    <text class='choice_answer' hidden='{{index!=show_detail[2]}}'>{{judge.answer}}</text>
+                </view>
+                <view hidden='{{index!=show_detail[2]}}' class='comment'>
+                    <text decode='true'>{{judge.comment}}</text>
+                </view>
+            </view>
+        </view>
+
+        <view class='type'>
+            <view class='topbar'>简答</view>
+            <view wx:for='{{discuss_list}}' wx:for-item='discuss' class='item' data-type_index='3' data-index='{{index}}' bindtap='onDetail'>
                 <image src='/images/more.png' class='more'></image>
-            </block>
-            <view class='question'>
-                <text>{{judge.question}}</text>
-                <text class='choice_answer' hidden='{{index!=show_detail[2]}}'>{{judge.answer}}</text>
-            </view>
-            <view hidden='{{index!=show_detail[2]}}' class='comment'>
-                <text decode='true'>{{judge.comment}}</text>
+                <view class='question'>{{discuss.question}}</view>
+                <view hidden='{{index!=show_detail[3]}}' class='comment'>
+                    <text decode='true'>{{discuss.answer}}</text>
+                </view>
             </view>
         </view>
-    </view>
 
-    <view class='type'>
-        <view class='topbar'>简答</view>
-        <view wx:for='{{discuss_list}}' wx:for-item='discuss' class='item' data-type_index='3' data-index='{{index}}' bindtap='onDetail'>
-            <image src='/images/more.png' class='more'></image>
-            <view class='question'>{{discuss.question}}</view>
-            <view hidden='{{index!=show_detail[3]}}' class='comment'>
-                <text decode='true'>{{discuss.answer}}</text>
-            </view>
-        </view>
     </view>
 
 </view>

@@ -1,4 +1,5 @@
 const app = getApp()
+const requireCallback = require('../../utils/requireCallback.js')
 
 Page({
 
@@ -26,23 +27,12 @@ Page({
     onLoad: function(options) {
         this.setData({
             tabs: app.globalData.tabs
-        })
-
-        if (app.globalData.hasSubject)
-            this.setData({
-                subject_range: app.globalData.subject
-            })
-        else {
-            app.exerciseGetSubjectCallback = () => {
-                this.setData({
-                    subject_range: app.globalData.subject
-                })
-            }
-        }
+        })    
     },
 
     onReady: function(options) {
-        this.choiceInit()
+        requireCallback.requireSubject(this, 0)
+        this.choiceInit()    
     },
 
     tabOnChange: function(event) {
@@ -164,5 +154,5 @@ Page({
         this.setData({
             discussAnswerVisiable: true
         })
-    }
+    },
 })
