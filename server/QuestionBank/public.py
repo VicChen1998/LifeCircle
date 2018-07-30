@@ -17,7 +17,7 @@ def get_major(request):
 
 
 def get_class(request):
-    class_list = Class.objects.filter(major_id=request.GET['major_id'])
+    class_list = Class.objects.filter(major_id=request.GET['major_id']).order_by('-id')
     response = {'class': [clas.dict() for clas in class_list]}
     return HttpResponse(json.dumps(response), content_type='application/json')
 

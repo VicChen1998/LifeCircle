@@ -35,13 +35,15 @@ class Major(models.Model):
 
 
 class Class(models.Model):
-    id = models.CharField(primary_key=True, max_length=5)
+    id = models.CharField(primary_key=True, max_length=9)
     # 名称
     name = models.CharField(max_length=16)
     # 简称
     shortname = models.CharField(max_length=8)
     # 所属专业
     major = models.ForeignKey(Major)
+    # 年级
+    grade = models.PositiveIntegerField()
 
     class Meta:
         db_table = 'Class'
@@ -49,6 +51,7 @@ class Class(models.Model):
     def dict(self):
         return {
             'id': self.id,
+            'grade': self.grade,
             'name': self.name,
             'shortname': self.shortname
         }

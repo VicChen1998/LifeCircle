@@ -45,7 +45,7 @@
         <view class='menuitem'>
             <view class='menu_title'>班级</view>
             <picker range='{{class_range}}' value='{{class_index}}' range-key='name' class='menu_value' bindchange='onClassChange'>
-                <view>{{class_range[class_index].name}}</view>
+                <view>{{class_range[class_index].shortname}}</view>
             </picker>
         </view>
 
