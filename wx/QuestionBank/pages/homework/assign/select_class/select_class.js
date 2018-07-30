@@ -37,30 +37,29 @@ Page({
                     this.setData({
                         college_list: this.data.college_list
                     })
+
+                    for (var i in this.data.college_list[college_index].major_list) {
+                        this.loadClass(college_index, i)
+                    }
                 }
             })
         }
     },
 
-    onSelectMajor: function(event) {
-        let college_index = event.currentTarget.dataset.college_index
-        let major_index = event.currentTarget.dataset.major_index
-
-        if (!this.data.college_list[college_index].major_list[major_index].class_list) {
-            let major_id = this.data.college_list[college_index].major_list[major_index].id
-            wx.request({
-                url: app.globalData.host + 'public/get_class',
-                data: {
-                    'major_id': major_id
-                },
-                success: response => {
-                    this.data.college_list[college_index].major_list[major_index].class_list = response.data.class
-                    this.setData({
-                        college_list: this.data.college_list
-                    })
-                }
-            })
-        }
+    loadClass: function(college_index, major_index) {
+        let major_id = this.data.college_list[college_index].major_list[major_index].id
+        wx.request({
+            url: app.globalData.host + 'public/get_class',
+            data: {
+                'major_id': major_id
+            },
+            success: response => {
+                this.data.college_list[college_index].major_list[major_index].class_list = response.data.class
+                this.setData({
+                    college_list: this.data.college_list
+                })
+            }
+        })
     },
 
     onSelectClass: function(event) {

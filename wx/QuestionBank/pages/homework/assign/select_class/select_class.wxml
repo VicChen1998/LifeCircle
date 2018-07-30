@@ -9,7 +9,7 @@
             <view class='college_name' bindtap='onSelectCollege' data-college_index='{{college_index}}'>{{college.name}}</view>
 
             <view class='major_item' wx:for='{{college.major_list}}' wx:for-item='major' wx:for-index='major_index' wx:key='id'>
-                <view class='major_name' bindtap='onSelectMajor' data-college_index='{{college_index}}' data-major_index='{{major_index}}'>{{major.name}}</view>
+                <view class='major_name'>{{major.name}}</view>
                 <view class='class'>
                     <label class='class_item' wx:for='{{major.class_list}}' wx:for-item='class' wx:for-index='class_index' wx:key='id'>
                         <checkbox value='{{class.id}}'></checkbox>

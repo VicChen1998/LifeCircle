@@ -1,7 +1,8 @@
 .college_item {
     padding: 30rpx;
     font-size: 38rpx;
-    border-bottom: 1rpx solid #eee;
+    border-bottom: 1rpx solid #f4f4f4;
+    background: #fdfdfd;
 }
 
 .college_name{
