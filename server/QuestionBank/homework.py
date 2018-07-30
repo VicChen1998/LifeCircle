@@ -2,7 +2,7 @@ import json
 
 from django.http import JsonResponse
 
-from QuestionBank.models import User, Homework, Choice, Fill, Judge, Discuss
+from QuestionBank.models import User, UserProfile, Homework, Choice, Fill, Judge, Discuss
 
 
 def list_by_teacher(request):
@@ -16,6 +16,11 @@ def list_by_teacher(request):
 
 def assign(request):
     user = User.objects.get(username=request.POST['openid'])
+    profile = UserProfile.objects.get(user=user)
+
+    if not profile.isTeacher:
+        response = {'status': 'fail', 'errMsg': 'permission denied.'}
+        return JsonResponse(response)
 
     [choice_list, fill_list, judge_list, discuss_list] = json.loads(request.POST['questions'])
 

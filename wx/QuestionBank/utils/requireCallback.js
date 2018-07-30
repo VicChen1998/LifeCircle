@@ -6,7 +6,7 @@ const requireUserInfo = (tab, tabIndex, callback) => {
             hasUserInfo: true,
             userInfo: app.globalData.userInfo
         })
-        if(callback)
+        if (callback)
             callback()
     } else {
         app.globalData.requireUserInfo[tabIndex] = () => {
@@ -25,11 +25,15 @@ const requireSubject = (tab, tabIndex, callback) => {
         tab.setData({
             subject_range: app.globalData.subject
         })
+        if (callback)
+            callback()
     } else {
         app.globalData.requireSubject[tabIndex] = () => {
             tab.setData({
                 subject_range: app.globalData.subject
             })
+            if (callback)
+                callback()
         }
     }
 }

@@ -38,8 +38,10 @@ def signin(request):
                 'userInfo': {'openid': openid,
                              'first_signin': first_signin,
                              'name': profile.name,
+                             'student_id': profile.student_id,
                              'college': profile.college.dict() if profile.college else None,
                              'major': profile.major.dict() if profile.major else None,
+                             'class': profile.clas.dict() if profile.clas else None,
                              'isTeacher': profile.isTeacher}
                 }
 

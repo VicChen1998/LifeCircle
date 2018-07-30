@@ -24,7 +24,7 @@ App({
             'show': false
         }],
 
-        requireUserinfo: [null, null, null, null],
+        requireUserInfo: [null, null, null, null],
         requireSubject: [null, null, null, null]
 
     },
@@ -43,9 +43,9 @@ App({
                         if (response.data.status == 'success') {
                             this.globalData.userInfo = response.data.userInfo
                             this.globalData.hasUserInfo = true
-                            for (var i in this.globalData.requireUserinfo) {
-                                if (this.globalData.requireUserinfo[i])
-                                    this.globalData.requireUserinfo[i]()
+                            for (var i in this.globalData.requireUserInfo) {
+                                if (this.globalData.requireUserInfo[i])
+                                    this.globalData.requireUserInfo[i]()
                             }
                         }
                     }

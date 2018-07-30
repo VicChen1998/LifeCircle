@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 # 学院
 class College(models.Model):
-    id = models.PositiveIntegerField(primary_key=True, auto_created=True)
+    id = models.CharField(primary_key=True, max_length=2)
     # 名称
     name = models.CharField(max_length=16)
 
@@ -20,7 +20,7 @@ class College(models.Model):
 
 # 专业
 class Major(models.Model):
-    id = models.PositiveIntegerField(primary_key=True, auto_created=True)
+    id = models.CharField(primary_key=True, max_length=3)
     # 名称
     name = models.CharField(max_length=16)
     # 所属学院
@@ -32,6 +32,26 @@ class Major(models.Model):
     def dict(self):
         return {'id': self.id,
                 'name': self.name}
+
+
+class Class(models.Model):
+    id = models.CharField(primary_key=True, max_length=5)
+    # 名称
+    name = models.CharField(max_length=16)
+    # 简称
+    shortname = models.CharField(max_length=8)
+    # 所属专业
+    major = models.ForeignKey(Major)
+
+    class Meta:
+        db_table = 'Class'
+
+    def dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'shortname': self.shortname
+        }
 
 
 # 学科
@@ -73,10 +93,14 @@ class UserProfile(models.Model):
     # 本应用数据
     # 姓名
     name = models.CharField(max_length=8, null=True, default=None)
+    # 学号
+    student_id = models.CharField(max_length=11, null=True, default=None)
     # 学院
     college = models.ForeignKey(College, null=True, default=None)
     # 专业
     major = models.ForeignKey(Major, null=True, default=None)
+    # 班级
+    clas = models.ForeignKey(Class, null=True, default=None)
     # 是否教师
     isTeacher = models.BooleanField(default=False)
 
@@ -210,3 +234,39 @@ class Discuss(models.Model):
     def random():
         index = random.randint(0, Discuss.objects.count() - 1)
         return Discuss.objects.all()[index]
+
+
+class Homework(models.Model):
+    # 名称
+    name = models.CharField(max_length=32)
+    # 出卷老师
+    teacher = models.ForeignKey(User)
+    # 发布日期
+    release_date = models.DateField(auto_now_add=True)
+    # 选择题
+    choice = models.ManyToManyField(Choice, db_table='QB_Homework_Choice')
+    # 填空题
+    fill = models.ManyToManyField(Fill, db_table='QB_Homework_Fill')
+    # 判断题
+    judge = models.ManyToManyField(Judge, db_table='QB_Homework_Judge')
+    # 简答题
+    discuss = models.ManyToManyField(Discuss, db_table='QB_Homework_Discuss')
+
+    class Meta:
+        db_table = 'QB_Homework'
+
+    def dict(self):
+        return {
+            'teacher_openid': self.teacher.username,
+            'release_data': str(self.release_date),
+            'choice': [choice.dict(with_answer=False) for choice in self.choice.all()],
+            'fill': [fill.dict(with_answer=False) for fill in self.fill.all()],
+            'judge': [judge.dict(with_answer=False) for judge in self.judge.all()],
+            'discuss': [discuss.dict(with_answer=False) for discuss in self.discuss.all()]
+        }
+
+    def info(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }

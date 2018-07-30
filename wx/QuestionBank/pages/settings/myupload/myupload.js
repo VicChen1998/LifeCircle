@@ -14,7 +14,7 @@ Page({
     onLoad: function(options) {
         wx.showNavigationBarLoading()
         wx.request({
-            url: app.globalData.host + 'personal/get_upload',
+            url: app.globalData.host + 'personal/get_myupload',
             data: {
                 'openid': app.globalData.userInfo.openid
             },

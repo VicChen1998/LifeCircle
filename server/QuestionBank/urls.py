@@ -7,12 +7,16 @@ urlpatterns = [
     url(r'^signin', auth.signin),
 
     # 获取公共数据
-    url(r'^public/get_college', public.get_college),
+    url(r'^public/get_college$', public.get_college),
     url(r'^public/get_major', public.get_major),
+    url(r'^public/get_class', public.get_class),
     url(r'^public/get_subject', public.get_subject),
 
     # 获取个人数据
-    url(r'^personal/get_upload', personal.get_upload),
+    url(r'^personal/get_myupload', personal.get_myupload),
+
+    # 上传个人信息
+    url(r'^personal/set_userinfo', personal.set_userinfo),
 
     # 提交题目
     url(r'^upload/choice$', upload.choice),

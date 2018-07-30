@@ -2,10 +2,35 @@ import json
 
 from django.http import HttpResponse
 
-from QuestionBank.models import User, Choice, Fill, Judge, Discuss
+from QuestionBank.models import User, UserProfile, Class, Choice, Fill, Judge, Discuss
 
 
-def get_upload(request):
+def set_userinfo(request):
+    user = User.objects.get(username=request.POST['openid'])
+    profile = UserProfile.objects.get(user=user)
+
+    infotype = request.POST['infotype']
+
+    if infotype == 'class_id':
+        clas = Class.objects.get(id=request.POST['class_id'])
+
+        profile.clas = clas
+        profile.major = clas.major
+        profile.college = clas.major.college
+
+    elif infotype == 'name':
+        profile.name = request.POST['name']
+
+    elif infotype == 'student_id':
+        profile.student_id = request.POST['student_id']
+
+    profile.save()
+
+    response = {'status': 'success'}
+    return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def get_myupload(request):
     user = User.objects.get(username=request.GET['openid'])
 
     response = {'status': 'success',
