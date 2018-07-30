@@ -61,7 +61,6 @@ button {
 .navigationBack {
     width: 50rpx;
     height: 50rpx;
-    transform: rotate(180deg);
     position: fixed;
     left: 20rpx;
 }
@@ -70,4 +69,11 @@ button {
     margin: 0 0 10rpx;
     font-size: 25rpx;
     color: #666;
+}
+
+.hint {
+    margin: 30rpx auto;
+    text-align: center;
+    font-size: 32rpx;
+    color: #ccc;
 }

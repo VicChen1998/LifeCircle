@@ -1,12 +1,15 @@
 <view class='container'>
 
     <view class='navigationBar'>
-        <image src='/images/more.png' class='navigationBack' bindtap='onBack'></image>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
         <view class='navigationBarTitle'>我出的题</view>
     </view>
 
     <view>
-        <view class='type'>
+
+        <view class='hint' style='margin-top:200rpx' hidden='{{!(choice_list.length==0 && fill_list.length==0 && judge_list.length==0 && discuss_list.length==0)}}'>还没有出过题哦</view>
+
+        <view class='type' hidden='{{choice_list.length==0}}'>
             <view class='topbar'>选择</view>
             <view wx:for='{{choice_list}}' wx:for-item='choice' class='item' data-type_index='0' data-index='{{index}}' bindtap='onDetail'>
                 <image src='/images/more.png' class='more'></image>
@@ -26,7 +29,7 @@
             </view>
         </view>
 
-        <view class='type'>
+        <view class='type' hidden='{{fill_list.length==0}}'>
             <view class='topbar'>填空</view>
             <view wx:for='{{fill_list}}' wx:for-item='fill' class='item' data-type_index='1' data-index='{{index}}' bindtap='onDetail'>
                 <block wx:if='{{fill.comment.length > 0}}'>
@@ -48,7 +51,7 @@
             </view>
         </view>
 
-        <view class='type'>
+        <view class='type' hidden='{{judge_list.length==0}}'>
             <view class='topbar'>判断</view>
             <view wx:for='{{judge_list}}' wx:for-item='judge' class='item' data-type_index='2' data-index='{{index}}' bindtap='onDetail'>
                 <block wx:if='{{judge.comment.length > 0}}'>
@@ -64,7 +67,7 @@
             </view>
         </view>
 
-        <view class='type'>
+        <view class='type' hidden='{{discuss_list.length==0}}'>
             <view class='topbar'>简答</view>
             <view wx:for='{{discuss_list}}' wx:for-item='discuss' class='item' data-type_index='3' data-index='{{index}}' bindtap='onDetail'>
                 <image src='/images/more.png' class='more'></image>

@@ -60,12 +60,14 @@
 
         <!-- 填空题 -->
         <view class='tab_view' hidden='{{!tabs[1].show}}'>
-            <view wx:for='{{fill.question}}' wx:for-item='question' class='fill_item'>
-                <block wx:if='{{question[index].length > 0}}'>
-                    <view class='fill_question'>{{question}}</view>
-                </block>
-                <block wx:if='{{fill.answer[index].length > 0}}'>
-                    <input class='fill_input' value='{{empty}}'></input>
+            <view class='fill_item'>
+                <block wx:for='{{fill.question}}' wx:for-item='question'>
+                    <block wx:if='{{question.length > 0}}'>
+                        <text class='fill_question'>{{question}}</text>
+                    </block>
+                    <block wx:if='{{fill.answer[index].length > 0}}'>
+                        <input class='fill_input' value='{{empty}}' style='width:{{fill.answer[index].length*40}}rpx'></input>
+                    </block>
                 </block>
             </view>
 
