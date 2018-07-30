@@ -39,7 +39,9 @@ Page({
         show_detail: [-1, -1, -1, -1],
 
         name: '',
-        default_name: ''
+        default_name: '',
+
+        class_list: []
     },
 
     onLoad: function(options) {
@@ -68,12 +70,6 @@ Page({
         let typeindex = event.target.dataset.typeindex
         let num = event.detail.value[0]
         this.data.num_index[typeindex] = num
-    },
-
-    onNameBlur: function(event) {
-        this.setData({
-            name: event.detail.value
-        })
     },
 
     generate: function(typeindex) {
@@ -169,23 +165,24 @@ Page({
         }
     },
 
-    onCheckedInvert: function(event) {
-        wx.showToast({
-            title: '还没写',
-            icon: 'none'
+    onNameBlur: function(event) {
+        this.setData({
+            name: event.detail.value
         })
     },
 
-    onSave: function(event) {
-        wx.showToast({
-            title: '还没写',
-            icon: 'none'
+    onSelectClass: function(event) {
+        wx.navigateTo({
+            url: '/pages/homework/assign/select_class/select_class',
         })
     },
-
 
     onAssign: function(event) {
+        var empty = true
         for (var typeindex in this.data.questions) {
+            if (this.data.checked_index[typeindex].length != 0)
+                empty = false
+
             if (this.data.questions[typeindex].length != this.data.checked_index[typeindex].length) {
                 wx.showToast({
                     title: '有未选中的题目',
@@ -193,6 +190,22 @@ Page({
                 })
                 return
             }
+        }
+
+        if (empty) {
+            wx.showToast({
+                title: '未选择题目',
+                icon: 'none'
+            })
+            return
+        }
+
+        if (this.data.class_list.length == 0) {
+            wx.showToast({
+                title: '未选择班级',
+                icon: 'none'
+            })
+            return
         }
 
         var questions = []
@@ -211,6 +224,7 @@ Page({
             data: {
                 'openid': app.globalData.userInfo.openid,
                 'name': name,
+                'class': JSON.stringify(this.data.class_list),
                 'questions': JSON.stringify(questions)
             },
             method: 'POST',

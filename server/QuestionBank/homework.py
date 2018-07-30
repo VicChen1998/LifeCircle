@@ -2,14 +2,16 @@ import json
 
 from django.http import JsonResponse
 
-from QuestionBank.models import User, UserProfile, Homework, Choice, Fill, Judge, Discuss
+from QuestionBank.models import User, UserProfile, Homework, Class, Choice, Fill, Judge, Discuss
 
 
 def list_by_teacher(request):
     teacher = User.objects.get(username=request.GET['teacher_openid'])
 
+    homework_list = Homework.objects.filter(teacher=teacher).order_by('-release_date')
+
     response = {'status': 'success',
-                'homework': [homework.info() for homework in Homework.objects.filter(teacher=teacher)]}
+                'homework': [homework.info() for homework in homework_list]}
 
     return JsonResponse(response)
 
@@ -24,6 +26,8 @@ def assign(request):
 
     [choice_list, fill_list, judge_list, discuss_list] = json.loads(request.POST['questions'])
 
+    class_list = json.loads(request.POST['class'])
+
     homework = Homework.objects.create(teacher=user, name=request.POST['name'])
 
     for choice_id in choice_list:
@@ -34,6 +38,9 @@ def assign(request):
         homework.judge.add(Judge.objects.get(id=judge_id))
     for discuss_id in discuss_list:
         homework.discuss.add(Discuss.objects.get(id=discuss_id))
+
+    for clas_id in class_list:
+        homework.clas.add(Class.objects.get(id=clas_id))
 
     response = {'status': 'success'}
     return JsonResponse(response)

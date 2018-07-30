@@ -13,10 +13,23 @@
             <image src='/images/add.png' class='assign' bindtap='toAssign'></image>
 
             <view wx:for='{{homework_list}}' wx:for-item='homework' class='item'>
-                <view class='name'>Linux操作系统 {{homework.name}}</view>
+                <text class='name'>Linux操作系统 {{homework.name}}</text>
+                <text class='date'>{{homework.release_date}}</text>
+
                 <view class='detail'>
-                    <view>选择 5 填空 5 判断5 简答2 已交43/47人</view>
-                    <view>班级</view>
+                    <view>
+                        <text>题型：</text>
+                        <text wx:if='{{homework.choice_num != 0}}' class='detail_num'>选择 {{homework.choice_num}}</text>
+                        <text wx:if='{{homework.fill_num != 0}}' class='detail_num'>填空 {{homework.fill_num}}</text>
+                        <text wx:if='{{homework.judge_num != 0}}' class='detail_num'>判断 {{homework.judge_num}}</text>
+                        <text wx:if='{{homework.discuss_num != 0}}' class='detail_num'>简答 {{homework.discuss_num}}</text>
+                    </view>
+                    <view style='display:flex; flex-wrap:wrap'>
+                        <text>班级：</text>
+                        <view wx:for='{{homework.class}}' wx:for-item='classname' class='class_name'>{{classname}}</view>
+                        <text class='hand_in'>已交43/47人</text>                        
+                    </view>
+
                 </view>
             </view>
         </view>

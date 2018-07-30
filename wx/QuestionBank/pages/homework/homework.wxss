@@ -17,7 +17,24 @@
     line-height: 60rpx;
 }
 
+.date {
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    color: #666;
+    float: right;
+}
+
 .detail {
-    font-size: 32rpx;
-    color: #666;    
+    font-size: 30rpx;
+    color: #666;
+    margin-top: 5rpx;    
+}
+
+.detail_num {
+    margin-right: 25rpx;
+}
+
+.class_name {
+    margin-right: 25rpx;
 }

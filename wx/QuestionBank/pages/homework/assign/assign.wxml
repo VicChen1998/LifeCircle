@@ -8,7 +8,8 @@
         <view class='hint'>3. 勾选要保留的题目</view>
         <view class='hint'>4. 重新生成剩余题目</view>
         <view class='hint'>5. 命名作业（不填默认以日期命名）</view>
-        <view class='hint'>6. 点击布置</view>
+        <view class='hint'>6. 选择班级</view>
+        <view class='hint'>7. 点击布置</view>
     </view>
 
     <view hidden='{{questions[0].length==0}}' class='type' style='margin-top:70rpx;'>
@@ -19,7 +20,7 @@
                     <checkbox value='{{index}}' checked='{{checked_index[0][index] == index}}' />
                     <text>{{index+1}}. {{choice.question}}</text>
                     <text class='choice_answer' hidden='{{index!=show_detail[0]}}'>{{choice.answer}}</text>
-                </view> 
+                </view>
                 <view hidden='{{index!=show_detail[0]}}' class='choice_options'>
                     <text class='option'>A {{choice.option_A}}</text>
                     <text class='option'>B {{choice.option_B}}</text>
@@ -79,7 +80,6 @@
 </view>
 
 
-
 <view class='footbar typebar'>
     <view class='typebar_item' style='margin-left: 25rpx;'>
         <view class='type_name'>选择</view>
@@ -121,11 +121,21 @@
 </view>
 
 <view class='footbar buttonbar'>
+
+    <view class='foot_button' bindtap='onCheckedAll'>全选</view>
+
     <view class='foot_button' style='width:250%'>
         <input class='homework_name' placeholder='{{default_name}}' bindblur='onNameBlur'></input>
     </view>
-    <view class='foot_button' bindtap='onCheckedAll'>全选</view>
-    <view class='foot_button' bindtap='onCheckedInvert'>反选</view>
-    <view class='foot_button' bindtap='onSave'>暂存</view>
+
+    <view class='foot_button' bindtap='onSelectClass' style='width:150%'>
+        <block wx:if='{{class_list.length==0}}'>
+            选择班级
+        </block>
+        <block wx:else>
+            {{class_list.length}}个班
+        </block>
+    </view>
+
     <view class='foot_button' bindtap='onAssign'>布置</view>
 </view>

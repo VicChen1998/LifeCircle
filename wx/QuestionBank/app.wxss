@@ -1,5 +1,5 @@
 .container {
-    padding-top: 135rpx; 
+    padding-top: 135rpx;
 }
 
 .navigationBar {
@@ -13,7 +13,6 @@
     position: fixed;
     top: 0;
     z-index: 998;
-    
 }
 
 .tab {
@@ -76,4 +75,14 @@ button {
     text-align: center;
     font-size: 32rpx;
     color: #ccc;
+}
+
+text {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+view {
+    word-break: break-all;
+    word-wrap: break-word;
 }

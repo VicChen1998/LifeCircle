@@ -243,6 +243,10 @@ class Homework(models.Model):
     teacher = models.ForeignKey(User)
     # 发布日期
     release_date = models.DateField(auto_now_add=True)
+    # 有效性
+    valid = models.BooleanField(default=True)
+    # 班级
+    clas = models.ManyToManyField(Class, db_table='QB_Homework_Class')
     # 选择题
     choice = models.ManyToManyField(Choice, db_table='QB_Homework_Choice')
     # 填空题
@@ -257,8 +261,11 @@ class Homework(models.Model):
 
     def dict(self):
         return {
-            'teacher_openid': self.teacher.username,
-            'release_data': str(self.release_date),
+            'id': self.id,
+            'name': self.name,
+            'valid': self.valid,
+            'release_date': self.release_date.strftime('%m-%d'),
+            'class': [clas.shortname for clas in self.clas.all()],
             'choice': [choice.dict(with_answer=False) for choice in self.choice.all()],
             'fill': [fill.dict(with_answer=False) for fill in self.fill.all()],
             'judge': [judge.dict(with_answer=False) for judge in self.judge.all()],
@@ -268,5 +275,12 @@ class Homework(models.Model):
     def info(self):
         return {
             'id': self.id,
-            'name': self.name
+            'name': self.name,
+            'valid': self.valid,
+            'release_date': self.release_date.strftime('%m-%d'),
+            'class': [clas.shortname for clas in self.clas.all()],
+            'choice_num': self.choice.count(),
+            'fill_num': self.fill.count(),
+            'judge_num': self.judge.count(),
+            'discuss_num': self.discuss.count()
         }

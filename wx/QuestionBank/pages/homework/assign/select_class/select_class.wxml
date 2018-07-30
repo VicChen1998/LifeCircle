@@ -1,0 +1,26 @@
+<view class='container'>
+
+    <view class='navigationBar'>
+        <view class='navigationBarTitle'>大学生出题库</view>
+    </view>
+
+    <checkbox-group bindchange='onSelectClass'>
+        <view class='college_item' wx:for='{{college_list}}' wx:for-item='college' wx:for-index='college_index' wx:key='id'>
+            <view class='college_name' bindtap='onSelectCollege' data-college_index='{{college_index}}'>{{college.name}}</view>
+
+            <view class='major_item' wx:for='{{college.major_list}}' wx:for-item='major' wx:for-index='major_index' wx:key='id'>
+                <view class='major_name' bindtap='onSelectMajor' data-college_index='{{college_index}}' data-major_index='{{major_index}}'>{{major.name}}</view>
+                <view class='class'>
+                    <label class='class_item' wx:for='{{major.class_list}}' wx:for-item='class' wx:for-index='class_index' wx:key='id'>
+                        <checkbox value='{{class.id}}'></checkbox>
+                        <text>{{class.shortname}}</text>
+                    </label>
+                </view>
+            </view>
+
+        </view>
+    </checkbox-group>
+
+    <button type='primary' class='confirm' bindtap='onConfirm'>确定</button>
+
+</view>
