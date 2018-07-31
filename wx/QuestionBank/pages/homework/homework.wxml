@@ -14,7 +14,7 @@
             <image src='/images/add.png' class='assign' bindtap='toAssign'></image>
 
             <view wx:for='{{homework_list}}' wx:for-item='homework' class='item'>
-                <text class='name'>{{homework.name}}</text>
+                <text class='name'>{{homework.subject.name}} {{homework.name}}</text>
                 <text class='date'>{{homework.release_date}}</text>
 
                 <view class='detail'>

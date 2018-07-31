@@ -71,6 +71,32 @@ class Subject(models.Model):
                 'name': self.name}
 
 
+# 班级科目关系
+class MajorSubject(models.Model):
+    # 班级
+    major = models.ForeignKey(Major)
+    # 科目
+    subject = models.ForeignKey(Subject)
+
+    class Meta:
+        db_table = 'Major_Subject'
+        # 联合主键
+        unique_together = ('major', 'subject')
+
+
+# 教师科目关系
+class TeacherSubject(models.Model):
+    # 教师
+    teacher = models.ForeignKey(User)
+    # 科目
+    subject = models.ForeignKey(Subject)
+
+    class Meta:
+        db_table = 'Teacher_Subject'
+        # 联合主键
+        unique_together = ('teacher', 'subject')
+
+
 # 用户信息
 class UserProfile(models.Model):
     # 用户
@@ -242,6 +268,8 @@ class Discuss(models.Model):
 class Homework(models.Model):
     # 名称
     name = models.CharField(max_length=32)
+    # 所属学科
+    subject = models.ForeignKey(Subject)
     # 出卷老师
     teacher = models.ForeignKey(User)
     # 发布日期
@@ -269,6 +297,7 @@ class Homework(models.Model):
             'id': self.id,
             'name': self.name,
             'valid': self.valid,
+            'subject': self.subject.dict(),
             'release_date': self.release_date.strftime('%m-%d'),
             'class': [clas.shortname for clas in self.clas.all()],
             'choice': [choice.dict(with_answer=False) for choice in self.choice.all()],
@@ -282,6 +311,7 @@ class Homework(models.Model):
             'id': self.id,
             'name': self.name,
             'valid': self.valid,
+            'subject': self.subject.dict(),
             'release_date': self.release_date.strftime('%m-%d'),
             'class': [clas.shortname for clas in self.clas.all()],
             'choice_num': self.choice.count(),

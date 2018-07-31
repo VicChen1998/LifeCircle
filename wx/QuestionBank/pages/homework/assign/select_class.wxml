@@ -1,7 +1,7 @@
 <view class='container'>
 
     <view class='navigationBar'>
-        <view class='navigationBarTitle'>大学生出题库</view>
+        <view class='navigationBarTitle'>选择班级</view>
     </view>
 
     <checkbox-group bindchange='onSelectClass'>

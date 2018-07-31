@@ -3,6 +3,9 @@ const app = getApp()
 Page({
 
     data: {
+        // 学科
+        subject: null,
+
         // 4个题目数picker的range
         num_range: [
             [],
@@ -61,7 +64,8 @@ Page({
 
         this.setData({
             num_range: this.data.num_range,
-            default_name: name
+            default_name: name,
+            subject: JSON.parse(options.subject)
         })
     },
 
@@ -173,7 +177,7 @@ Page({
 
     onSelectClass: function(event) {
         wx.navigateTo({
-            url: '/pages/homework/assign/select_class/select_class',
+            url: '/pages/homework/assign/select_class',
         })
     },
 
@@ -224,6 +228,7 @@ Page({
             data: {
                 'openid': app.globalData.userInfo.openid,
                 'name': name,
+                'subject_id': this.data.subject.id,
                 'class': JSON.stringify(this.data.class_list),
                 'questions': JSON.stringify(questions)
             },
@@ -236,8 +241,10 @@ Page({
                     title: '作业布置成功',
                 })
                 setTimeout(() => {
-                    wx.navigateBack()
-                }, 1800)
+                    wx.navigateBack({
+                        delta: 2
+                    })
+                }, 1500)
             }
         })
     },

@@ -1,7 +1,9 @@
+/* 全局容器 用于抵消自定义navigationBar的高度 */
 .container {
     padding-top: 135rpx;
 }
 
+/* 自定义导航栏 */
 .navigationBar {
     width: 100%;
     height: 125rpx;
@@ -15,6 +17,16 @@
     z-index: 998;
 }
 
+/* 自定义导航栏的返回按钮 */
+.navigationBack {
+    width: 50rpx;
+    height: 50rpx;
+    position: fixed;
+    left: 20rpx;
+    z-index: 999;
+}
+
+/* 刷题、出题界面下各题型的切换条 */
 .tab {
     width: 100%;
     height: 70rpx;
@@ -22,27 +34,27 @@
     box-shadow: 0 5rpx 5rpx #ccc;
 }
 
+/* 题型名称文字 */
 .tab_text {
     width: 100%;
     height: 60rpx;
     line-height: 60rpx;
     text-align: center;
-    margin-left: 10rpx;
-    margin-right: 10rpx;
+    margin: 0 10rpx;
 }
 
+/* 题型指示器 在所选的题型名下显示白条 */
 .tab_indicator {
     width: 100%;
     height: 8rpx;
-    margin-left: 30rpx;
-    margin-right: 30rpx;
+    margin: 0 30rpx;
 }
 
 .tab_indicator_show {
-    /* background: #00b919; */
     background: #fff;
 }
 
+/* 默认科目选择器 */
 .subject_picker {
     width: fit-content;
     margin: 30rpx auto;
@@ -50,33 +62,7 @@
     border-bottom: 1rpx solid #f0f0f0;
 }
 
-button {
-    width: 30%;
-    height: 80rpx;
-    line-height: 80rpx;
-    margin: 0 auto;
-}
-
-.navigationBack {
-    width: 50rpx;
-    height: 50rpx;
-    position: fixed;
-    left: 20rpx;
-}
-
-.comment {
-    margin: 0 0 10rpx;
-    font-size: 25rpx;
-    color: #666;
-}
-
-.hint {
-    margin: 30rpx auto;
-    text-align: center;
-    font-size: 32rpx;
-    color: #ccc;
-}
-
+/* 全局text和view允许单词中间换行 */
 text {
     word-break: break-all;
     word-wrap: break-word;
@@ -85,4 +71,36 @@ text {
 view {
     word-break: break-all;
     word-wrap: break-word;
+}
+
+/* 默认题目解析样式 */
+.comment {
+    margin: 0 0 10rpx;
+    font-size: 25rpx;
+    color: #666;
+}
+
+/* 全局提示 */
+.hint {
+    margin: 30rpx auto;
+    text-align: center;
+    font-size: 32rpx;
+    color: #ccc;
+}
+
+/* 选择页面底部确定按钮 */
+.confirm {
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    position: fixed;
+    bottom: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: 0 -5rpx 5rpx #ccc;
+}
+
+.confirm::after {
+    border-radius: 0;
+    border: none;
 }

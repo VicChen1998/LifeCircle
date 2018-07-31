@@ -1,4 +1,5 @@
 <image src='/images/back.png' class='navigationBack' bindtap='onBack' style='top:50rpx;'></image>
+<view class='subject'>{{subject.name}}</view>
 
 <view style='padding: 50rpx 20rpx 200rpx 20rpx'>
 

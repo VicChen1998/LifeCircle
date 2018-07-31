@@ -1,0 +1,18 @@
+.subject_list {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.subject {
+    width: 48%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    border: 1px solid #eee;
+    flex-grow: 1;
+}
+
+.selected {
+    background: #eee;
+}

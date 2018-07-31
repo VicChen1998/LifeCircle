@@ -2,7 +2,7 @@ import json
 
 from django.http import JsonResponse
 
-from QuestionBank.models import User, UserProfile, Homework, Class, Choice, Fill, Judge, Discuss
+from QuestionBank.models import User, UserProfile, Homework, Subject, Class, Choice, Fill, Judge, Discuss
 
 
 def list_by_teacher(request):
@@ -28,7 +28,9 @@ def assign(request):
 
     class_list = json.loads(request.POST['class'])
 
-    homework = Homework.objects.create(teacher=user, name=request.POST['name'])
+    homework = Homework.objects.create(teacher=user,
+                                       name=request.POST['name'],
+                                       subject=Subject.objects.get(id=request.POST['subject_id']))
 
     for choice_id in choice_list:
         homework.choice.add(Choice.objects.get(id=choice_id))

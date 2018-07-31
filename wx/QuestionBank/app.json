@@ -6,7 +6,8 @@
         "pages/settings/settings",
         "pages/settings/myupload/myupload",
         "pages/homework/assign/assign",
-        "pages/homework/assign/select_class/select_class"
+        "pages/homework/assign/select_class",
+        "pages/homework/assign/select_subject"
     ],
     "window": {
         "backgroundTextStyle": "light",

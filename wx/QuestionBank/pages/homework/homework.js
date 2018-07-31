@@ -47,7 +47,7 @@ Page({
 
     toAssign: function(options) {
         wx.navigateTo({
-            url: '/pages/homework/assign/assign',
+            url: '/pages/homework/assign/select_subject',
         })
     },
 
