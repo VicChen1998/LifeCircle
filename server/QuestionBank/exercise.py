@@ -1,26 +1,29 @@
 import json
-import random
 
 from django.http import HttpResponse
 
-from QuestionBank.models import Choice, Fill, Judge, Discuss
+from QuestionBank.models import Subject, Choice, Fill, Judge, Discuss
 
 
 def get_choice(request):
-    response = {'status': 'success', 'choice': Choice.random().dict()}
+    subject = Subject.objects.get(id=request.GET['subject_id']) if 'subject_id' in request.GET else None
+    response = {'status': 'success', 'choice': Choice.random(subject).dict()}
     return HttpResponse(json.dumps(response), content_type='application/json')
 
 
 def get_judge(request):
-    response = {'status': 'success', 'judge': Judge.random().dict()}
+    subject = Subject.objects.get(id=request.GET['subject_id']) if 'subject_id' in request.GET else None
+    response = {'status': 'success', 'judge': Judge.random(subject).dict()}
     return HttpResponse(json.dumps(response), content_type='application/json')
 
 
 def get_fill(request):
-    response = {'status': 'success', 'fill': Fill.random().dict()}
+    subject = Subject.objects.get(id=request.GET['subject_id']) if 'subject_id' in request.GET else None
+    response = {'status': 'success', 'fill': Fill.random(subject).dict()}
     return HttpResponse(json.dumps(response), content_type='application/json')
 
 
 def get_discuss(request):
-    response = {'status': 'success', 'discuss': Discuss.random().dict()}
+    subject = Subject.objects.get(id=request.GET['subject_id']) if 'subject_id' in request.GET else None
+    response = {'status': 'success', 'discuss': Discuss.random(subject).dict()}
     return HttpResponse(json.dumps(response), content_type='application/json')

@@ -1,6 +1,6 @@
 <view class='container'>
 
-    <view class='navigationBar'>
+    <view class='navigationBar' style='box-shadow: 0 5rpx 5rpx #ccc;'>
         <view class='navigationBarTitle'>大学生出题库</view>
     </view>
 

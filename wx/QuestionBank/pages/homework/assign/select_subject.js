@@ -34,5 +34,9 @@ Page({
         wx.navigateTo({
             url: '/pages/homework/assign/assign' + '?subject=' + JSON.stringify(subject),
         })
+    },
+
+    onBack: function (event) {
+        wx.navigateBack()
     }
 })

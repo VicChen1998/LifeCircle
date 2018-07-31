@@ -172,9 +172,13 @@ class Choice(models.Model):
         }
 
     @staticmethod
-    def random():
-        index = random.randint(0, Choice.objects.count() - 1)
-        return Choice.objects.all()[index]
+    def random(subject):
+        if subject:
+            index = random.randint(0, Choice.objects.filter(subject=subject).count() - 1)
+            return Choice.objects.filter(subject=subject)[index]
+        else:
+            index = random.randint(0, Choice.objects.count() - 1)
+            return Choice.objects.all()[index]
 
 
 # 判断题
@@ -203,9 +207,13 @@ class Judge(models.Model):
         }
 
     @staticmethod
-    def random():
-        index = random.randint(0, Judge.objects.count() - 1)
-        return Judge.objects.all()[index]
+    def random(subject):
+        if subject:
+            index = random.randint(0, Judge.objects.filter(subject=subject).count() - 1)
+            return Judge.objects.filter(subject=subject)[index]
+        else:
+            index = random.randint(0, Judge.objects.count() - 1)
+            return Judge.objects.all()[index]
 
 
 class Fill(models.Model):
@@ -233,9 +241,13 @@ class Fill(models.Model):
         }
 
     @staticmethod
-    def random():
-        index = random.randint(0, Fill.objects.count() - 1)
-        return Fill.objects.all()[index]
+    def random(subject):
+        if subject:
+            index = random.randint(0, Fill.objects.filter(subject=subject).count() - 1)
+            return Fill.objects.filter(subject=subject)[index]
+        else:
+            index = random.randint(0, Fill.objects.count() - 1)
+            return Fill.objects.all()[index]
 
 
 class Discuss(models.Model):
@@ -260,9 +272,13 @@ class Discuss(models.Model):
         }
 
     @staticmethod
-    def random():
-        index = random.randint(0, Discuss.objects.count() - 1)
-        return Discuss.objects.all()[index]
+    def random(subject):
+        if subject:
+            index = random.randint(0, Discuss.objects.filter(subject=subject).count() - 1)
+            return Discuss.objects.filter(subject=subject)[index]
+        else:
+            index = random.randint(0, Discuss.objects.count() - 1)
+            return Discuss.objects.all()[index]
 
 
 class Homework(models.Model):

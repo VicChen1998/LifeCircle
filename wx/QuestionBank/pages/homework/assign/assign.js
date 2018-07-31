@@ -108,6 +108,9 @@ Page({
         for (var i = 0; i < num; i++) {
             wx.request({
                 url: app.globalData.host + urls[typeindex],
+                data: {
+                    'subject_id': this.data.subject.id
+                },
                 success: response => {
                     this.data.questions[typeindex].push(response.data[response_name[typeindex]])
                     this.setData({

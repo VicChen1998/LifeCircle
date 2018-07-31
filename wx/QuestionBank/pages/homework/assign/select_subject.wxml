@@ -1,6 +1,7 @@
 <view class='container'>
 
     <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
         <view class='navigationBarTitle'>选择学科</view>
     </view>
 
