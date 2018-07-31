@@ -120,7 +120,8 @@ Page({
                 if (!this.data.userInfo.class || !check) {
                     class_list.unshift({
                         'id': null,
-                        'name': "请选择"
+                        'name': "请选择",
+                        'shortname': '请选择',                        
                     })
                 }
 

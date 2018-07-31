@@ -16,21 +16,21 @@
 }
 
 .major_name {
-    width: 30%;
+    width: 25%;
     height: 55rpx;
     line-height: 55rpx;
 }
 
 .class {
-    width: 70%;
-    margin-left: 20rpx;
+    width: 75%;
     display: flex;
     flex-wrap: wrap;
 }
 
 .class_item {
+    min-width: 220rpx;
     height: 55rpx;
-    margin-right: 30rpx;
+    margin-right: 20rpx;
     line-height: 55rpx;
     float: right;
 }

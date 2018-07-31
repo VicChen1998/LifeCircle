@@ -51,7 +51,7 @@ Page({
         })
     },
 
-    onPullDownRefresh: function(event) {
+    onRefresh: function(event) {
         if (this.data.hasUserInfo) {
             if (this.data.userInfo.isTeacher)
                 this.teacharOnLoad()

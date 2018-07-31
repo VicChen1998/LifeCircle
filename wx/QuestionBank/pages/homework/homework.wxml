@@ -10,6 +10,7 @@
 
         <!-- 教师界面 -->
         <view hidden='{{!userInfo.isTeacher}}'>
+            <image src='/images/refresh.png' class='refresh' bindtap='onRefresh'></image>
             <image src='/images/add.png' class='assign' bindtap='toAssign'></image>
 
             <view wx:for='{{homework_list}}' wx:for-item='homework' class='item'>
@@ -27,7 +28,7 @@
                     <view style='display:flex; flex-wrap:wrap'>
                         <text>班级：</text>
                         <view wx:for='{{homework.class}}' wx:for-item='classname' class='class_name'>{{classname}}</view>
-                        <text class='hand_in'>已交43/47人</text>                        
+                        <text class='hand_in'>已交43/47人</text>
                     </view>
 
                 </view>
