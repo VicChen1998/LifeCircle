@@ -23,7 +23,15 @@ Page({
             tabs: app.globalData.tabs
         })
 
-        requireCallback.requireSubject(this, 2)
+        requireCallback.requireSubject(this, 2, () => {
+            this.data.subject_range.unshift({
+                'id': null,
+                'name': '请选择学科'
+            })
+            this.setData({
+                subject_range: this.data.subject_range
+            })
+        })
     },
 
     tabOnChange: function(event) {
@@ -37,8 +45,24 @@ Page({
     },
 
     subjectOnChange: function(event) {
+        let subject_index = event.detail.value
+
+        if (!this.data.subject_range[0].id && subject_index == 0) {
+            return
+        }
+
+        if (!this.data.subject_range[0].id) {
+            this.data.subject_range.shift()
+            subject_index -= 1
+            this.setData({
+                subject_range: this.data.subject_range,
+                subject_index: subject_index
+            })
+            return
+        }
+
         this.setData({
-            subject_index: event.detail.value
+            subject_index: subject_index
         })
     },
 

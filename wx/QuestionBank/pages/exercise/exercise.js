@@ -9,6 +9,7 @@ Page({
 
         subject_range: [],
         subject_index: 0,
+        subject: null,
 
         choice: null,
         judge: null,
@@ -27,12 +28,12 @@ Page({
     onLoad: function(options) {
         this.setData({
             tabs: app.globalData.tabs
-        })    
+        })
     },
 
     onReady: function(options) {
         requireCallback.requireSubject(this, 0)
-        this.choiceInit()    
+        this.choiceInit()
     },
 
     tabOnChange: function(event) {
@@ -53,9 +54,20 @@ Page({
     },
 
     subjectOnChange: function(event) {
+        let subject_index = event.detail.value
+        let subject = this.data.subject_range[subject_index]
         this.setData({
-            subject_index: event.detail.value
+            subject_index: subject_index,
+            subject: subject
         })
+        if (this.data.choice && this.data.choice.subject.id != subject.id)
+            this.choiceInit()
+        if (this.data.fill && this.data.fill.subject.id != subject.id)
+            this.fillInit()
+        if (this.data.judge && this.data.judge.subject.id != subject.id)
+            this.judgeInit()
+        if (this.data.discuss && this.data.discuss.subject.id != subject.id)
+            this.discussInit()
     },
 
     changeSubject: function(subject_id) {
@@ -72,8 +84,13 @@ Page({
     },
 
     choiceInit: function() {
+        var data = {}
+        if (this.data.subject)
+            data.subject_id = this.data.subject.id
+
         wx.request({
             url: app.globalData.host + 'exercise/get_choice',
+            data: data,
             success: response => {
                 if (response.data.status == 'success') {
                     this.setData({
@@ -94,8 +111,13 @@ Page({
     },
 
     judgeInit: function() {
+        var data = {}
+        if (this.data.subject)
+            data.subject_id = this.data.subject.id
+
         wx.request({
             url: app.globalData.host + 'exercise/get_judge',
+            data: data,
             success: response => {
                 if (response.data.status == 'success') {
                     this.setData({
@@ -116,8 +138,13 @@ Page({
     },
 
     fillInit: function() {
+        var data = {}
+        if (this.data.subject)
+            data.subject_id = this.data.subject.id
+
         wx.request({
             url: app.globalData.host + 'exercise/get_fill',
+            data: data,
             success: response => {
                 if (response.data.status == 'success') {
                     this.setData({
@@ -138,8 +165,13 @@ Page({
     },
 
     discussInit: function() {
+        var data = {}
+        if (this.data.subject)
+            data.subject_id = this.data.subject.id
+
         wx.request({
             url: app.globalData.host + 'exercise/get_discuss',
+            data: data,
             success: response => {
                 this.setData({
                     discuss: response.data.discuss,

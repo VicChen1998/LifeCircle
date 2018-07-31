@@ -20,6 +20,7 @@
     <view style='margin: 30rpx'>
 
         <picker range='{{subject_range}}' value='{{subject_index}}' range-key='name' class='subject_picker' bindchange='subjectOnChange'>
+            <text hidden='{{subject}}'>随机：</text>
             <text>{{subject_range[subject_index].name}}</text>
         </picker>
 
