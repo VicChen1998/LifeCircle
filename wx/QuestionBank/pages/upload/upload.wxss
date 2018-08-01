@@ -50,6 +50,7 @@ button {
     height: 80rpx;
     line-height: 80rpx;
     margin: 0 auto;
+    background: #f4f4f4;
 }
 
 button::after {

@@ -5,13 +5,12 @@
     </view>
 
     <view hidden='{{!hasUserInfo}}'>
-        <!-- 学生界面 -->
-        <view hidden='{{userInfo.isTeacher}}'>学生</view>
+        <view wx:if='{{userInfo.class}}'>
+            <view hidden='{{!userInfo.isTeacher}}'>
+                <image src='/images/add.png' class='assign' bindtap='toAssign'></image>
+            </view>
 
-        <!-- 教师界面 -->
-        <view hidden='{{!userInfo.isTeacher}}'>
             <image src='/images/refresh.png' class='refresh' bindtap='onRefresh'></image>
-            <image src='/images/add.png' class='assign' bindtap='toAssign'></image>
 
             <view wx:for='{{homework_list}}' wx:for-item='homework' class='item'>
                 <text class='name'>{{homework.subject.name}} {{homework.name}}</text>
@@ -28,11 +27,14 @@
                     <view style='display:flex; flex-wrap:wrap'>
                         <text>班级：</text>
                         <view wx:for='{{homework.class}}' wx:for-item='classname' class='class_name'>{{classname}}</view>
-                        <text class='hand_in'>已交43/47人</text>
+                        <text>已交43/47人</text>
                     </view>
 
                 </view>
             </view>
+        </view>
+        <view wx:else>
+            <view class='hint'>请先填写个人信息才能获取作业列表哦</view>
         </view>
     </view>
 

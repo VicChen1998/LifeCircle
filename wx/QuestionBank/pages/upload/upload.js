@@ -74,7 +74,6 @@ Page({
             return
         }
         data.openid = app.globalData.userInfo.openid
-        data.subject_id = this.data.subject_range[this.data.subject_index].id
         this.submit('choice', data)
     },
 
@@ -85,7 +84,6 @@ Page({
             return
         }
         data.openid = app.globalData.userInfo.openid
-        data.subject_id = this.data.subject_range[this.data.subject_index].id
         this.submit('judge', data)
     },
 
@@ -127,7 +125,6 @@ Page({
 
         var data = {
             'openid': app.globalData.userInfo.openid,
-            'subject_id': this.data.subject_range[this.data.subject_index].id,
             'items': JSON.stringify(this.data.fill_items),
             'comment': event.detail.value.comment
         }
@@ -142,11 +139,21 @@ Page({
             return
         }
         data.openid = app.globalData.userInfo.openid
-        data.subject_id = this.data.subject_range[this.data.subject_index].id
         this.submit('discuss', data)
     },
 
     submit: function(url, data) {
+
+        data.subject_id = this.data.subject_range[this.data.subject_index].id
+
+        if (!data.subject_id) {
+            wx.showToast({
+                title: '请选择学科',
+                icon: 'none'
+            })
+            return
+        }
+
         wx.request({
             url: app.globalData.host + 'upload/' + url,
             data: data,

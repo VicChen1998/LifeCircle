@@ -3,10 +3,10 @@ const app = getApp()
 Page({
 
     data: {
-        choice_list: null,
-        fill_list: null,
-        judge_list: null,
-        discuss_list: null,
+        choice_list: [],
+        fill_list: [],
+        judge_list: [],
+        discuss_list: [],
 
         show_detail: [-1, -1, -1, -1],
     },

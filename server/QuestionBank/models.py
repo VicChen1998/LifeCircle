@@ -306,8 +306,6 @@ class Homework(models.Model):
     class Meta:
         db_table = 'QB_Homework'
 
-    # TODO: subject
-
     def dict(self):
         return {
             'id': self.id,

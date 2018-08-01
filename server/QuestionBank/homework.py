@@ -5,7 +5,18 @@ from django.http import JsonResponse
 from QuestionBank.models import User, UserProfile, Homework, Subject, Class, Choice, Fill, Judge, Discuss
 
 
-def list_by_teacher(request):
+def list_of_class(request):
+    clas = Class.objects.get(id=request.GET['class_id'])
+
+    homework_list = Homework.objects.filter(clas=clas)
+
+    response = {'status': 'success',
+                'homework': [homework.info() for homework in homework_list]}
+
+    return JsonResponse(response)
+
+
+def list_of_teacher(request):
     teacher = User.objects.get(username=request.GET['teacher_openid'])
 
     homework_list = Homework.objects.filter(teacher=teacher).order_by('-release_date')

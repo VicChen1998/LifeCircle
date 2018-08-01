@@ -1,4 +1,4 @@
-//app.js
+
 App({
     globalData: {
         host: 'https://www.dva-loveyou.top/questionbank/',

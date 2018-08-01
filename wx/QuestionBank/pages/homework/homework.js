@@ -14,35 +14,52 @@ Page({
     },
 
     onLoad: function(options) {
-        requireCallback.requireUserInfo(this, 1, () => {
-            if (this.data.userInfo.isTeacher)
+        requireCallback.requireUserInfo(this, 1)
+        requireCallback.requireSubject(this, 1)
+    },
+
+    onShow: function(event) {
+        if (this.data.hasUserInfo) {
+            if (this.data.userInfo != app.globalData.userInfo)
+                this.setData({
+                    userInfo: app.globalData.userInfo
+                })
+
+            if (app.globalData.userInfo.isTeacher)
                 this.teacharOnLoad()
             else
                 this.studentOnLoad()
-        })
-
-        requireCallback.requireSubject(this, 1)
+        } else {
+            setTimeout(this.onShow, 50)
+        }
     },
 
     teacharOnLoad: function(options) {
         wx.request({
             url: app.globalData.host + 'homework/list/teacher',
             data: {
-                'teacher_openid': this.data.userInfo.openid
+                'teacher_openid': app.globalData.userInfo.openid
             },
             success: response => {
                 this.setData({
                     homework_list: response.data.homework
                 })
-            },
-            complete: () => {
-                wx.stopPullDownRefresh()
             }
         })
     },
 
     studentOnLoad: function(options) {
-        console.log('student')
+        wx.request({
+            url: app.globalData.host + 'homework/list/class',
+            data: {
+                'class_id': app.globalData.userInfo.class.id
+            },
+            success: response => {
+                this.setData({
+                    homework_list: response.data.homework
+                })
+            }
+        })
     },
 
     toAssign: function(options) {
@@ -50,13 +67,4 @@ Page({
             url: '/pages/homework/assign/select_subject',
         })
     },
-
-    onRefresh: function(event) {
-        if (this.data.hasUserInfo) {
-            if (this.data.userInfo.isTeacher)
-                this.teacharOnLoad()
-            else
-                this.studentOnLoad()
-        }
-    }
 })

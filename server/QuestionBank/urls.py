@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^exercise/get_discuss', exercise.get_discuss),
 
     # 作业
-    url(r'^homework/list/teacher', homework.list_by_teacher),
+    url(r'^homework/list/class', homework.list_of_class),
+    url(r'^homework/list/teacher', homework.list_of_teacher),
     url(r'^homework/assign$', homework.assign)
 
 ]
