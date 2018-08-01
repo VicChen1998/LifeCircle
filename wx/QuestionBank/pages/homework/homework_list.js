@@ -62,9 +62,20 @@ Page({
         })
     },
 
-    toAssign: function(options) {
+    toAssign: function(event) {
         wx.navigateTo({
-            url: '/pages/homework/assign/select_subject',
+            url: '/pages/homework/teacher/assign/select_subject',
         })
     },
+
+    homeworkOnTap: function(event) {
+        let homework_id = event.currentTarget.dataset.id
+        if (app.globalData.userInfo.isTeacher) {
+
+        } else {
+            wx.navigateTo({
+                url: '/pages/homework/doHomework/doHomework' + '?homwrokd_id=' + homework_id,
+            })
+        }
+    }
 })

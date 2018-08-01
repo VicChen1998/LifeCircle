@@ -10,9 +10,7 @@
                 <image src='/images/add.png' class='assign' bindtap='toAssign'></image>
             </view>
 
-            <image src='/images/refresh.png' class='refresh' bindtap='onRefresh'></image>
-
-            <view wx:for='{{homework_list}}' wx:for-item='homework' class='item'>
+            <view wx:for='{{homework_list}}' wx:for-item='homework' class='item' bindtap='homeworkOnTap' data-id='{{homework.id}}'>
                 <text class='name'>{{homework.subject.name}} {{homework.name}}</text>
                 <text class='date'>{{homework.release_date}}</text>
 
@@ -32,10 +30,11 @@
 
                 </view>
             </view>
+
+            <view wx:if='{{homework_list.length==0}}' class='hint'>还没有作业哦</view>
         </view>
-        <view wx:else>
-            <view class='hint'>请先填写个人信息才能获取作业列表哦</view>
-        </view>
+
+        <view  wx:else class='hint'>请先填写个人信息才能获取作业列表哦</view>
     </view>
 
 </view>

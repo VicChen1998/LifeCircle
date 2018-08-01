@@ -180,7 +180,7 @@ Page({
 
     onSelectClass: function(event) {
         wx.navigateTo({
-            url: '/pages/homework/assign/select_class',
+            url: '/pages/homework/teacher/assign/select_class',
         })
     },
 

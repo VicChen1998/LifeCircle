@@ -32,7 +32,7 @@ Page({
 
 
         wx.navigateTo({
-            url: '/pages/homework/assign/assign' + '?subject=' + JSON.stringify(subject),
+            url: '/pages/homework/teacher/assign/assign' + '?subject=' + JSON.stringify(subject),
         })
     },
 

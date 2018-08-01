@@ -1,13 +1,14 @@
 {
     "pages": [
         "pages/exercise/exercise",
-        "pages/homework/homework",
+        "pages/homework/homework_list",
         "pages/upload/upload",
         "pages/settings/settings",
         "pages/settings/myupload/myupload",
-        "pages/homework/assign/assign",
-        "pages/homework/assign/select_class",
-        "pages/homework/assign/select_subject"
+        "pages/homework/teacher/assign/assign",
+        "pages/homework/teacher/assign/select_class",
+        "pages/homework/teacher/assign/select_subject",
+        "pages/homework/doHomework/doHomework"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -27,7 +28,7 @@
                 "selectedIconPath": "images/pen_fill.png"
             },
             {
-                "pagePath": "pages/homework/homework",
+                "pagePath": "pages/homework/homework_list",
                 "text": "作业",
                 "iconPath": "images/pen.png",
                 "selectedIconPath": "images/pen_fill.png"
