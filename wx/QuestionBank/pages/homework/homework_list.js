@@ -71,10 +71,13 @@ Page({
     homeworkOnTap: function(event) {
         let homework_id = event.currentTarget.dataset.id
         if (app.globalData.userInfo.isTeacher) {
+            wx.navigateTo({
+                url: '/pages/homework/teacher/detail/detail' + '?homework_id=' + homework_id,
+            })
 
         } else {
             wx.navigateTo({
-                url: '/pages/homework/doHomework/doHomework' + '?homwrokd_id=' + homework_id,
+                url: '/pages/homework/doHomework/doHomework' + '?homework_id=' + homework_id,
             })
         }
     }

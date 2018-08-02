@@ -33,6 +33,7 @@ urlpatterns = [
     # 作业
     url(r'^homework/list/class', homework.list_of_class),
     url(r'^homework/list/teacher', homework.list_of_teacher),
-    url(r'^homework/assign$', homework.assign)
+    url(r'^homework/assign$', homework.assign),
+    url(r'^homework/get', homework.get),
 
 ]

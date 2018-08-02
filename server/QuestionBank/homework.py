@@ -16,6 +16,14 @@ def list_of_class(request):
     return JsonResponse(response)
 
 
+def get(request):
+    homework = Homework.objects.get(id=request.GET['homework_id'])
+
+    response = {'status': 'success', 'homework': homework.dict()}
+
+    return JsonResponse(response)
+
+
 def list_of_teacher(request):
     teacher = User.objects.get(username=request.GET['teacher_openid'])
 

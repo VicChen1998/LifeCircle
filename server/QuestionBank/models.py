@@ -236,7 +236,7 @@ class Fill(models.Model):
             'id': self.id,
             'subject': self.subject.dict(),
             'question': self.question.split('\t')[:-1],
-            'answer': self.answer.split('\t')[:-1] if with_answer else None,
+            'answer': self.answer.split('\t')[:-1] if with_answer else list(map(len, self.answer.split('\t')[:-1])),
             'comment': self.comment if with_answer else None,
         }
 
