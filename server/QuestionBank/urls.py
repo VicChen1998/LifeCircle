@@ -35,5 +35,6 @@ urlpatterns = [
     url(r'^homework/list/teacher', homework.list_of_teacher),
     url(r'^homework/assign$', homework.assign),
     url(r'^homework/get', homework.get),
+    url(r'^homework/submit', homework.submit),
 
 ]

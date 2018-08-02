@@ -3,8 +3,7 @@
     <view class='navigationBarTitle'>{{homework.subject.name}}</view>
 </view>
 
-<view style='padding:30rpx'>
-
+<view style='padding:30rpx 30rpx'>
     <view hidden='{{homework.choice.length==0}}' class='type'>
         <view class='type_title'>选择题</view>
         <view wx:for='{{homework.choice}}' wx:for-item='choice' class='item'>
@@ -12,19 +11,19 @@
 
             <radio-group bindchange='choiceOnChange' data-index='{{index}}'>
                 <label class='radio_item'>
-                    <radio/>
+                    <radio value='A' />
                     <view class='radio_text'>{{choice.option_A}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio/>
+                    <radio value='B' />
                     <view class='radio_text'>{{choice.option_B}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio/>
+                    <radio value='C' />
                     <view class='radio_text'>{{choice.option_C}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio/>
+                    <radio value='D' />
                     <view class='radio_text'>{{choice.option_D}}</view>
                 </label>
             </radio-group>
@@ -34,12 +33,12 @@
     <view hidden='{{homework.fill.length==0}}' class='type'>
         <view class='type_title'>填空题</view>
         <view wx:for='{{homework.fill}}' wx:for-item='fill' class='item fill_item'>
-            <block wx:for='{{fill.question}}' wx:for-item='question' wx:for-index='i'>
+            <block wx:for='{{fill.question}}' wx:for-item='question' wx:for-index='subindex'>
                 <block wx:if='{{question.length > 0}}'>
-                    <text><block wx:if='{{i==0}}'>{{index+1}}. </block>{{question}}</text>
+                    <text><block wx:if='{{subindex==0}}'>{{index+1}}. </block>{{question}}</text>
                 </block>
-                <block wx:if='{{fill.answer[i] > 0}}'>
-                    <input class='fill_input' style='width:{{fill.answer[i]*40}}rpx'></input>
+                <block wx:if='{{fill.answer[subindex] > 0}}'>
+                    <input class='fill_input' style='width:{{fill.answer[i]*40}}rpx' bindblur='fillOnBlur' data-index='{{index}}' data-subindex='{{subindex}}'></input>
                 </block>
             </block>
         </view>
@@ -51,8 +50,8 @@
             <view class='question'>{{index+1}}. {{judge.question}}</view>
 
             <radio-group style='width:240rpx;' bindchange='judgeOnChange' data-index='{{index}}'>
-                <radio style='width:120rpx;' checked='{{checked}}'>T</radio>
-                <radio style='width:120rpx;' checked='{{checked}}'>F</radio>
+                <radio style='width:120rpx;' value='T'>T</radio>
+                <radio style='width:120rpx;' value='F'>F</radio>
             </radio-group>
         </view>
     </view>
@@ -62,10 +61,12 @@
         <view wx:for='{{homework.discuss}}' wx:for-item='discuss' class='item'>
             <view class='question'>{{index+1}}. {{discuss.question}}</view>
 
-            <textarea auto-height='true' class='discuss_textarea' placeholder='答：'></textarea>
+            <textarea auto-height='true' class='discuss_textarea' placeholder='答：' bindblur='discussOnBlur' data-index='{{index}}'></textarea>
         </view>
     </view>
 
+    <view class='placeholder'>这片空白是为了不让键盘挡住题目</view>
+
 </view>
 
-<button type='primary' class='confirm' style='position:inherit' bindtap='onSubmit'>提交</button>
+<button type='primary' class='confirm' style='position:relative' bindtap='onSubmit'>提交</button>

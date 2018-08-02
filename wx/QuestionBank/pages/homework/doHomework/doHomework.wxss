@@ -29,6 +29,10 @@ radio-group {
     display: flex;
 }
 
+.radio_text {
+    margin-left: 5rpx;
+}
+
 .fill_item {
     display: flex;
     flex-wrap: wrap;
@@ -40,8 +44,6 @@ radio-group {
     padding: 0 10rpx;
     text-align: center;
     border-bottom: 1rpx solid #ddd;
-    position: relative;
-    top: -10rpx;
 }
 
 .discuss_textarea {
@@ -50,4 +52,14 @@ radio-group {
     margin: 50rpx auto;
     padding-left: 20rpx;
     border-left: 1rpx solid #ddd;
+}
+
+.placeholder {
+    width: 30rpx;
+    margin: 0 auto;
+    padding-bottom: 50rpx;
+    font-size: 28rpx;
+    line-height: 32rpx;
+    text-align: center;
+    color: #ddd;
 }

@@ -34,6 +34,7 @@ class Major(models.Model):
                 'name': self.name}
 
 
+# 班级
 class Class(models.Model):
     id = models.CharField(primary_key=True, max_length=9)
     # 名称
@@ -216,6 +217,7 @@ class Judge(models.Model):
             return Judge.objects.all()[index]
 
 
+# 填空题
 class Fill(models.Model):
     # 所属学科
     subject = models.ForeignKey(Subject)
@@ -250,6 +252,7 @@ class Fill(models.Model):
             return Fill.objects.all()[index]
 
 
+# 简答题
 class Discuss(models.Model):
     # 所属学科
     subject = models.ForeignKey(Subject)
@@ -281,6 +284,7 @@ class Discuss(models.Model):
             return Discuss.objects.all()[index]
 
 
+# 作业
 class Homework(models.Model):
     # 名称
     name = models.CharField(max_length=32)
@@ -333,3 +337,24 @@ class Homework(models.Model):
             'judge_num': self.judge.count(),
             'discuss_num': self.discuss.count()
         }
+
+
+# 作业上交
+class HomeworkSubmit(models.Model):
+    # 作业
+    homework = models.ForeignKey(Homework)
+    # 学生
+    student = models.ForeignKey(User)
+    # 选择题
+    choice = models.CharField(max_length=128)
+    # 填空题
+    fill = models.CharField(max_length=1024)
+    # 判断题
+    judge = models.CharField(max_length=128)
+    # 简答题
+    discuss = models.TextField()
+
+    class Meta:
+        db_table = 'QB_Homework_Submit'
+        # 联合主键
+        unique_together = ('homework', 'student')

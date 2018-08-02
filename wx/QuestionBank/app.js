@@ -1,4 +1,3 @@
-
 App({
     globalData: {
         host: 'https://www.dva-loveyou.top/questionbank/',
@@ -26,7 +25,6 @@ App({
 
         requireUserInfo: [null, null, null, null],
         requireSubject: [null, null, null, null]
-
     },
 
     onLaunch: function() {
@@ -47,8 +45,21 @@ App({
                                 if (this.globalData.requireUserInfo[i])
                                     this.globalData.requireUserInfo[i]()
                             }
+                        } else {
+                            wx.showToast({
+                                title: '登录失败',
+                                icon: 'none',
+                                duration: 3000,
+                            })
                         }
-                    }
+                    },
+                })
+            },
+            fail: () => {
+                wx.showToast({
+                    title: '登录失败，请检查网络连接',
+                    icon: 'none',
+                    duration: 3000,
                 })
             }
         })

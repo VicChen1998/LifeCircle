@@ -2,7 +2,7 @@ import json
 
 from django.http import JsonResponse
 
-from QuestionBank.models import User, UserProfile, Homework, Subject, Class, Choice, Fill, Judge, Discuss
+from QuestionBank.models import *
 
 
 def list_of_class(request):
@@ -21,6 +21,26 @@ def get(request):
 
     response = {'status': 'success', 'homework': homework.dict()}
 
+    return JsonResponse(response)
+
+
+def submit(request):
+    user = User.objects.get(username=request.POST['openid'])
+
+    homework = Homework.objects.get(id=request.POST['homework_id'])
+
+    if HomeworkSubmit.objects.filter(student=user, homework=homework).count() != 0:
+        response = {'status': 'fail', 'errMsg': '不能重复提交'}
+        return JsonResponse(response)
+
+    HomeworkSubmit.objects.create(student=user,
+                                  homework=homework,
+                                  choice=request.POST['choice'],
+                                  fill=request.POST['fill'],
+                                  judge=request.POST['judge'],
+                                  discuss=request.POST['discuss'])
+
+    response = {'status': 'success'}
     return JsonResponse(response)
 
 
