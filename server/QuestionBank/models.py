@@ -4,6 +4,18 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+'''
+models.py
+本应用的模型
+与数据库关联
+一个类建立一张表
+以及多个关系表
+
+更多信息查阅Web MVC模型
+这个就是M
+'''
+
+
 # 学院
 class College(models.Model):
     id = models.CharField(primary_key=True, max_length=2)
@@ -310,6 +322,7 @@ class Homework(models.Model):
     class Meta:
         db_table = 'QB_Homework'
 
+    # 返回包含所有题目的具体信息
     def dict(self):
         return {
             'id': self.id,
@@ -324,6 +337,9 @@ class Homework(models.Model):
             'discuss': [discuss.dict(with_answer=False) for discuss in self.discuss.all()]
         }
 
+    # 只返回作业属性信息
+    # 包括各题型题目数等
+    # 不包括具体题目
     def info(self):
         return {
             'id': self.id,

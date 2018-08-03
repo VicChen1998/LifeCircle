@@ -10,6 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
+
+# 整个django项目的配置
+
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -21,9 +25,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '25ync)=ww_$!*vzfr4bj89devkt6m#)nmp=rx=jd(#==rdc9b+'
 
+# 项目DEBUG开关
+# 服务器error时会返回错误信息 包含敏感数据
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# 允许的域名
+# localhost和127.0.0.1是本地域名 本地调试时本地服务器的域名
 ALLOWED_HOSTS = ['www.dva-loveyou.top', 'dva-loveyou.top',
                  'localhost', '127.0.0.1']
 
@@ -43,6 +51,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    # 小程序不用csrf验证
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -73,6 +82,7 @@ WSGI_APPLICATION = 'LifeCircle.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# 数据库配置
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

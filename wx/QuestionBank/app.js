@@ -23,7 +23,9 @@ App({
             'show': false
         }],
 
+        // 加载到用户信息后各页面的回调
         requireUserInfo: [null, null, null, null],
+        // 加载到科目信息后各页面的回调
         requireSubject: [null, null, null, null]
     },
 
@@ -32,8 +34,10 @@ App({
         wx.showLoading({
             title: '登录中'
         })
+        // 向微信服务器获取js_code
         wx.login({
             success: res => {
+                // 将js_code提交到服务器获取用户信息
                 wx.request({
                     url: this.globalData.host + 'signin',
                     data: {
@@ -44,6 +48,7 @@ App({
                         if (response.data.status == 'success') {
                             this.globalData.userInfo = response.data.userInfo
                             this.globalData.hasUserInfo = true
+                            // 如果有回调的话执行回调函数
                             for (var i in this.globalData.requireUserInfo) {
                                 if (this.globalData.requireUserInfo[i])
                                     this.globalData.requireUserInfo[i]()
@@ -65,6 +70,7 @@ App({
                     duration: 3000,
                 })
             },
+            // 无论成功与否隐藏加载框
             complete: () => {
                 wx.hideLoading()
             }

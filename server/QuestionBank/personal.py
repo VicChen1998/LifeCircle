@@ -1,10 +1,17 @@
-import json
-
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 from QuestionBank.models import User, UserProfile, Class, Choice, Fill, Judge, Discuss
 
 
+'''
+personal.py
+个人信息相关接口
+包括长传个人信息：学院/专业/班级/姓名/学号
+获取该用户上传的题目
+'''
+
+
+# 上传个人信息
 def set_userinfo(request):
     user = User.objects.get(username=request.POST['openid'])
     profile = UserProfile.objects.get(user=user)
@@ -27,9 +34,10 @@ def set_userinfo(request):
     profile.save()
 
     response = {'status': 'success'}
-    return HttpResponse(json.dumps(response), content_type='application/json')
+    return JsonResponse(response)
 
 
+# 获取上传的题目
 def get_myupload(request):
     user = User.objects.get(username=request.GET['openid'])
 
@@ -39,4 +47,4 @@ def get_myupload(request):
                 'judge_list': [judge.dict() for judge in Judge.objects.filter(author=user)],
                 'discuss_list': [discuss.dict() for discuss in Discuss.objects.filter(author=user)]}
 
-    return HttpResponse(json.dumps(response), content_type='application/json')
+    return JsonResponse(response)

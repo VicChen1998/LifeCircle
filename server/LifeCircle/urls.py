@@ -16,7 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+
+
+# 全局urls配置
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    # 匹配到^questionbank/的url交给QuestionBank.urls处理
     url(r'^questionbank/', include('QuestionBank.urls'))
 ]

@@ -12,23 +12,28 @@ Page({
             'author': 'XXX'
         },
 
+        // 学院picker数据
         college_range: [],
         college_index: 0,
 
+        // 专业picker数据
         major_range: [],
         college_index: 0,
 
+        // 班级picker数据
         class_range: [],
         class_index: 0,
 
     },
 
     onLoad: function(options) {
-
+        
+        // 索要用户信息 回调为初始化学院信息
         requireCallback.requireUserInfo(this, 3, this.initCollege)
 
     },
 
+    // 初始化学院
     initCollege: function() {
         wx.request({
             url: app.globalData.host + 'public/get_college',
@@ -60,6 +65,7 @@ Page({
         })
     },
 
+    // 初始化专业信息
     initMajor: function(college_id) {
         wx.request({
             url: app.globalData.host + 'public/get_major',
@@ -86,7 +92,6 @@ Page({
                         'id': null,
                         'name': '请选择'
                     })
-
                 }
 
                 this.setData({
@@ -97,6 +102,7 @@ Page({
         })
     },
 
+    // 初始化班级信息
     initClass: function(major_id) {
         wx.request({
             url: app.globalData.host + 'public/get_class',
@@ -186,6 +192,10 @@ Page({
             this.upload('student_id', student_id)
     },
 
+    /* 上传保存用户信息
+     * infotype 信息类型 'class_id' / 'name' / 'student_id'
+     * info 信息 班级id / 名字 / 学号
+     */
     upload: function(infotype, info) {
 
         var data = {
@@ -216,7 +226,7 @@ Page({
                                 if (this.data.class_range[i].id == info)
                                     clas = this.data.class_range[i]
 
-                            // FIXME 需要更新学院和专业
+                            // FIXME 最好能更新学院和专业
                             app.globalData.userInfo.class = clas
                             this.data.userInfo.class = clas
                             break
@@ -234,6 +244,7 @@ Page({
         })
     },
 
+    // 跳转到“我出的题”页面
     toMyUpload: function(event) {
         wx.navigateTo({
             url: '/pages/settings/myupload/myupload'

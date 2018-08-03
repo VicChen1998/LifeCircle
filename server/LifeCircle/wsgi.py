@@ -7,6 +7,11 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 """
 
+'''
+wsgi配置
+apache通过此文件加载后端代码
+'''
+
 import os
 import sys
 

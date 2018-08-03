@@ -1,8 +1,12 @@
-import json
-
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 from QuestionBank.models import User, UserProfile, Subject, Choice, Fill, Judge, Discuss
+
+
+'''
+upload.py
+上传题目接口
+'''
 
 
 def choice(request):
@@ -20,7 +24,7 @@ def choice(request):
                           comment=request.POST['comment'])
 
     response = {'status': 'success'}
-    return HttpResponse(json.dumps(response), content_type='application/json')
+    return JsonResponse(response)
 
 
 def judge(request):
@@ -34,13 +38,22 @@ def judge(request):
                          comment=request.POST['comment'])
 
     response = {'status': 'success'}
-    return HttpResponse(json.dumps(response), content_type='application/json')
+    return JsonResponse(response)
 
 
 def fill(request):
     user = User.objects.get(username=request.POST['openid'])
     subject = Subject.objects.get(id=request.POST['subject_id'])
 
+    '''
+    前端以json形式上传填空题信息
+    格式为items = {
+        'text':   [ ... , ... , ... ],
+        'answer': [ ... , ... , ... ]
+    }
+    在数据库中每一项text或answer之间以\t分隔
+    取出时再转换为json形式
+    '''
     items = json.loads(request.POST['items'])
     text, answer = '', ''
     for item in items:
@@ -54,7 +67,7 @@ def fill(request):
                         comment=request.POST['comment'])
 
     response = {'status': 'success'}
-    return HttpResponse(json.dumps(response), content_type='application/json')
+    return JsonResponse(response)
 
 
 def discuss(request):
@@ -67,4 +80,4 @@ def discuss(request):
                            answer=request.POST['answer'])
 
     response = {'status': 'success'}
-    return HttpResponse(json.dumps(response), content_type='application/json')
+    return JsonResponse(response)

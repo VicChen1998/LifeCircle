@@ -2,6 +2,13 @@ from django.conf.urls import url
 
 from QuestionBank import auth, public, personal, exercise, upload, homework
 
+
+'''
+urls.py
+本小程序的url配置
+'''
+
+
 urlpatterns = [
     # 登录
     url(r'^signin', auth.signin),

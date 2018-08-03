@@ -4,12 +4,15 @@
         <view class='navigationBarTitle'>大学生出题库</view>
     </view>
 
+    <!-- 题型切换条 -->
     <view class='tab'>
+        <!-- 题型名称 -->
         <view style='display: flex;'>
             <block wx:for='{{tabs}}' wx:for-item='tab' wx:key='name'>
                 <view class='tab_text' bindtap='tabOnChange' data-index='{{index}}'>{{tab.name}}</view>
             </block>
         </view>
+        <!-- 指示条 -->
         <view style='display: flex;'>
             <block wx:for='{{tabs}}' wx:for-item='tab' wx:key='name'>
                 <view class='tab_indicator {{tab.show ? "tab_indicator_show" : ""}}'></view>
@@ -19,8 +22,11 @@
 
     <view style='margin: 30rpx'>
 
+        <!-- 科目选择组件 -->
         <picker range='{{subject_range}}' value='{{subject_index}}' range-key='name' class='subject_picker' bindchange='subjectOnChange'>
+            <!-- 未设定科目时显示“随机” -->
             <text hidden='{{subject}}'>随机：</text>
+            <!-- 学科名称 -->
             <text>{{subject_range[subject_index].name}}</text>
         </picker>
 
@@ -30,6 +36,7 @@
 
             <view>{{choice.question}}</view>
 
+            <!-- 4个选项 -->
             <radio-group bindchange='choiceOnChange'>
                 <label class='radio_item'>
                     <radio checked='{{checked}}' />
@@ -49,23 +56,29 @@
                 </label>
             </radio-group>
 
-            <view hidden='{{!choosed}}' style='margin:100rpx 0 120rpx;'>
+            <!-- 答案和解析 -->
+            <view hidden='{{!choiceAnswerVisiable}}' style='margin:100rpx 0 120rpx;'>
                 <view style='margin-bottom: 30rpx'>正确答案： {{choice.answer}}</view>
                 <text decode='true'>{{choice.comment}}</text>
             </view>
 
-            <image src='/images/next.png' hidden='{{!choosed}}' class='next' bindtap='choiceInit'></image>
+            <!-- 下一题按钮 -->
+            <image src='/images/next.png' hidden='{{!choiceAnswerVisiable}}' class='next' bindtap='choiceInit'></image>
 
         </view>
 
 
         <!-- 填空题 -->
         <view class='tab_view' hidden='{{!tabs[1].show}}'>
+
             <view class='fill_item'>
+                <!-- 填空题题目和答案以数组形式存储 -->
+                <!-- 不显示空字段 -->
                 <block wx:for='{{fill.question}}' wx:for-item='question'>
                     <block wx:if='{{question.length > 0}}'>
                         <text class='fill_question'>{{question}}</text>
                     </block>
+                    <!-- 有几个答案就显示几个input组件 并根据答案长度动态设置 -->
                     <block wx:if='{{fill.answer[index].length > 0}}'>
                         <input class='fill_input' value='{{empty}}' style='width:{{fill.answer[index].length*40}}rpx'></input>
                     </block>
@@ -97,12 +110,12 @@
                 <radio style='width:150rpx;' checked='{{checked}}'>F</radio>
             </radio-group>
 
-            <view hidden='{{!choosed}}' style='margin:100rpx 0 120rpx'>
+            <view hidden='{{!judgeAnswerVisiable}}' style='margin:100rpx 0 120rpx'>
                 <view style='margin-bottom: 30rpx'>正确答案： {{judge.answer}}</view>
                 <text decode='true'>{{judge.comment}}</text>
             </view>
 
-            <image src='/images/next.png' hidden='{{!choosed}}' class='next' bindtap='judgeInit'></image>
+            <image src='/images/next.png' hidden='{{!judgeAnswerVisiable}}' class='next' bindtap='judgeInit'></image>
         </view>
 
         <!-- 简答题 -->

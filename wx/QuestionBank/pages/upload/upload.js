@@ -10,6 +10,7 @@ Page({
         subject_range: [],
         subject_index: 0,
 
+        // 装载填空题数据
         fill_items: [{
             'text': '',
             'answer': ''
@@ -23,6 +24,7 @@ Page({
             tabs: app.globalData.tabs
         })
 
+        // 索要学科信息 回调为在学科最前加一项“请选择”并显示
         requireCallback.requireSubject(this, 2, () => {
             this.data.subject_range.unshift({
                 'id': null,
@@ -35,22 +37,24 @@ Page({
     },
 
     tabOnChange: function(event) {
-        let newTab = event.target.dataset.index
+        let index = event.target.dataset.index
         this.data.tabs[this.data.currentTab].show = false
-        this.data.tabs[newTab].show = true
+        this.data.tabs[index].show = true
         this.setData({
             tabs: this.data.tabs,
-            currentTab: newTab
+            currentTab: index
         })
     },
 
     subjectOnChange: function(event) {
         let subject_index = event.detail.value
 
+        // 如果选择的是“请选择学科” 则返回
         if (!this.data.subject_range[0].id && subject_index == 0) {
             return
         }
 
+        // 选择的不是“请选择学科” 且列表里有“请选择学科” 则删除“请选择学科”
         if (!this.data.subject_range[0].id) {
             this.data.subject_range.shift()
             subject_index -= 1
@@ -60,7 +64,8 @@ Page({
             })
             return
         }
-
+        
+        // 正常情况
         this.setData({
             subject_index: subject_index
         })
@@ -68,6 +73,7 @@ Page({
 
     submit_choice: function(event) {
         let data = event.detail.value
+        // 检查数据 问题非空 答案非空 ABC选项非空
         if (data.question.length == 0 || data.answer.length == 0 ||
             data.option_A.length == 0 || data.option_B.length == 0 || data.option_C.length == 0) {
             this.showAlert()
@@ -87,6 +93,7 @@ Page({
         this.submit('judge', data)
     },
 
+    // 填空题加题目和空格
     fillOnAdd: function(event) {
         this.data.fill_items.push({
             'text': '',
@@ -97,6 +104,7 @@ Page({
         })
     },
 
+    // 填空题减少题目和空格
     fillOnRemove: function(event) {
         this.data.fill_items.pop()
         this.setData({
@@ -142,8 +150,13 @@ Page({
         this.submit('discuss', data)
     },
 
+    /* 提交题目
+     * 各题型提交的过程类似 只有url和data有区别
+     * 单独写出来减少冗余
+     */
     submit: function(url, data) {
 
+        // 附上学科信息
         data.subject_id = this.data.subject_range[this.data.subject_index].id
 
         if (!data.subject_id) {
@@ -166,6 +179,7 @@ Page({
                     wx.showToast({
                         title: '提交成功！'
                     })
+                    // 清空输入框
                     this.setData({
                         empty: ''
                     })
