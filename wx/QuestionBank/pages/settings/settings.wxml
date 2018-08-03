@@ -1,6 +1,6 @@
 <view class='container' style='padding-top: 100rpx;'>
 
-    <view class='navigationBar' style='height: 100rpx;'>Î</view>
+    <view class='navigationBar' style='height: 100rpx;'></view>
 
     <view class='topbar'>
         <view class='topbar_top'>

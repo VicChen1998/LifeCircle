@@ -29,6 +29,9 @@ App({
 
     onLaunch: function() {
         // 登录
+        wx.showLoading({
+            title: '登录中'
+        })
         wx.login({
             success: res => {
                 wx.request({
@@ -61,6 +64,9 @@ App({
                     icon: 'none',
                     duration: 3000,
                 })
+            },
+            complete: () => {
+                wx.hideLoading()
             }
         })
 
