@@ -332,6 +332,7 @@ class Homework(models.Model):
             'subject': self.subject.dict(),
             'release_date': self.release_date.strftime('%m-%d'),
             'class': [clas.shortname for clas in self.clas.all()],
+            'post_count': HomeworkSubmit.objects.filter(homework=self).count(),
             'choice_num': self.choice.count(),
             'fill_num': self.fill.count(),
             'judge_num': self.judge.count(),

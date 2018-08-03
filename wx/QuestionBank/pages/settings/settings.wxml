@@ -1,11 +1,17 @@
 <view class='container' style='padding-top: 100rpx;'>
 
-    <view class='navigationBar' style='height: 100rpx;'>
-        <!-- <view class='navigationBarTitle'>大学生出题库</view> -->
-    </view>
+    <view class='navigationBar' style='height: 100rpx;'>Î</view>
 
     <view class='topbar'>
-        <open-data type='userAvatarUrl' class='avatar'></open-data>
+        <view class='topbar_top'>
+            <open-data type='userAvatarUrl' class='avatar'></open-data>
+
+            <view class='motto'>
+                <text>{{motto.content}}</text>
+                <text style='float: right'>— {{motto.author}}</text>
+            </view>
+        </view>
+
         <view class='topbar_info'>
             <view>
                 <view>选择题</view>
@@ -13,17 +19,18 @@
             </view>
             <view>
                 <view>填空题</view>
-                <view>89</view>
+                <view>52</view>
+            </view>
+            <view>
+                <view>判断题</view>
+                <view>94</view>
             </view>
             <view>
                 <view>简答题</view>
                 <view>12</view>
             </view>
         </view>
-        <view class='motto'>
-            <text>{{motto.content}}</text>
-            <text style='float: right'>— {{motto.author}}</text>
-        </view>
+
     </view>
 
     <view class='menu'>

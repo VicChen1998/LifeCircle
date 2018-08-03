@@ -25,7 +25,7 @@
                     <view style='display:flex; flex-wrap:wrap'>
                         <text>班级：</text>
                         <view wx:for='{{homework.class}}' wx:for-item='classname' class='class_name'>{{classname}}</view>
-                        <text>已交43/47人</text>
+                        <text>已交{{homework.post_count}}人</text>
                     </view>
 
                 </view>

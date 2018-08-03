@@ -4,6 +4,10 @@
     box-shadow: 0 5rpx 5rpx #ccc;
 }
 
+.topbar_top{
+    height: 200rpx;
+}
+
 .avatar {
     width: 180rpx;
     height: 180rpx;
@@ -15,18 +19,19 @@
     z-index: 999;
 }
 
-.topbar_info {
+.motto {
     height: 130rpx;
-    margin: 0 50rpx 0 210rpx;
-    padding-top: 50rpx;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+    padding: 50rpx 40rpx 0 0;
+    font-size: 30rpx;
 }
 
-.motto {
-    height: 110rpx;
-    margin: 50rpx 50rpx 10rpx;
+.topbar_info {
+    height: 130rpx;
+    margin: 0 50rpx;
+    padding-top: 30rpx;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
 }
 
 .menu {
