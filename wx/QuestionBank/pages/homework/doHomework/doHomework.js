@@ -145,7 +145,7 @@ Page({
         wx.showModal({
             title: '答题进度将丢失',
             content: '确定离开？',
-            confirmColor: '#f00',
+            confirmColor: '#ff0000',
             success: result => {
                 if (result.confirm)
                     wx.navigateBack()
