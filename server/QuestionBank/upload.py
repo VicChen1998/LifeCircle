@@ -51,6 +51,7 @@ def fill(request):
                         subject=subject,
                         question=request.POST['question'],
                         answer=request.POST['answer'],
+                        answer_count=request.POST['answer_count'],
                         comment=request.POST['comment'])
 
     response = {'status': 'success'}
