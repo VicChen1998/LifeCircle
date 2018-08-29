@@ -23,9 +23,14 @@ Page({
             },
             success: response => {
                 if (response.data.status == 'success') {
+
+                    var fill_list = response.data.fill_list
+                    for(var i in fill_list)
+                        fill_list[i].answer = JSON.parse(fill_list[i].answer)
+
                     this.setData({
                         choice_list: response.data.choice_list,
-                        fill_list: response.data.fill_list,
+                        fill_list: fill_list,
                         judge_list: response.data.judge_list,
                         discuss_list: response.data.discuss_list,
                     })

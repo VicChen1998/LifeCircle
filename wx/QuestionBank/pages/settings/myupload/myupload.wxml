@@ -36,16 +36,12 @@
                     <image src='/images/more.png' class='more'></image>
                 </block>
                 <view class='question'>
-                    <block wx:for='{{fill.question}}' wx:for-item='question'>
-                        <block wx:if='{{question.length > 0}}'>
-                            <text>{{question}}</text>
-                        </block>
-                        <block wx:if='{{fill.answer[index].length > 0}}'>
-                            <text class='fill_answer'>{{fill.answer[index]}}</text>
-                        </block>
-                    </block>
+                    <text class='fill_question'>{{fill.question}}</text>
                 </view>
                 <view hidden='{{index!=show_detail[1]}}' class='comment'>
+                    <view>
+                        <text class='fill_answer' wx:for='{{fill.answer}}' wx:for-item='answer'>{{answer}}</text>
+                    </view>
                     <text decode='true'>{{fill.comment}}</text>
                 </view>
             </view>

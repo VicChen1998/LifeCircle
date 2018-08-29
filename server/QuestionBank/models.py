@@ -3,7 +3,6 @@ import random
 from django.db import models
 from django.contrib.auth.models import User
 
-
 '''
 models.py
 本应用的模型
@@ -36,7 +35,7 @@ class Major(models.Model):
     # 名称
     name = models.CharField(max_length=16)
     # 所属学院
-    college = models.ForeignKey(College)
+    college = models.ForeignKey(College, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'Major'
@@ -54,7 +53,7 @@ class Class(models.Model):
     # 简称
     shortname = models.CharField(max_length=8)
     # 所属专业
-    major = models.ForeignKey(Major)
+    major = models.ForeignKey(Major, on_delete=models.CASCADE)
     # 年级
     grade = models.PositiveIntegerField()
 
@@ -87,9 +86,9 @@ class Subject(models.Model):
 # 班级科目关系
 class MajorSubject(models.Model):
     # 班级
-    major = models.ForeignKey(Major)
+    major = models.ForeignKey(Major, on_delete=models.CASCADE)
     # 科目
-    subject = models.ForeignKey(Subject)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'Major_Subject'
@@ -100,9 +99,9 @@ class MajorSubject(models.Model):
 # 教师科目关系
 class TeacherSubject(models.Model):
     # 教师
-    teacher = models.ForeignKey(User)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
     # 科目
-    subject = models.ForeignKey(Subject)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'Teacher_Subject'
@@ -113,7 +112,7 @@ class TeacherSubject(models.Model):
 # 用户信息
 class UserProfile(models.Model):
     # 用户
-    user = models.OneToOneField(User, primary_key=True)
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     username = models.CharField(max_length=32)
 
     # 从微信拿到的数据
@@ -138,11 +137,11 @@ class UserProfile(models.Model):
     # 学号
     student_id = models.CharField(max_length=11, null=True, default=None)
     # 学院
-    college = models.ForeignKey(College, null=True, default=None)
+    college = models.ForeignKey(College, null=True, default=None, on_delete=models.SET_NULL)
     # 专业
-    major = models.ForeignKey(Major, null=True, default=None)
+    major = models.ForeignKey(Major, null=True, default=None, on_delete=models.SET_NULL)
     # 班级
-    clas = models.ForeignKey(Class, null=True, default=None)
+    clas = models.ForeignKey(Class, null=True, default=None, on_delete=models.SET_NULL)
     # 是否教师
     isTeacher = models.BooleanField(default=False)
 
@@ -153,7 +152,7 @@ class UserProfile(models.Model):
 # 选择题
 class Choice(models.Model):
     # 所属学科
-    subject = models.ForeignKey(Subject)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     # 题目
     question = models.CharField(max_length=128)
     # 选项
@@ -166,7 +165,7 @@ class Choice(models.Model):
     # 解析
     comment = models.CharField(max_length=128)
     # 提交者
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         db_table = 'QB_Choice'
@@ -197,7 +196,7 @@ class Choice(models.Model):
 # 判断题
 class Judge(models.Model):
     # 所属学科
-    subject = models.ForeignKey(Subject)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     # 题目
     question = models.CharField(max_length=128)
     # 答案
@@ -205,7 +204,7 @@ class Judge(models.Model):
     # 解析
     comment = models.CharField(max_length=128)
     # 提交者
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         db_table = 'QB_Judge'
@@ -232,15 +231,17 @@ class Judge(models.Model):
 # 填空题
 class Fill(models.Model):
     # 所属学科
-    subject = models.ForeignKey(Subject)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     # 题目
     question = models.CharField(max_length=128)
     # 答案
     answer = models.CharField(max_length=128)
+    # 答案个数
+    answer_count = models.IntegerField(32)
     # 解析
     comment = models.CharField(max_length=128)
     # 提交者
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         db_table = 'QB_Fill'
@@ -249,8 +250,9 @@ class Fill(models.Model):
         return {
             'id': self.id,
             'subject': self.subject.dict(),
-            'question': self.question.split('\t')[:-1],
-            'answer': self.answer.split('\t')[:-1] if with_answer else list(map(len, self.answer.split('\t')[:-1])),
+            'question': self.question,
+            'answer': self.answer if with_answer else None,
+            'answer_count': self.answer_count,
             'comment': self.comment if with_answer else None,
         }
 
@@ -267,13 +269,13 @@ class Fill(models.Model):
 # 简答题
 class Discuss(models.Model):
     # 所属学科
-    subject = models.ForeignKey(Subject)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     # 题目
     question = models.CharField(max_length=128)
     # 答案
     answer = models.CharField(max_length=512)
     # 提交者
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         db_table = 'QB_Discuss'
@@ -301,9 +303,9 @@ class Homework(models.Model):
     # 名称
     name = models.CharField(max_length=32)
     # 所属学科
-    subject = models.ForeignKey(Subject)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     # 出卷老师
-    teacher = models.ForeignKey(User)
+    teacher = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     # 发布日期
     release_date = models.DateField(auto_now_add=True)
     # 有效性
@@ -359,9 +361,9 @@ class Homework(models.Model):
 # 作业上交
 class HomeworkSubmit(models.Model):
     # 作业
-    homework = models.ForeignKey(Homework)
+    homework = models.ForeignKey(Homework, on_delete=models.CASCADE)
     # 学生
-    student = models.ForeignKey(User)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
     # 选择题
     choice = models.CharField(max_length=128)
     # 填空题

@@ -112,7 +112,13 @@ Page({
                     'subject_id': this.data.subject.id
                 },
                 success: response => {
-                    this.data.questions[typeindex].push(response.data[response_name[typeindex]])
+                    if (typeindex == 1) {
+                        var fill = response.data.fill
+                        fill.answer = JSON.parse(fill.answer)
+                        this.data.questions[1].push(fill)
+                    } else
+                        this.data.questions[typeindex].push(response.data[response_name[typeindex]])
+
                     this.setData({
                         questions: this.data.questions
                     })

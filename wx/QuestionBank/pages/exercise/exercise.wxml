@@ -72,17 +72,10 @@
         <view class='tab_view' hidden='{{!tabs[1].show}}'>
 
             <view class='fill_item'>
-                <!-- 填空题题目和答案以数组形式存储 -->
-                <!-- 不显示空字段 -->
-                <block wx:for='{{fill.question}}' wx:for-item='question'>
-                    <block wx:if='{{question.length > 0}}'>
-                        <text class='fill_question'>{{question}}</text>
-                    </block>
-                    <!-- 有几个答案就显示几个input组件 并根据答案长度动态设置 -->
-                    <block wx:if='{{fill.answer[index].length > 0}}'>
-                        <input class='fill_input' value='{{empty}}' style='width:{{fill.answer[index].length*40}}rpx'></input>
-                    </block>
-                </block>
+                <text class='fill_question'>{{fill.question}}</text>
+                <view>
+                    <input wx:for='{{fill.answer}}' class='fill_input' value='{{empty}}'></input>
+                </view>
             </view>
 
             <image src='/images/ok.png' class='ok' bindtap='fillOnAnswer'></image>

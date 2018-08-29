@@ -40,14 +40,10 @@
             <view wx:for='{{questions[1]}}' wx:for-item='fill' class='item'>
                 <checkbox value='{{index}}' checked='{{checked_index[1][index] == index}}'></checkbox>
                 <text>{{index+1}}.</text>
-                <block wx:for='{{fill.question}}' wx:for-item='question'>
-                    <block wx:if='{{question.length > 0}}'>
-                        <text>{{question}}</text>
-                    </block>
-                    <block wx:if='{{fill.answer[index].length > 0}}'>
-                        <text class='fill_answer'>{{fill.answer[index]}}</text>
-                    </block>
-                </block>
+                <text>{{fill.question}}</text>
+                <view style='margin-left:80rpx;'>
+                    <text class='fill_answer' wx:for='{{fill.answer}}' wx:for-item='answer'>{{answer}}</text>
+                </view>
             </view>
         </checkbox-group>
     </view>

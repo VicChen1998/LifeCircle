@@ -31,15 +31,21 @@ Page({
                 for (var i in this.data.homework.choice)
                     this.data.choice_answer.push(null)
                 for (var i in this.data.homework.fill) {
+                    this.data.homework.fill[i].answer = []
                     this.data.fill_answer.push([])
-                    for (var j in this.data.homework.fill[i].answer)
-                        if (this.data.homework.fill[i].answer[j] > 0)
-                            this.data.fill_answer[i].push(null)
+                    for(var j = 0; j < this.data.homework.fill[i].answer_count; j++){
+                        this.data.homework.fill[i].answer.push(null)
+                        this.data.fill_answer[i].push(null)
+                    }
                 }
                 for (var i in this.data.homework.judge)
                     this.data.judge_answer.push(null)
                 for (var i in this.data.homework.discuss)
                     this.data.discuss_answer.push(null)
+
+                this.setData({
+                    homework: this.data.homework
+                })
             }
         })
 

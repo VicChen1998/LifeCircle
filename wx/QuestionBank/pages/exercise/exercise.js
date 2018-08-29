@@ -176,8 +176,10 @@ Page({
             data: data,
             success: response => {
                 if (response.data.status == 'success') {
+                    var fill = response.data.fill
+                    fill.answer = JSON.parse(fill.answer)
                     this.setData({
-                        fill: response.data.fill,
+                        fill: fill,
                         fillAnswerVisiable: false,
                         // 清空所有input
                         empty: ''

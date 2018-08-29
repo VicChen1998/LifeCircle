@@ -51,8 +51,5 @@
 }
 
 .fill_answer {
-    margin: 0 10rpx;
-    padding: 0 15rpx;
-    color: #0096ff;
-    border-bottom: 1rpx solid #bbb;
+    margin-right: 20rpx;
 }

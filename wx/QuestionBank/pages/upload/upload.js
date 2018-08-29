@@ -10,11 +10,8 @@ Page({
         subject_range: [],
         subject_index: 0,
 
-        // 装载填空题数据
-        fill_items: [{
-            'text': '',
-            'answer': ''
-        }],
+        fillQuestion: '',
+        fillAnswer: [],
 
         empty: '',
     },
@@ -64,7 +61,7 @@ Page({
             })
             return
         }
-        
+
         // 正常情况
         this.setData({
             subject_index: subject_index
@@ -79,7 +76,6 @@ Page({
             this.showAlert()
             return
         }
-        data.openid = app.globalData.userInfo.openid
         this.submit('choice', data)
     },
 
@@ -89,55 +85,65 @@ Page({
             this.showAlert()
             return
         }
-        data.openid = app.globalData.userInfo.openid
         this.submit('judge', data)
     },
 
-    // 填空题加题目和空格
-    fillOnAdd: function(event) {
-        this.data.fill_items.push({
-            'text': '',
-            'answer': ''
-        })
-        this.setData({
-            fill_items: this.data.fill_items
-        })
+    // 填空题
+    fillQuestionOnInput: function(event) {
+        this.data.fillQuestion = event.detail.value
     },
 
-    // 填空题减少题目和空格
-    fillOnRemove: function(event) {
-        this.data.fill_items.pop()
-        this.setData({
-            fill_items: this.data.fill_items
-        })
-    },
-
-    fillTextOnBlur: function(event) {
-        let value = event.detail.value
+    fillAnswerOnInput: function(event) {
         let index = event.target.dataset.index
-        this.data.fill_items[index].text = value
+        this.data.fillAnswer[index] = event.detail.value
+        this.setData({
+            fillAnswer: this.data.fillAnswer
+        })
     },
 
-    fillAnswerOnBlur: function(event) {
-        let value = event.detail.value
-        let index = event.target.dataset.index
-        this.data.fill_items[index].answer = value
+    fillOnAddAnswer: function(event) {
+        this.data.fillQuestion += '______'
+        this.data.fillAnswer.push('')
+        this.setData({
+            fillQuestion: this.data.fillQuestion,
+            fillAnswer: this.data.fillAnswer
+        })
+    },
+
+    fillOnDeleteAnswer: function(event) {
+        this.data.fillAnswer.pop()
+        this.setData({
+            fillAnswer: this.data.fillAnswer
+        })
     },
 
     submit_fill: function(event) {
 
-        if (this.data.fill_items[0].text.length == 0 || this.data.fill_items[0].answer.length == 0) {
+        if (this.data.fillQuestion.length == 0) {
             this.showAlert()
             return
         }
 
+        for (var i in this.data.fillAnswer) {
+            if (this.data.fillAnswer[i].length == 0) {
+                this.showAlert()
+                return
+            }
+        }
+
         var data = {
-            'openid': app.globalData.userInfo.openid,
-            'items': JSON.stringify(this.data.fill_items),
+            'question': this.data.fillQuestion,
+            'answer': JSON.stringify(this.data.fillAnswer),
+            'answer_count': this.data.fillAnswer.length,
             'comment': event.detail.value.comment
         }
 
-        this.submit('fill', data)
+        this.submit('fill', data, () => {
+            this.setData({
+                fillQuestion: '',
+                fillAnswer: []
+            })
+        })
     },
 
     submit_discuss: function(event) {
@@ -146,7 +152,6 @@ Page({
             this.showAlert()
             return
         }
-        data.openid = app.globalData.userInfo.openid
         this.submit('discuss', data)
     },
 
@@ -154,8 +159,10 @@ Page({
      * 各题型提交的过程类似 只有url和data有区别
      * 单独写出来减少冗余
      */
-    submit: function(url, data) {
+    submit: function(url, data, callback) {
 
+        // 附上openid
+        data.openid = app.globalData.userInfo.openid
         // 附上学科信息
         data.subject_id = this.data.subject_range[this.data.subject_index].id
 
@@ -183,6 +190,9 @@ Page({
                     this.setData({
                         empty: ''
                     })
+
+                    if (callback)
+                        callback()
                 }
             }
         })

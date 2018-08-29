@@ -47,25 +47,10 @@ def fill(request):
     user = User.objects.get(username=request.POST['openid'])
     subject = Subject.objects.get(id=request.POST['subject_id'])
 
-    '''
-    前端以json形式上传填空题信息
-    格式为items = {
-        'text':   [ ... , ... , ... ],
-        'answer': [ ... , ... , ... ]
-    }
-    在数据库中每一项text或answer之间以\t分隔
-    取出时再转换为json形式
-    '''
-    items = json.loads(request.POST['items'])
-    text, answer = '', ''
-    for item in items:
-        text += item['text'] + '\t'
-        answer += item['answer'] + '\t'
-
     Fill.objects.create(author=user,
                         subject=subject,
-                        question=text,
-                        answer=answer,
+                        question=request.POST['question'],
+                        answer=request.POST['answer'],
                         comment=request.POST['comment'])
 
     response = {'status': 'success'}
