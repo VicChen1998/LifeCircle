@@ -1,1 +1,8 @@
-<text>detail</text>
+<view class='container'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>作业缴交情况</view>
+    </view>
+
+</view>

@@ -34,8 +34,8 @@
         <view class='type_title'>填空题</view>
         <view wx:for='{{homework.fill}}' wx:for-item='fill' class='item fill_item'>
             <text class='question'>{{index+1}}. {{fill.question}}</text>
-            <view style='float:right'>
-                <input class='fill_input' wx:for='{{fill.answer}}'></input>
+            <view style='width:100%'>
+                <input class='fill_input' wx:for='{{fill.answer}}' wx:for-index='subindex' bindblur='fillOnBlur' data-index='{{index}}' data-subindex='{{subindex}}'></input>
             </view>
         </view>
     </view>

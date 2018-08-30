@@ -1,3 +1,10 @@
+.hint {
+    margin: 30rpx 50rpx;
+    text-align: left;
+    font-size: 32rpx;
+    color: #ccc;
+}
+
 .type {
     margin-bottom: 35rpx;
 }
