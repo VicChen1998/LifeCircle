@@ -5,7 +5,7 @@
 
 <view style='padding:30rpx 30rpx 200rpx'>
 
-    <view style='margin-top: 200rpx;' hidden='{{!(questions[0].length==0 && questions[1].length==0 && questions[2].length==0 && questions[3].length==0)}}'>
+    <view style='margin-top: 50rpx;' hidden='{{!(questions[0].length==0 && questions[1].length==0 && questions[2].length==0 && questions[3].length==0)}}'>
         <view class='hint'>1. 选择各题型数量</view>
         <view class='hint'>2. 点击生成</view>
         <view class='hint'>3. 勾选要保留的题目</view>

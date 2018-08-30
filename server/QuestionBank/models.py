@@ -377,3 +377,19 @@ class HomeworkSubmit(models.Model):
         db_table = 'QB_Homework_Submit'
         # 联合主键
         unique_together = ('homework', 'student')
+
+    def dict(self):
+        profile = UserProfile.objects.get(user=self.student)
+        return {
+            'student': {
+                'name': profile.name,
+                'student_id': profile.student_id,
+                'college': profile.college.dict(),
+                'major': profile.major.dict(),
+                'class': profile.clas.dict(),
+            },
+            'choice': self.choice,
+            'fill': self.fill,
+            'judge': self.judge,
+            'discuss': self.discuss,
+        }
