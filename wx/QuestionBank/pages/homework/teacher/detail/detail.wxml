@@ -4,7 +4,7 @@
         <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
         <view class='navigationBarTitle'>作业缴交情况</view>
     </view>
-
+    
     <view class='tab'>
         <view style='display: flex;'>
             <block wx:for='{{tabs}}' wx:for-item='tab' wx:key='name'>
@@ -29,5 +29,4 @@
 
 
     </view>
-
 </view>
