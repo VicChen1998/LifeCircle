@@ -25,7 +25,7 @@
 
 
         <!-- 选择题 -->
-        <view class='tab_item' hidden='{{!tabs[0].show}}'>
+        <view class='tab_view' hidden='{{!tabs[0].show}}'>
             <form bindsubmit='submit_choice'>
                 <textarea auto-height='true' placeholder='题目' name='question' style='min-height: 100rpx' value='{{empty}}'></textarea>
 
@@ -71,7 +71,7 @@
                     <textarea style='min-height: 120rpx' auto-height='true' placeholder='题目' value='{{fillQuestion}}' bindinput='fillQuestionOnInput'></textarea>
 
                     <view>
-                        <input class='fill_answer' wx:for='{{fillAnswer}}' bindinput='fillAnswerOnInput' data-index='{{index}}'></input>
+                        <input class='fill_answer' wx:for='{{fillAnswer}}' bindinput='fillAnswerOnInput' data-index='{{index}}' placeholder='答案'></input>
                     </view>
                 </view>
 

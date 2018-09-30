@@ -32,26 +32,26 @@
 
 
         <!-- 选择题 -->
-        <view class='tab_item' hidden='{{!tabs[0].show}}'>
+        <view class='tab_view' hidden='{{!tabs[0].show}}'>
 
             <view>{{choice.question}}</view>
 
             <!-- 4个选项 -->
             <radio-group bindchange='choiceOnChange'>
                 <label class='radio_item'>
-                    <radio checked='{{checked}}' />
+                    <radio checked='{{checked}}' color='{{choice.answer == "A" ? "#09BB07" : "#FF0000"}}'/>
                     <view class='radio_text'>{{choice.option_A}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio checked='{{checked}}' />
+                    <radio checked='{{checked}}' color='{{choice.answer == "B" ? "#09BB07" : "#FF0000"}}'/>
                     <view class='radio_text'>{{choice.option_B}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio checked='{{checked}}' />
+                    <radio checked='{{checked}}' color='{{choice.answer == "C" ? "#09BB07" : "#FF0000"}}'/>
                     <view class='radio_text'>{{choice.option_C}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio checked='{{checked}}' />
+                    <radio checked='{{checked}}' color='{{choice.answer == "D" ? "#09BB07" : "#FF0000"}}'/>
                     <view class='radio_text'>{{choice.option_D}}</view>
                 </label>
             </radio-group>

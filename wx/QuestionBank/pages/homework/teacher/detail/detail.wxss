@@ -1,0 +1,8 @@
+.student {
+    width: 32%;
+    height: 80rpx;
+    line-height: 80rpx;
+    border: 1px solid #eee;
+    text-align: center;
+    flex-grow: 1;
+}

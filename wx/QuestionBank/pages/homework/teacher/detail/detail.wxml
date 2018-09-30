@@ -5,4 +5,29 @@
         <view class='navigationBarTitle'>作业缴交情况</view>
     </view>
 
+    <view class='tab'>
+        <view style='display: flex;'>
+            <block wx:for='{{tabs}}' wx:for-item='tab' wx:key='name'>
+                <view class='tab_text' bindtap='tabOnChange' data-index='{{index}}'>{{tab.name}}</view>
+            </block>
+        </view>
+        <view style='display: flex;'>
+            <block wx:for='{{tabs}}' wx:for-item='tab' wx:key='name'>
+                <view class='tab_indicator {{tab.show ? "tab_indicator_show" : ""}}'></view>
+            </block>
+        </view>
+    </view>
+
+    <view hidden='{{!tabs[0].show}}'>
+        <view class='student' wx:for='{{submits}}' wx:for-item='submit'>
+            <text>{{submit.student.name}}</text>
+        </view>
+    </view>
+
+    <view hidden='{{!tabs[1].show}}'>
+
+
+
+    </view>
+
 </view>

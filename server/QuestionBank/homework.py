@@ -4,7 +4,6 @@ from django.http import JsonResponse
 
 from QuestionBank.models import *
 
-
 '''
 homework.py
 作业相关接口
@@ -111,7 +110,7 @@ def assign(request):
 
 # 教师接口 查看作业缴交情况
 def detail(request):
-    user = User.objects.get(username=request.POST['openid'])
+    user = User.objects.get(username=request.GET['openid'])
     profile = UserProfile.objects.get(user=user)
 
     # 检测是否教师
@@ -119,12 +118,12 @@ def detail(request):
         response = {'status': 'fail', 'errMsg': 'permission denied.'}
         return JsonResponse(response)
 
-    homework = Homework.objects.get(id=request.POST['homework_id'])
+    homework = Homework.objects.get(id=request.GET['homework_id'])
 
     submits = []
     for s in HomeworkSubmit.objects.filter(homework=homework):
         submits.append(s.dict())
-        
+
     response = {'status': 'success', 'submits': submits}
 
     return JsonResponse(response)
