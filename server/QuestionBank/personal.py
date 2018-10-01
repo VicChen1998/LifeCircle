@@ -13,8 +13,7 @@ personal.py
 
 # 上传个人信息
 def set_userinfo(request):
-    user = User.objects.get(username=request.POST['openid'])
-    profile = UserProfile.objects.get(user=user)
+    profile = UserProfile.objects.get(username=request.POST['openid'])
 
     infotype = request.POST['infotype']
 

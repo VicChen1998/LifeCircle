@@ -1,7 +1,7 @@
 App({
     globalData: {
-        // host: 'https://www.dva-loveyou.top/questionbank/',
-        host: 'http://localhost/questionbank/',
+        host: 'https://www.dva-loveyou.top/questionbank/',
+        // host: 'http://localhost/questionbank/',
 
         userInfo: null,
         hasUserInfo: false,
@@ -90,3 +90,27 @@ App({
         })
     }
 })
+
+
+
+/*     _______ ____  _____   ____
+ *    |__   __/ __ \|  __ \ / __ \
+ *       | | | |  | | |  | | |  | |
+ *       | | | |  | | |  | | |  | |
+ *       | | | |__| | |__| | |__| |
+ *       |_|  \____/|_____/ \____/
+ *
+ * Implement
+ * 教师查看作业情况 按学生显示答案/按题目显示统计数据
+ * 答题统计实现
+ * 编辑自己上传的问题
+ * 作业界面加号改为一格
+ * 作业布置界面重写
+ * 作业截止日期
+ * 锁定问题
+ * 班级管理/题目审核
+ * 答题排行
+ * 
+ * UI
+ * 整体样式
+ */

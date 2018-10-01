@@ -357,6 +357,15 @@ class Homework(models.Model):
             'discuss_num': self.discuss.count()
         }
 
+    # 返回答案
+    def answer(self):
+        return {
+            'choice': [choice.answer for choice in self.choice.all()],
+            'fill': [fill.answer for fill in self.fill.all()],
+            'judge': [judge.answer for judge in self.judge.all()],
+            'discuss': [discuss.answer for discuss in self.discuss.all()],
+        }
+
 
 # 作业上交
 class HomeworkSubmit(models.Model):
@@ -392,4 +401,11 @@ class HomeworkSubmit(models.Model):
             'fill': self.fill,
             'judge': self.judge,
             'discuss': self.discuss,
+        }
+
+    def student_info(self):
+        profile = UserProfile.objects.get(user=self.student)
+        return {
+            'openid': profile.username,
+            'name': profile.name,
         }

@@ -19,33 +19,28 @@ Page({
     onLoad: function(options) {
 
         wx.request({
-            url: app.globalData.host + 'homework/get',
-            data: {
-                'homework_id': options.homework_id
-            },
-            success: response => {
-                this.setData({
-                    homework: response.data.homework
-                })
-            }
-        })
-
-        wx.request({
             url: app.globalData.host + 'homework/detail',
             data: {
                 'openid': app.globalData.userInfo.openid,
                 'homework_id': options.homework_id
             },
             success: response => {
-                var submits = response.data.submits
-                for (var i in submits){
-                    submits[i].choice = JSON.parse(submits[i].choice)
-                    submits[i].fill = JSON.parse(submits[i].fill)
-                    submits[i].judge = JSON.parse(submits[i].judge)
-                    submits[i].discuss = JSON.parse(submits[i].discuss)
-                }
                 this.setData({
-                    submits: submits
+                    homework: response.data.homework,
+                    submits: response.data.submits
+                })
+            }
+        })
+
+        wx.request({
+            url: app.globalData.host + 'homework/answer',
+            data: {
+                'openid': app.globalData.userInfo.openid,
+                'homework_id': options.homework_id
+            },
+            success: response => {
+                this.setData({
+                    answer: response.data.answer
                 })
             }
         })
@@ -58,6 +53,14 @@ Page({
         this.setData({
             tabs: this.data.tabs,
             currentTab: index
+        })
+    },
+
+    toDetailByStudent: function(event) {
+        wx.navigateTo({
+            url: '/pages/homework/teacher/detail/student' 
+            + '?homework_id=' + this.data.homework.id
+            + '&student_id=' + event.target.dataset.student_id,
         })
     },
 

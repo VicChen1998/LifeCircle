@@ -9,7 +9,8 @@
         "pages/homework/teacher/assign/select_class",
         "pages/homework/teacher/assign/select_subject",
         "pages/homework/teacher/detail/detail",
-        "pages/homework/doHomework/doHomework"
+        "pages/homework/doHomework/doHomework",
+        "pages/homework/teacher/detail/student"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -25,26 +26,26 @@
             {
                 "pagePath": "pages/exercise/exercise",
                 "text": "刷题",
-                "iconPath": "images/pen.png",
-                "selectedIconPath": "images/pen_fill.png"
+                "iconPath": "images/exercise.png",
+                "selectedIconPath": "images/exercise_check.png"
             },
             {
                 "pagePath": "pages/homework/homework_list",
                 "text": "作业",
-                "iconPath": "images/pen.png",
-                "selectedIconPath": "images/pen_fill.png"
+                "iconPath": "images/homework.png",
+                "selectedIconPath": "images/homework_check.png"
             },
             {
                 "pagePath": "pages/upload/upload",
                 "text": "出题",
-                "iconPath": "images/pen.png",
-                "selectedIconPath": "images/pen_fill.png"
+                "iconPath": "images/create.png",
+                "selectedIconPath": "images/create_check.png"
             },
             {
                 "pagePath": "pages/settings/settings",
                 "text": "我的",
                 "iconPath": "images/me.png",
-                "selectedIconPath": "images/me_fill.png"
+                "selectedIconPath": "images/me_check.png"
             }
         ]
     }

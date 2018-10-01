@@ -1,0 +1,58 @@
+.type {
+    margin-bottom: 35rpx;
+}
+
+.type_title {
+    font-size: 34rpx;
+    font-weight: bold;
+    margin-bottom: 15rpx;
+}
+
+.item {
+    margin-bottom: 30rpx;
+    font-size: 30rpx;
+}
+
+.question {
+    margin-bottom: 10rpx;
+}
+
+radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.radio_item {
+    min-width: 20%;
+    padding: 5rpx 20rpx 5rpx 0;
+    display: flex;
+}
+
+.radio_text {
+    margin-left: 5rpx;
+}
+
+.fill_item {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fill_input {
+    width: 300rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    margin: 10rpx 20rpx 0;
+    padding: 0 20rpx;
+    text-align: center;
+    border-bottom: 1rpx solid #ddd;
+    float: right;
+}
+
+.discuss_textarea {
+    width: 95%;
+    min-height: 150rpx;
+    margin: 50rpx auto;
+    padding-left: 20rpx;
+    border-left: 1rpx solid #ddd;
+}

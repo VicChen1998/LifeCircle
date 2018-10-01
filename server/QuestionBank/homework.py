@@ -86,8 +86,7 @@ def assign(request):
     class_list = json.loads(request.POST['class'])
 
     # 创建作业记录
-    homework = Homework.objects.create(teacher=user,
-                                       name=request.POST['name'],
+    homework = Homework.objects.create(teacher=user, name=request.POST['name'],
                                        subject=Subject.objects.get(id=request.POST['subject_id']))
 
     # 建立与各题型题目联系
@@ -122,8 +121,39 @@ def detail(request):
 
     submits = []
     for s in HomeworkSubmit.objects.filter(homework=homework):
-        submits.append(s.dict())
+        submits.append(s.student_info())
 
-    response = {'status': 'success', 'submits': submits}
+    response = {'status': 'success', 'homework': homework.dict(), 'submits': submits}
 
+    return JsonResponse(response)
+
+
+def detail_by_student(request):
+    user = User.objects.get(username=request.GET['openid'])
+    profile = UserProfile.objects.get(user=user)
+
+    # 检测是否教师
+    if not profile.isTeacher:
+        response = {'status': 'fail', 'errMsg': 'permission denied.'}
+        return JsonResponse(response)
+
+    submit = HomeworkSubmit.objects.get(
+        homework=Homework.objects.get(id=request.GET['homework_id']),
+        student=User.objects.get(username=request.GET['student_openid']))
+
+    response = {'status': 'success', 'submit': submit.dict()}
+    return JsonResponse(response)
+
+
+def answer(request):
+    profile = UserProfile.objects.get(username=request.GET['openid'])
+
+    # 检测是否教师
+    if not profile.isTeacher:
+        response = {'status': 'fail', 'errMsg': 'permission denied.'}
+        return JsonResponse(response)
+
+    answer = Homework.objects.get(id=request.GET['homework_id']).answer()
+
+    response = {'status': 'success', 'answer': answer}
     return JsonResponse(response)

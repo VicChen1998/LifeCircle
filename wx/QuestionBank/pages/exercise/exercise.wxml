@@ -99,8 +99,8 @@
             <view>{{judge.question}}</view>
 
             <radio-group style='margin:50rpx 0; float:right' bindchange='judgeOnChange'>
-                <radio style='width:150rpx;' checked='{{checked}}'>T</radio>
-                <radio style='width:150rpx;' checked='{{checked}}'>F</radio>
+                <radio style='width:150rpx;' checked='{{checked}}' color='{{judge.answer == "T" ? "#09BB07" : "#FF0000"}}'>T</radio>
+                <radio style='width:150rpx;' checked='{{checked}}' color='{{judge.answer == "F" ? "#09BB07" : "#FF0000"}}'>F</radio>
             </radio-group>
 
             <view hidden='{{!judgeAnswerVisiable}}' style='margin:100rpx 0 120rpx'>

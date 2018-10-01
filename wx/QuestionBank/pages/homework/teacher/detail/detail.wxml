@@ -19,8 +19,8 @@
     </view>
 
     <view hidden='{{!tabs[0].show}}'>
-        <view class='student' wx:for='{{submits}}' wx:for-item='submit'>
-            <text>{{submit.student.name}}</text>
+        <view class='student' wx:for='{{submits}}' wx:for-item='student' bindtap='toDetailByStudent' data-student_id='{{student.openid}}'>
+            <text>{{student.name}}</text>
         </view>
     </view>
 

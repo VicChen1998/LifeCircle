@@ -38,13 +38,17 @@ urlpatterns = [
     url(r'^exercise/get_discuss', exercise.get_discuss),
 
     # 作业
-    # 列表
+    # 作业列表
     url(r'^homework/list/class', homework.list_of_class),
     url(r'^homework/list/teacher', homework.list_of_teacher),
-    # 布置
+    # 布置作业
     url(r'^homework/assign$', homework.assign),
-    # 缴交情况
-    url(r'^homework/detail', homework.detail),
+    # 作业缴交情况
+    url(r'^homework/detail$', homework.detail),
+    # 查看学生答案
+    url(r'^homework/detail/by_student', homework.detail_by_student),
+    # 获取答案
+    url(r'homework/answer', homework.answer),
     # 获取作业
     url(r'^homework/get', homework.get),
     # 上交
