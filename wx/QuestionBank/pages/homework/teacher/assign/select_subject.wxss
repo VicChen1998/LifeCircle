@@ -1,7 +1,6 @@
 .subject_list {
     display: flex;
     flex-wrap: wrap;
-
 }
 
 .subject {
@@ -10,10 +9,10 @@
     height: 100rpx;
     border: 1px solid #eee;
     text-align: center;
-    display: flex;    
+    display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-grow: 1;    
+    flex-grow: 1;
 }
 
 .selected {

@@ -7,7 +7,10 @@
     <view hidden='{{!hasUserInfo}}'>
         <view wx:if='{{userInfo.class}}'>
             <view hidden='{{!userInfo.isTeacher}}'>
-                <image src='/images/add.png' class='assign' bindtap='toAssign'></image>
+                <!-- <image src='/images/add.png' class='assign' bindtap='toAssign'></image> -->
+                <view class='item' style='background: #f8f8f8;' bindtap='toAssign'>
+                    <view style='margin:10rpx auto 5rpx; text-align:center; color:#666'>+ 布置作业</view>
+                </view>
             </view>
 
             <view wx:for='{{homework_list}}' wx:for-item='homework' class='item' bindtap='homeworkOnTap' data-id='{{homework.id}}'>
@@ -34,7 +37,7 @@
             <view wx:if='{{homework_list.length==0}}' class='hint'>还没有作业哦</view>
         </view>
 
-        <view  wx:else class='hint'>请先填写个人信息才能获取作业列表哦</view>
+        <view wx:else class='hint'>请先填写个人信息才能获取作业列表哦</view>
     </view>
 
 </view>

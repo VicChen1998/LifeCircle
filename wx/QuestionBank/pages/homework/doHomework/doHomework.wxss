@@ -31,6 +31,7 @@ radio-group {
 
 .radio_text {
     margin-left: 5rpx;
+    line-height: 50rpx;
 }
 
 .fill_item {

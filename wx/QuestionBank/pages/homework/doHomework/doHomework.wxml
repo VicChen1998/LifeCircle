@@ -12,19 +12,19 @@
             <radio-group bindchange='choiceOnChange' data-index='{{index}}'>
                 <label class='radio_item'>
                     <radio value='A' />
-                    <view class='radio_text'>{{choice.option_A}}</view>
+                    <view class='radio_text'>A. {{choice.option_A}}</view>
                 </label>
                 <label class='radio_item'>
                     <radio value='B' />
-                    <view class='radio_text'>{{choice.option_B}}</view>
+                    <view class='radio_text'>B. {{choice.option_B}}</view>
                 </label>
                 <label class='radio_item'>
                     <radio value='C' />
-                    <view class='radio_text'>{{choice.option_C}}</view>
+                    <view class='radio_text'>C. {{choice.option_C}}</view>
                 </label>
                 <label class='radio_item'>
                     <radio value='D' />
-                    <view class='radio_text'>{{choice.option_D}}</view>
+                    <view class='radio_text'>D. {{choice.option_D}}</view>
                 </label>
             </radio-group>
         </view>

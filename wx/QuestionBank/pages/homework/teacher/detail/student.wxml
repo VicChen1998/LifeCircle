@@ -2,7 +2,7 @@
 
     <view class='navigationBar'>
         <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
-        <view class='navigationBarTitle'>{{answer.student.class.shortname}} {{answer.student.name}}</view>
+        <view class='navigationBarTitle'>{{submit.student.class.shortname}} {{submit.student.name}}</view>
     </view>
 
     <view style='padding:30rpx 30rpx'>
