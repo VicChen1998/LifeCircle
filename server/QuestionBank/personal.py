@@ -47,3 +47,9 @@ def get_myupload(request):
                 'discuss_list': [discuss.dict() for discuss in Discuss.objects.filter(author=user)]}
 
     return JsonResponse(response)
+
+
+def get_answer_stat(request):
+    profile = UserProfile.objects.get(username=request.GET['openid'])
+    response = {'answer_stat': profile.answer_stat()}
+    return JsonResponse(response)

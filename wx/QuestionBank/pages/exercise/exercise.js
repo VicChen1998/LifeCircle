@@ -38,7 +38,7 @@ Page({
         discussAnswerVisiable: false
     },
 
-    onLoad: function (options) {
+    onLoad: function(options) {
         // 从app.js获取tabs列表
         this.setData({
             tabs: app.globalData.tabs
@@ -51,7 +51,7 @@ Page({
     },
 
     // 切换题型(子页面)
-    tabOnChange: function (event) {
+    tabOnChange: function(event) {
         // 获取索引
         let index = event.target.dataset.index
         // 隐藏原页面
@@ -98,7 +98,7 @@ Page({
      * 向服务器随机获取所有学科的题目
      * 设置后只获取这一学科的题目
      */
-    subjectOnChange: function (event) {
+    subjectOnChange: function(event) {
         let subject_index = event.detail.value
         let subject = this.data.subject_range[subject_index]
         this.setData({
@@ -120,7 +120,7 @@ Page({
      * 接收subject_id
      * 在subject_range中搜索相应学科的index并设置
      */
-    changeSubject: function (subject_id) {
+    changeSubject: function(subject_id) {
         for (var i in this.data.subject_range) {
             if (subject_id == this.data.subject_range[i].id) {
                 this.setData({
@@ -132,11 +132,13 @@ Page({
     },
 
     // 加载选择题
-    choiceInit: function () {
+    choiceInit: function() {
         var data = {}
         // 如果没有设置学科 则无需附上学科参数 服务器返回随机题目
         if (this.data.subject)
             data.subject_id = this.data.subject.id
+        if (app.globalData.hasUserInfo)
+            data.openid = app.globalData.userInfo.openid
 
         wx.request({
             url: app.globalData.host + 'exercise/get_choice',
@@ -159,15 +161,17 @@ Page({
     },
 
     // 选择后显示答案
-    choiceOnChange: function () {
+    choiceOnChange: function() {
         this.setData({
             choiceAnswerVisiable: true
         })
     },
 
     // 加载填空题
-    fillInit: function () {
-        var data = {}
+    fillInit: function() {
+        var data = {
+            'openid': app.globalData.userInfo.openid
+        }
         if (this.data.subject)
             data.subject_id = this.data.subject.id
 
@@ -191,15 +195,17 @@ Page({
     },
 
     // 点击左下角完成图标后显示答案
-    fillOnAnswer: function () {
+    fillOnAnswer: function() {
         this.setData({
             fillAnswerVisiable: true
         })
     },
 
     // 加载判断题
-    judgeInit: function () {
-        var data = {}
+    judgeInit: function() {
+        var data = {
+            'openid': app.globalData.userInfo.openid
+        }
         if (this.data.subject)
             data.subject_id = this.data.subject.id
 
@@ -219,15 +225,17 @@ Page({
         })
     },
 
-    judgeOnChange: function () {
+    judgeOnChange: function() {
         this.setData({
             judgeAnswerVisiable: true
         })
     },
 
     // 加载简答题
-    discussInit: function () {
-        var data = {}
+    discussInit: function() {
+        var data = {
+            'openid': app.globalData.userInfo.openid
+        }
         if (this.data.subject)
             data.subject_id = this.data.subject.id
 
@@ -244,7 +252,7 @@ Page({
         })
     },
 
-    discussOnAnswer: function () {
+    discussOnAnswer: function() {
         this.setData({
             discussAnswerVisiable: true
         })

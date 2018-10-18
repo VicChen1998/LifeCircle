@@ -6,7 +6,6 @@ from QuestionBank.settings import AppID, AppSecret
 
 from QuestionBank.models import User, UserProfile
 
-
 '''
 auth.py
 登录、注册等相关操作
@@ -19,8 +18,7 @@ def signin(request):
     # 没有openid则返回登录失败
     if not openid:
         response = {'status': 'fail', 'errMsg': 'get openid fail'}
-        return HttpResponse(json.dumps(response), content_type='application/json')
-
+        return JsonResponse(response)
     # 检测此用户是否首次登陆
     # 是则创建用户
     # 否则返回用户及用户信息
@@ -46,6 +44,7 @@ def signin(request):
                 }
 
     return JsonResponse(response)
+
 
 # 注册 创建用户及用户信息
 def signup(openid):

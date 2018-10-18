@@ -21,6 +21,7 @@ urlpatterns = [
 
     # 获取个人数据
     url(r'^personal/get_myupload$', personal.get_myupload),
+    url(r'^personal/get_answer_stat', personal.get_answer_stat),
 
     # 上传个人信息
     url(r'^personal/set_userinfo$', personal.set_userinfo),

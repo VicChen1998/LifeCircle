@@ -15,19 +15,19 @@
         <view class='topbar_info'>
             <view>
                 <view>选择题</view>
-                <view>120</view>
+                <view>{{answer_stat.choice}}</view>
             </view>
             <view>
                 <view>填空题</view>
-                <view>52</view>
+                <view>{{answer_stat.fill}}</view>
             </view>
             <view>
                 <view>判断题</view>
-                <view>94</view>
+                <view>{{answer_stat.judge}}</view>
             </view>
             <view>
                 <view>简答题</view>
-                <view>12</view>
+                <view>{{answer_stat.discuss}}</view>
             </view>
         </view>
 

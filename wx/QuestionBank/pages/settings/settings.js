@@ -7,6 +7,13 @@ Page({
         hasUserInfo: false,
         userInfo: null,
 
+        answer_stat: {
+            'choice': '',
+            'fill': '',
+            'judge': '',
+            'discuss': ''
+        },
+
         motto: {
             'content': '谁知道你出的题，会不会出现在期末试卷上呢？',
             'author': 'XXX'
@@ -31,6 +38,22 @@ Page({
         // 索要用户信息 回调为初始化学院信息
         requireCallback.requireUserInfo(this, 3, this.initCollege)
 
+    },
+
+    onShow: function(){
+        if(this.data.hasUserInfo){
+            wx.request({
+                url: app.globalData.host + 'personal/get_answer_stat',
+                data:{
+                    'openid': app.globalData.userInfo.openid
+                },
+                success: response => {
+                    this.setData({
+                        answer_stat: response.data.answer_stat
+                    })
+                }
+            })
+        }
     },
 
     // 初始化学院

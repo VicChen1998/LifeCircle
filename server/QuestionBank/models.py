@@ -145,6 +145,24 @@ class UserProfile(models.Model):
     # 是否教师
     isTeacher = models.BooleanField(default=False)
 
+    # 答题统计
+    # 选择题
+    choice = models.IntegerField(default=0)
+    # 填空题
+    fill = models.IntegerField(default=0)
+    # 判断题
+    judge = models.IntegerField(default=0)
+    # 简答题
+    discuss = models.IntegerField(default=0)
+
+    def answer_stat(self):
+        return {
+            'choice': self.choice,
+            'fill': self.fill,
+            'judge': self.judge,
+            'discuss': self.discuss
+        }
+
     class Meta:
         db_table = 'UserProfile'
 
