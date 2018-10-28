@@ -88,6 +88,13 @@ App({
                 }
             }
         })
+    },
+
+    onShareAppMessage: function(options) {
+        return {
+            path: '/pages/exercise/exercise',
+            imageUrl: this.globalData.host + 'resource/image?name=relay.jpg'
+        }
     }
 })
 

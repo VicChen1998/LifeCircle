@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from QuestionBank import auth, public, personal, exercise, upload, homework
+from QuestionBank import auth, public, personal, exercise, upload, homework, resource
 
 
 '''
@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^public/get_major$', public.get_major),
     url(r'^public/get_class$', public.get_class),
     url(r'^public/get_subject$', public.get_subject),
+    # 资源
+    url(r'^resource/image$', resource.image),
 
     # 获取个人数据
     url(r'^personal/get_myupload$', personal.get_myupload),

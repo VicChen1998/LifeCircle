@@ -257,4 +257,6 @@ Page({
             discussAnswerVisiable: true
         })
     },
+
+    onShareAppMessage: app.onShareAppMessage
 })
