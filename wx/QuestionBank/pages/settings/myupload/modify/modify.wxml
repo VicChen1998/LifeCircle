@@ -1,0 +1,108 @@
+<view class='container'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>修改</view>
+    </view>
+
+    <view style='margin: 30rpx'>
+
+        <picker range='{{subject_range}}' value='{{subject_index}}' range-key='name' class='subject_picker' bindchange='subjectOnChange'>
+            <text>{{subject_range[subject_index].name}}</text>
+        </picker>
+
+
+        <!-- 选择题 -->
+        <view class='tab_view' hidden='{{type_index!=0}}'>
+            <form bindsubmit='submit_choice'>
+                <textarea auto-height='true' placeholder='题目' name='question' style='min-height: 100rpx' value='{{question.question}}'></textarea>
+
+                <view class='option_item'>
+                    <view class='option_title'>A</view>
+                    <input class='option_content' name='option_A' value='{{question.option_A}}'></input>
+                </view>
+
+                <view class='option_item'>
+                    <view class='option_title'>B</view>
+                    <input class='option_content' name='option_B' value='{{question.option_B}}'></input>
+                </view>
+
+                <view class='option_item'>
+                    <view class='option_title'>C</view>
+                    <input class='option_content' name='option_C' value='{{question.option_C}}'></input>
+                </view>
+
+                <view class='option_item'>
+                    <view class='option_title'>D</view>
+                    <input class='option_content' name='option_D' value='{{question.option_D}}'></input>
+                </view>
+
+                <radio-group class='choice_answer' name='answer'>
+                    <text>答案</text>
+                    <radio value="A" checked='{{question.answer == "A"}}'>A</radio>
+                    <radio value="B" checked='{{question.answer == "B"}}'>B</radio>
+                    <radio value="C" checked='{{question.answer == "C"}}'>C</radio>
+                    <radio value="D" checked='{{question.answer == "D"}}'>D</radio>
+                </radio-group>
+
+                <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 120rpx' value='{{question.comment}}'></textarea>
+
+                <button formType="submit">提交</button>
+            </form>
+        </view>
+
+
+        <!-- 填空题 -->
+        <view class='tab_view' hidden='{{type_index!=1}}'>
+            <form bindsubmit='submit_fill'>
+                <view style='display:flex; flex-direction: column'>
+                    <textarea style='min-height: 120rpx' auto-height='true' placeholder='题目' value='{{fillQuestion}}' bindinput='fillQuestionOnInput'></textarea>
+
+                    <view>
+                        <input class='fill_answer' wx:for='{{fillAnswer}}' bindinput='fillAnswerOnInput' data-index='{{index}}' placeholder='答案' value='{{fillAnswer[index]}}'></input>
+                    </view>
+                </view>
+
+                <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 120rpx; margin-top:50rpx;' value='{{question.comment}}'></textarea>
+
+                <button form-type='submit'>提交</button>
+            </form>
+            <view style='position:fixed; bottom:20rpx;'>
+                <image src='/images/add.png' class='icon' bindtap='fillOnAddAnswer'></image>
+                <image src='/images/remove.png' class='icon' bindtap='fillOnDeleteAnswer'></image>
+            </view>
+
+        </view>
+
+
+        <!-- 判断题 -->
+        <view class='tab_view' hidden='{{type_index!=2}}'>
+            <form bindsubmit='submit_judge'>
+                <textarea auto-height='true' placeholder='题目' name='question' style='min-height: 50rpx' value='{{question.question}}'></textarea>
+
+                <radio-group class='judge_answer' style='width:50%' name='answer'>
+                    <text>答案</text>
+                    <radio value="T" checked='{{question.answer == "T"}}'>T</radio>
+                    <radio value="F" checked='{{question.answer == "F"}}'>F</radio>
+                </radio-group>
+
+                <textarea auto-height='true' placeholder='解析' name='comment' style='min-height: 120rpx' value='{{question.comment}}'></textarea>
+
+                <button formType="submit">提交</button>
+            </form>
+        </view>
+
+
+        <!-- 简答题 -->
+        <view class='tab_view' hidden='{{type_index!=3}}'>
+            <form bindsubmit='submit_discuss'>
+                <textarea auto-height='true' placeholder='题目' name='question' style='min-height: 120rpx; margin-bottom: 50rpx;' value='{{question.question}}'></textarea>
+
+                <textarea auto-height='true' placeholder='答案' name='answer' style='min-height: 500rpx' value='{{question.answer}}'></textarea>
+
+                <button formType="submit">提交</button>
+            </form>
+        </view>
+    </view>
+
+</view>

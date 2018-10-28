@@ -124,6 +124,11 @@ Page({
             return
         }
 
+        if(this.data.fillAnswer.length == 0){
+            this.showAlert('点击左下角加号挖空')
+            return
+        }
+
         for (var i in this.data.fillAnswer) {
             if (this.data.fillAnswer[i].length == 0) {
                 this.showAlert()
@@ -198,9 +203,9 @@ Page({
         })
     },
 
-    showAlert() {
+    showAlert(text ='请完整填写题目') {
         wx.showToast({
-            title: '请完整填写题目',
+            title: text,
             icon: 'none'
         })
     }

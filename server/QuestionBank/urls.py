@@ -31,6 +31,11 @@ urlpatterns = [
     url(r'^upload/judge$', upload.judge),
     url(r'^upload/fill$', upload.fill),
     url(r'^upload/discuss$', upload.discuss),
+    #修改题目
+    url(r'^upload/modify/choice$', upload.modify_choice),
+    url(r'^upload/modify/judge$', upload.modify_judge),
+    url(r'^upload/modify/fill$', upload.modify_fill),
+    url(r'^upload/modify/discuss$', upload.modify_discuss),
 
     # 获取题目
     url(r'^exercise/get_choice$', exercise.get_choice),

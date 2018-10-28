@@ -1,0 +1,5 @@
+@import "../../../upload/upload.wxss";
+
+button {
+    margin-top: 50rpx;
+}

@@ -9,8 +9,6 @@ Page({
     },
 
     onLoad: function(options) {
-        console.log(options)
-
         wx.request({
             url: app.globalData.host + 'homework/detail/by_student',
             data: {

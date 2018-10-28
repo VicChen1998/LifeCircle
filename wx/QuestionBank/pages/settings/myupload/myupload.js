@@ -63,6 +63,15 @@ Page({
         }
     },
 
+    onModify: function(event) {
+        let type_index = event.currentTarget.dataset.type_index
+        let index = event.currentTarget.dataset.index
+
+        wx.navigateTo({
+            url: '/pages/settings/myupload/modify/modify' + '?type_index=' + type_index + '&index=' + index
+        })
+    },
+
     onBack: function(event) {
         wx.navigateBack()
     }

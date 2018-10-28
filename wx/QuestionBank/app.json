@@ -10,7 +10,8 @@
         "pages/homework/teacher/assign/select_subject",
         "pages/homework/teacher/detail/detail",
         "pages/homework/doHomework/doHomework",
-        "pages/homework/teacher/detail/student"
+        "pages/homework/teacher/detail/student",
+        "pages/settings/myupload/modify/modify"
     ],
     "window": {
         "backgroundTextStyle": "light",
