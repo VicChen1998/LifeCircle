@@ -1,7 +1,7 @@
 .hint{
     margin: 0 auto;
     padding: 15rpx 0 10rpx;
-    background: #f6f6f6;
+    /* background: #f6f6f6; */
     border-bottom: 1rpx solid #eee;
 }
 

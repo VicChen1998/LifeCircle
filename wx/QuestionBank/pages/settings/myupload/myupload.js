@@ -3,6 +3,8 @@ const app = getApp()
 Page({
 
     data: {
+        hasLoad: false,
+
         choice_list: [],
         fill_list: [],
         judge_list: [],
@@ -33,10 +35,11 @@ Page({
                         fill_list: fill_list,
                         judge_list: response.data.judge_list,
                         discuss_list: response.data.discuss_list,
+                        hasLoad: true
                     })
                     wx.hideNavigationBarLoading()
                 }
-            }
+            },
         })
     },
 

@@ -4,6 +4,10 @@
         <view class='navigationBarTitle'>大学生出题库</view>
     </view>
 
+    <view hidden='{{hasLoad}}'>
+        <view class='hint'>加载中...</view>
+    </view>
+
     <view hidden='{{!hasUserInfo}}'>
         <view wx:if='{{userInfo.class}}'>
             <view hidden='{{!userInfo.isTeacher}}'>
@@ -34,7 +38,7 @@
                 </view>
             </view>
 
-            <view wx:if='{{homework_list.length==0}}' class='hint'>还没有作业哦</view>
+            <view wx:if='{{hasLoad && homework_list.length==0}}' class='hint'>还没有作业哦</view>
         </view>
 
         <view wx:else class='hint'>请先填写个人信息才能获取作业列表哦</view>

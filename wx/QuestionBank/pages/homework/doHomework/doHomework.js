@@ -3,6 +3,8 @@ const app = getApp()
 Page({
 
     data: {
+        hasLoad: false,
+
         homework: null,
 
         /* 各题型答案
@@ -44,7 +46,8 @@ Page({
                     this.data.discuss_answer.push(null)
 
                 this.setData({
-                    homework: this.data.homework
+                    homework: this.data.homework,
+                    hasLoad: true
                 })
             }
         })

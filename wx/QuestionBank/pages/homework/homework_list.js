@@ -4,6 +4,8 @@ const requireCallback = require('../../utils/requireCallback.js')
 Page({
 
     data: {
+        hasLoad: false,
+
         hasUserInfo: false,
         userInfo: null,
 
@@ -49,7 +51,8 @@ Page({
             },
             success: response => {
                 this.setData({
-                    homework_list: response.data.homework
+                    homework_list: response.data.homework,
+                    hasLoad: true
                 })
             }
         })
@@ -64,7 +67,8 @@ Page({
             },
             success: response => {
                 this.setData({
-                    homework_list: response.data.homework
+                    homework_list: response.data.homework,
+                    hasLoad: true
                 })
             }
         })

@@ -5,7 +5,11 @@
         <view class='navigationBarTitle'>我出的题</view>
     </view>
 
-    <view>
+    <view hidden='{{hasLoad}}'>
+        <view class='hint'>加载中...</view>
+    </view>
+
+    <view hidden='{{!hasLoad}}'>
 
         <view class='hint' style='margin-top:200rpx' hidden='{{!(choice_list.length==0 && fill_list.length==0 && judge_list.length==0 && discuss_list.length==0)}}'>还没有出过题哦</view>
 
