@@ -1,4 +1,5 @@
 const app = getApp()
+const util = require('../../../../utils/util.js')
 
 Page({
 
@@ -8,9 +9,29 @@ Page({
     },
 
     onLoad: function(options) {
+        var subject_list = app.globalData.subject
+        subject_list.sort(util.sortbyName)
         this.setData({
             subject_list: app.globalData.subject
         })
+
+        wx.request({
+            url: app.globalData.host + 'teacher/get_subject',
+            data: { 'openid': app.globalData.userInfo.openid },
+            success: response => {
+                var subject_ids = response.data.subjects
+                for (var i in this.data.subject_list)
+                    for (var j in subject_ids)
+                        if (subject_ids[j] == this.data.subject_list[i].id)
+                            this.data.subject_list[i].checked = true
+
+                this.data.subject_list.sort(util.sortSubjectByCheckedAndName)
+                this.setData({
+                    subject_list: this.data.subject_list
+                })
+            }
+        })
+        
     },
 
     onSelect: function(event) {

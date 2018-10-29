@@ -1,4 +1,4 @@
-<view class='container'>
+<view class='container' style='margin-bottom: 100rpx;'>
 
     <view class='navigationBar'>
         <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>

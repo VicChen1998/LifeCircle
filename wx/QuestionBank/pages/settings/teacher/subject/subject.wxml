@@ -1,0 +1,22 @@
+<view class='container' style='margin-bottom: 90rpx;'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>我的课程</view>
+    </view>
+
+    <form bindsubmit='onComfirm'>
+        <checkbox-group name='subjects'>
+            <view wx:for='{{subject_list}}' wx:for-item='subject' class='subject'>
+                <label>
+                    <text>{{subject.name}}</text>
+                    <checkbox value='{{subject.id}}' checked='{{subject.checked}}'></checkbox>
+                </label>
+            </view>
+        </checkbox-group>
+
+        <button type='primary' class='confirm' form-type='submit'>确定</button>
+    </form>
+
+
+</view>

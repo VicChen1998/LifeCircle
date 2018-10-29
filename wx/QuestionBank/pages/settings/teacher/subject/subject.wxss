@@ -1,0 +1,14 @@
+.subject {
+    width: 90%;
+    padding: 0 5%;
+    height: 100rpx;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;    
+}

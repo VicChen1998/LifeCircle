@@ -25,7 +25,21 @@ const getAbsoluteLength = str => {
     return absolute
 }
 
+const sortbyName = (p,q) => {
+    return p.name.localeCompare(q.name, 'zh-Hans-CN', { sensitivity:'accent'})
+}
+
+const sortSubjectByCheckedAndName = (p,q) => {
+    if((!p.checked && ! q.checked) || (p.checked && q.checked))
+        return sortbyName(p,q)
+    else
+        return p.checked ? -1 : 1
+
+}
+
 module.exports = {
     formatTime: formatTime,
     getAbsoluteLength: getAbsoluteLength,
+    sortbyName: sortbyName,
+    sortSubjectByCheckedAndName: sortSubjectByCheckedAndName
 }

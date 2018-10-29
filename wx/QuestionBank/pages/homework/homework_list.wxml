@@ -9,39 +9,37 @@
     </view>
 
     <view hidden='{{!hasUserInfo}}'>
-        <view wx:if='{{userInfo.class}}'>
-            <view hidden='{{!userInfo.isTeacher}}'>
-                <!-- <image src='/images/add.png' class='assign' bindtap='toAssign'></image> -->
-                <view class='item' style='background: #f8f8f8;' bindtap='toAssign'>
-                    <view style='margin:10rpx auto 5rpx; text-align:center; color:#666'>+ 布置作业</view>
-                </view>
+        <view wx:if='{{userInfo.isTeacher}}'>
+            <!-- <image src='/images/add.png' class='assign' bindtap='toAssign'></image> -->
+            <view class='item' style='background: #f8f8f8;' bindtap='toAssign'>
+                <view style='margin:10rpx auto 5rpx; text-align:center; color:#666'>+ 布置作业</view>
             </view>
-
-            <view wx:for='{{homework_list}}' wx:for-item='homework' class='item' bindtap='homeworkOnTap' data-id='{{homework.id}}'>
-                <text class='name'>{{homework.subject.name}} {{homework.name}}</text>
-                <text class='date'>{{homework.release_date}}</text>
-
-                <view class='detail'>
-                    <view>
-                        <text>题型：</text>
-                        <text wx:if='{{homework.choice_num != 0}}' class='detail_num'>选择 {{homework.choice_num}}</text>
-                        <text wx:if='{{homework.fill_num != 0}}' class='detail_num'>填空 {{homework.fill_num}}</text>
-                        <text wx:if='{{homework.judge_num != 0}}' class='detail_num'>判断 {{homework.judge_num}}</text>
-                        <text wx:if='{{homework.discuss_num != 0}}' class='detail_num'>简答 {{homework.discuss_num}}</text>
-                    </view>
-                    <view style='display:flex; flex-wrap:wrap'>
-                        <text>班级：</text>
-                        <view wx:for='{{homework.class}}' wx:for-item='classname' class='class_name'>{{classname}}</view>
-                        <text>已交{{homework.post_count}}人</text>
-                    </view>
-
-                </view>
-            </view>
-
-            <view wx:if='{{hasLoad && homework_list.length==0}}' class='hint'>还没有作业哦</view>
         </view>
 
-        <view wx:else class='hint'>请先填写个人信息才能获取作业列表哦</view>
+        <view wx:for='{{homework_list}}' wx:for-item='homework' class='item' bindtap='homeworkOnTap' data-id='{{homework.id}}'>
+            <text class='name'>{{homework.subject.name}} {{homework.name}}</text>
+            <text class='date'>{{homework.release_date}}</text>
+
+            <view class='detail'>
+                <view>
+                    <text>题型：</text>
+                    <text wx:if='{{homework.choice_num != 0}}' class='detail_num'>选择 {{homework.choice_num}}</text>
+                    <text wx:if='{{homework.fill_num != 0}}' class='detail_num'>填空 {{homework.fill_num}}</text>
+                    <text wx:if='{{homework.judge_num != 0}}' class='detail_num'>判断 {{homework.judge_num}}</text>
+                    <text wx:if='{{homework.discuss_num != 0}}' class='detail_num'>简答 {{homework.discuss_num}}</text>
+                </view>
+                <view style='display:flex; flex-wrap:wrap'>
+                    <text>班级：</text>
+                    <view wx:for='{{homework.class}}' wx:for-item='classname' class='class_name'>{{classname}}</view>
+                    <text>已交{{homework.post_count}}人</text>
+                </view>
+
+            </view>
+        </view>
+
+        <view wx:if='{{hasLoad && homework_list.length==0}}' class='hint'>还没有作业哦</view>
+
+        <view wx:if='{{!userInfo.class && !userInfo.isTeacher}}' class='hint'>请先填写个人信息才能获取作业列表哦</view>
     </view>
 
 </view>

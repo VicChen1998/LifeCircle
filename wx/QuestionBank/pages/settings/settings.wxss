@@ -4,7 +4,7 @@
     box-shadow: 0 5rpx 5rpx #ccc;
 }
 
-.topbar_top{
+.topbar_top {
     height: 200rpx;
     padding: 0 40rpx;
     display: flex;

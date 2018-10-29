@@ -1,0 +1,4 @@
+<view class='navigationBar'>
+    <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+    <view class='navigationBarTitle'>题库统计</view>
+</view>

@@ -34,17 +34,17 @@ Page({
     },
 
     onLoad: function(options) {
-        
+
         // 索要用户信息 回调为初始化学院信息
         requireCallback.requireUserInfo(this, 3, this.initCollege)
 
     },
 
-    onShow: function(){
-        if(this.data.hasUserInfo){
+    onShow: function() {
+        if (this.data.hasUserInfo && !this.data.userInfo.isTeacher) {
             wx.request({
                 url: app.globalData.host + 'personal/get_answer_stat',
-                data:{
+                data: {
                     'openid': app.globalData.userInfo.openid
                 },
                 success: response => {
@@ -90,6 +90,9 @@ Page({
 
     // 初始化专业信息
     initMajor: function(college_id) {
+        if(this.data.userInfo.isTeacher)
+            return
+
         wx.request({
             url: app.globalData.host + 'public/get_major',
             data: {
@@ -150,7 +153,7 @@ Page({
                     class_list.unshift({
                         'id': null,
                         'name': "请选择",
-                        'shortname': '请选择',                        
+                        'shortname': '请选择',
                     })
                 }
 
@@ -264,6 +267,57 @@ Page({
                     }
                 }
             }
+        })
+    },
+
+    /* 老师相关 */
+    // 修改所属院系
+    onTeacherCollegeChange: function(event) {
+        let index = event.detail.value
+        // 如果选择的是“请选择”则直接返回
+        if (!this.data.college_range[index].id)
+            return
+
+        this.setData({
+            college_index: index
+        })
+
+        var college = this.data.college_range[this.data.college_index]
+
+        wx.request({
+            url: app.globalData.host + 'teacher/set_college',
+            method: 'POST',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                'openid': app.globalData.userInfo.openid,
+                'college_id': college.id
+            },
+            success: response => {
+                if (response.data.status == 'success') {
+                    app.globalData.userInfo.college = college
+                    this.data.userInfo.college = college
+
+                    wx.showToast({
+                        title: '信息已保存',
+                    })
+                }
+            }
+        })
+    },
+
+    // 选择课程
+    toTeacherCourse: function(event) {
+        wx.navigateTo({
+            url: '/pages/settings/teacher/subject/subject',
+        })
+    },
+
+    // 查看题库统计
+    toBankStat: function(event) {
+        wx.navigateTo({
+            url: '/pages/settings/teacher/bankstat/bankstat',
         })
     },
 

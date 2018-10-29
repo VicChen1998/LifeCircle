@@ -1,13 +1,11 @@
 from django.conf.urls import url
 
-from QuestionBank import auth, public, personal, exercise, upload, homework, resource
-
+from QuestionBank import auth, public, personal, teacher, exercise, upload, homework, resource
 
 '''
 urls.py
 本小程序的url配置
 '''
-
 
 urlpatterns = [
     # 登录
@@ -28,12 +26,17 @@ urlpatterns = [
     # 上传个人信息
     url(r'^personal/set_userinfo$', personal.set_userinfo),
 
+    # 教师相关操作
+    url(r'^teacher/set_college$', teacher.set_college),
+    url(r'^teacher/set_subject$', teacher.set_subject),
+    url(r'^teacher/get_subject$', teacher.get_subject),
+
     # 提交题目
     url(r'^upload/choice$', upload.choice),
     url(r'^upload/judge$', upload.judge),
     url(r'^upload/fill$', upload.fill),
     url(r'^upload/discuss$', upload.discuss),
-    #修改题目
+    # 修改题目
     url(r'^upload/modify/choice$', upload.modify_choice),
     url(r'^upload/modify/judge$', upload.modify_judge),
     url(r'^upload/modify/fill$', upload.modify_fill),

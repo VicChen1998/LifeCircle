@@ -1,3 +1,5 @@
+const util = require('/utils/util.js')
+
 App({
     globalData: {
         host: 'https://www.dva-loveyou.top/questionbank/',
@@ -80,7 +82,7 @@ App({
         wx.request({
             url: this.globalData.host + 'public/get_subject',
             success: response => {
-                this.globalData.subject = response.data.subject
+                this.globalData.subject = response.data.subject.sort(util.sortbyName)
                 this.globalData.hasSubject = true
                 for (var i in this.globalData.requireSubject) {
                     if (this.globalData.requireSubject[i])
@@ -109,11 +111,15 @@ App({
  *
  * Implement
  * 教师查看作业情况 按题目显示统计数据
- * 各页面网络延迟适配优化
+ * 查看作业情况　网络延迟适配优化
+ * 生成试卷
+ * 设置界面教师优化
+ * 修改界面闪烁修复
+ * 作业布置界面重写
+ * 作业布置界面帮助
  * 作业截止日期
  * 锁定问题
  * 班级管理/题目审核
- * 作业布置界面重写
  * 答题排行
  * 
  * UI
