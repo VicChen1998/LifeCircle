@@ -85,8 +85,8 @@
 
         <view class='menu'>
             <view class='menuitem' style='width:60%; margin-left:40%;'>
-                <input class='menu_value' bindblur='onNameBlur' value='{{userInfo.name}}' style='width:250rpx;'></input>
-                <view class='menu_title' style='width:120rpx'>老师</view>
+                <input class='menu_value' bindblur='onNameBlur' value='{{userInfo.name}}' style='width:300rpx;'></input>
+                <view class='menu_title' style='width:100rpx'>老师</view>
             </view>
 
             <view class='menuitem'>
@@ -97,7 +97,7 @@
             </view>
 
             <view class='menuitem' bindtap='toTeacherCourse' style='justify-content: space-between'>
-                <view class='menu_title'>我的课程</view>
+                <view class='menu_title'>我的学科</view>
                 <image src='/images/more.png' class='more'></image>
             </view>
 

@@ -1,4 +1,18 @@
-<view class='navigationBar'>
-    <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
-    <view class='navigationBarTitle'>题库统计</view>
+<view class='container'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>题库统计</view>
+    </view>
+
+    <view wx:for='{{stat_list}}' wx:for-item='stat' class='stat'>
+        <view class='subject_name'>{{stat.subject.name}}</view>
+        <view class='stat_info'>
+            <view>选择{{stat.choice}}</view>
+            <view>填空{{stat.fill}}</view>
+            <view>判断{{stat.judge}}</view>
+            <view>简答{{stat.discuss}}</view>
+        </view>
+    </view>
+
 </view>

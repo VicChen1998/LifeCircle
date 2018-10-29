@@ -1,1 +1,22 @@
-/* pages/settings/teacher/bankstat/bankstat.wxss */
+.stat {
+    width: 90%;
+    padding: 0 5%;
+    height: 150rpx;
+    border: 1px solid #eee;
+}
+
+.subject_name {
+    width: 100%;
+    height: 80rpx;
+    line-height: 90rpx;
+}
+
+.stat_info{
+    width: 90%;
+    height: 60rpx;
+    margin: 0 auto;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

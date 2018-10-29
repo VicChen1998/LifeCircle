@@ -48,17 +48,21 @@ def get_subject(request):
 
 
 def bank_stat(request):
-    profile = UserProfile.objects.get(username=request.POST['openid'])
+    user = User.objects.get(username=request.GET['openid'])
+    profile = UserProfile.objects.get(user=user)
+
     if not profile.isTeacher:
         response = {'status': 'fail', 'errMsg': 'you are not teacher'}
         return JsonResponse(response)
 
-    subject = Subject.objects.get(id=request.POST['subject_id'])
-    response = {
-        'choice': Choice.objects.filter(subject=subject).count(),
-        'fill': Fill.objects.filter(subject=subject).count(),
-        'judge': Judge.objects.filter(subject=subject).count(),
-        'discuss': Discuss.objects.filter(subject=subject).count()
-    }
+    response = {'status': 'success', 'stat':[]}
+    for record in TeacherSubject.objects.filter(teacher=user):
+        response['stat'].append({
+            'subject': record.subject.dict(),
+            'choice': Choice.objects.filter(subject=record.subject).count(),
+            'fill': Fill.objects.filter(subject=record.subject).count(),
+            'judge': Judge.objects.filter(subject=record.subject).count(),
+            'discuss': Discuss.objects.filter(subject=record.subject).count(),
+        })
 
     return JsonResponse(response)
