@@ -41,6 +41,9 @@ Page({
         // 4种类型题目查看detail的index
         show_detail: [-1, -1, -1, -1],
 
+        deadline_range: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+        deadline_index: 0,
+
         name: '',
         default_name: '',
 
@@ -65,7 +68,7 @@ Page({
         this.setData({
             num_range: this.data.num_range,
             default_name: name,
-            subject: JSON.parse(options.subject)
+            subject: JSON.parse(options.subject),
         })
     },
 
@@ -139,6 +142,12 @@ Page({
         })
     },
 
+    onToMyUpload: function (event) {
+        wx.navigateTo({
+            url: '/pages/homework/teacher/assign/myupload' + '?subject=' + JSON.stringify(this.data.subject),
+        })
+    },
+
     // 显示detail
     onDetail: function(event) {
         let typeindex = event.currentTarget.dataset.typeindex
@@ -181,6 +190,12 @@ Page({
     onNameBlur: function(event) {
         this.setData({
             name: event.detail.value
+        })
+    },
+
+    deadlineOnChange: function(event) {
+        this.setData({
+            deadline_index: event.detail.value[0]
         })
     },
 
@@ -239,7 +254,8 @@ Page({
                 'name': name,
                 'subject_id': this.data.subject.id,
                 'class': JSON.stringify(this.data.class_list),
-                'questions': JSON.stringify(questions)
+                'questions': JSON.stringify(questions),
+                'active_day': this.data.deadline_range[this.data.deadline_index]
             },
             method: 'POST',
             header: {
@@ -255,6 +271,18 @@ Page({
                     })
                 }, 1500)
             }
+        })
+    },
+
+    onGeneratePaper:function(event){
+        wx.showToast({
+            title: '开发中...',
+        })
+    },
+
+    onToHelp:function(event){
+        wx.navigateTo({
+            url: '/pages/homework/teacher/assign/help'
         })
     },
 

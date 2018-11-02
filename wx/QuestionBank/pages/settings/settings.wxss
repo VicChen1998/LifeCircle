@@ -19,6 +19,7 @@
     overflow: hidden;
     float: left;
     z-index: 999;
+    box-shadow: 0 5rpx 5rpx #ccc;
 }
 
 .motto {

@@ -18,7 +18,10 @@
 
         <view wx:for='{{homework_list}}' wx:for-item='homework' class='item' bindtap='homeworkOnTap' data-id='{{homework.id}}'>
             <text class='name'>{{homework.subject.name}} {{homework.name}}</text>
-            <text class='date'>{{homework.release_date}}</text>
+            <view class='date_area'>
+                <text class='date'>{{homework.release_date}} 发布</text>
+                <text class='date'>{{homework.expire_date}} 截止</text>
+            </view>
 
             <view class='detail'>
                 <view>

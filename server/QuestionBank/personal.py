@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 
-from QuestionBank.models import User, UserProfile, Class, Choice, Fill, Judge, Discuss
-
+from QuestionBank.models import User, UserProfile, Class, Subject, Choice, Fill, Judge, Discuss
 
 '''
 personal.py
@@ -40,12 +39,19 @@ def set_userinfo(request):
 def get_myupload(request):
     user = User.objects.get(username=request.GET['openid'])
 
-    response = {'status': 'success',
-                'choice_list': [choice.dict() for choice in Choice.objects.filter(author=user)],
-                'fill_list': [fill.dict() for fill in Fill.objects.filter(author=user)],
-                'judge_list': [judge.dict() for judge in Judge.objects.filter(author=user)],
-                'discuss_list': [discuss.dict() for discuss in Discuss.objects.filter(author=user)]}
+    if 'subject_id' not in request.GET:
+        response = {'choice_list': [choice.dict() for choice in Choice.objects.filter(author=user)],
+                    'fill_list': [fill.dict() for fill in Fill.objects.filter(author=user)],
+                    'judge_list': [judge.dict() for judge in Judge.objects.filter(author=user)],
+                    'discuss_list': [discuss.dict() for discuss in Discuss.objects.filter(author=user)]}
+    else:
+        subject = Subject.objects.get(id=request.GET['subject_id'])
+        response = {'choice_list': [choice.dict() for choice in Choice.objects.filter(author=user, subject=subject)],
+                    'fill_list': [fill.dict() for fill in Fill.objects.filter(author=user, subject=subject)],
+                    'judge_list': [judge.dict() for judge in Judge.objects.filter(author=user, subject=subject)],
+                    'discuss_list': [discuss.dict() for discuss in Discuss.objects.filter(author=user, subject=subject)]}
 
+    response['status'] = 'success'
     return JsonResponse(response)
 
 

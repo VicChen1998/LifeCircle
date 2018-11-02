@@ -48,56 +48,45 @@
 
 /* 底部栏 */
 
-.footbar {
+.console {
     width: 100%;
     font-size: 32rpx;
     text-align: center;
     position: fixed;
-    display: flex;
-    justify-content: space-between;
-    background: #fff;
-}
-
-.typebar {
-    height: 100rpx;
-    bottom: 80rpx;
-    border-top: 1px solid #eee;
-}
-
-.typebar_item {
-    height: 100rpx;
-    display: flex;
-}
-
-.type_name {
-    height: 100rpx;
-    line-height: 100rpx;
-}
-
-picker-view {
-    width: 50rpx;
-    height: 50px;
-    padding: 0 10rpx;
-    position: relative;
-}
-
-.picker {
-    height: 50rpx;
-    line-height: 50rpx;
-}
-
-.generate {
-    height: 100rpx;
-    line-height: 100rpx;
-    padding: 0 25rpx;
-    border-left: 1px solid #eee;
+    bottom: 0;
+    background: #fff; 
 }
 
 .buttonbar {
     height: 80rpx;
     line-height: 80rpx;
     border-top: 1px solid #eee;
-    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.typebar_item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+picker-view {
+    width: 60rpx;
+    height: 80rpx;
+    line-height: 35rpx;
+}
+
+.picker {
+    height: 35rpx;
+}
+
+.generate {
+    height: 80rpx;
+    /* line-height: 80rpx; */
+    padding: 0 25rpx;
+    border-left: 1px solid #eee;
 }
 
 .foot_button {

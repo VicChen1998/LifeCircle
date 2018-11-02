@@ -1,4 +1,5 @@
 import json
+from datetime import timedelta
 
 from django.http import JsonResponse
 
@@ -44,6 +45,10 @@ def submit(request):
         response = {'status': 'fail', 'errMsg': '不能重复提交'}
         return JsonResponse(response)
 
+    if datetime.date.today() > homework.expire_date:
+        response = {'status': 'fail', 'errMsg': '作业缴交已截止'}
+        return JsonResponse(response)
+
     # 直接把json存入数据库
     # 分离出来好像也没什么用
     HomeworkSubmit.objects.create(student=user,
@@ -79,6 +84,8 @@ def assign(request):
         response = {'status': 'fail', 'errMsg': 'permission denied.'}
         return JsonResponse(response)
 
+    subject = Subject.objects.get(id=request.POST['subject_id'])
+
     # 获取题目信息
     [choice_list, fill_list, judge_list, discuss_list] = json.loads(request.POST['questions'])
 
@@ -86,8 +93,12 @@ def assign(request):
     class_list = json.loads(request.POST['class'])
 
     # 创建作业记录
-    homework = Homework.objects.create(teacher=user, name=request.POST['name'],
-                                       subject=Subject.objects.get(id=request.POST['subject_id']))
+    homework = Homework.objects.create(teacher=user,
+                                       name=request.POST['name'],
+                                       subject=subject)
+
+    homework.expire_date = homework.release_date + timedelta(days=int(request.POST['active_day']))
+    homework.save()
 
     # 建立与各题型题目联系
     for choice_id in choice_list:
@@ -153,7 +164,7 @@ def answer(request):
         response = {'status': 'fail', 'errMsg': 'permission denied.'}
         return JsonResponse(response)
 
-    answer = Homework.objects.get(id=request.GET['homework_id']).answer()
+    answers = Homework.objects.get(id=request.GET['homework_id']).answer()
 
-    response = {'status': 'success', 'answer': answer}
+    response = {'status': 'success', 'answer': answers}
     return JsonResponse(response)

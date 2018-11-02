@@ -3,16 +3,17 @@
     <view class='navigationBarTitle'>{{subject.name}}</view>
 </view>
 
-<view style='padding:30rpx 30rpx 200rpx'>
+<view style='padding:30rpx 30rpx 320rpx'>
 
     <view style='margin-top: 50rpx;' hidden='{{!(questions[0].length==0 && questions[1].length==0 && questions[2].length==0 && questions[3].length==0)}}'>
-        <view class='hint'>1. 选择各题型数量</view>
+        <view class='hint'>1. 拖动调整各题型数量</view>
         <view class='hint'>2. 点击生成</view>
         <view class='hint'>3. 勾选要保留的题目</view>
         <view class='hint'>4. 重新生成剩余题目</view>
         <view class='hint'>5. 命名作业（不填默认以日期命名）</view>
         <view class='hint'>6. 选择班级</view>
-        <view class='hint'>7. 点击布置</view>
+        <view class='hint'>7. 选择截止日期</view>
+        <view class='hint'>8. 点击布置作业或生成试卷</view>
     </view>
 
     <view hidden='{{questions[0].length==0}}' class='type'>
@@ -78,63 +79,83 @@
 
 </view>
 
+<view class='console'>
+    <view class='buttonbar'>
 
-<view class='footbar typebar'>
-    <view class='typebar_item' style='margin-left: 25rpx;'>
-        <view class='type_name'>选择</view>
-        <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='0'>
-            <picker-view-column>
-                <view wx:for='{{num_range[0]}}'>{{item}}</view>
-            </picker-view-column>
-        </picker-view>
+        <view class='typebar_item' style='margin-left: 25rpx;'>
+            <view>选择</view>
+            <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='0'>
+                <picker-view-column>
+                    <view wx:for='{{num_range[0]}}'>{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+
+        <view class='typebar_item'>
+            <view>填空</view>
+            <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='1'>
+                <picker-view-column>
+                    <view wx:for='{{num_range[1]}}'>{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+
+        <view class='typebar_item'>
+            <view>判断</view>
+            <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='2'>
+                <picker-view-column>
+                    <view wx:for='{{num_range[2]}}'>{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+
+        <view class='typebar_item'>
+            <view>简答</view>
+            <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='3'>
+                <picker-view-column>
+                    <view wx:for='{{num_range[3]}}'>{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+
+        <view class='generate' bindtap='onGenerate'>生成题目</view>
     </view>
 
-    <view class='typebar_item'>
-        <view class='type_name'>填空</view>
-        <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='1'>
-            <picker-view-column>
-                <view wx:for='{{num_range[1]}}'>{{item}}</view>
-            </picker-view-column>
-        </picker-view>
+    <view class='buttonbar'>
+
+        <view class='foot_button' style='width:150%;'>
+            <input class='homework_name' placeholder='{{default_name}}' bindblur='onNameBlur'></input>
+        </view>
+
+        <view class='typebar_item foot_button'>
+            <picker-view indicator-class="picker" bindchange='deadlineOnChange'>
+                <picker-view-column>
+                    <view wx:for='{{deadline_range}}'>{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+            <view>天后截止</view>
+        </view>
+
+        <view class='foot_button' bindtap='onSelectClass' style='padding:0 10rpx;'>
+            <block wx:if='{{class_list.length==0}}'>
+                选择班级
+            </block>
+            <block wx:else>
+                {{class_list.length}}个班
+            </block>
+        </view>
     </view>
 
-    <view class='typebar_item'>
-        <view class='type_name'>判断</view>
-        <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='2'>
-            <picker-view-column>
-                <view wx:for='{{num_range[2]}}'>{{item}}</view>
-            </picker-view-column>
-        </picker-view>
+    <view class='buttonbar'>
+        <view class='foot_button' bindtap='onCheckedAll'>全选</view>
+
+        <view class='foot_button' bindtap='onToMyUpload' style='width:200%;'>我出的题</view>
+
+        <view class='foot_button' bindtap='onGeneratePaper' style='width:200%;'>生成试卷</view>
+
+        <view class='foot_button' bindtap='onAssign' style='width:200%;'>布置作业</view>
+
+        <view class='foot_button' bindtap='onToHelp'>帮助</view>        
     </view>
 
-    <view class='typebar_item'>
-        <view class='type_name'>简答</view>
-        <picker-view indicator-class="picker" bindchange='numOnChange' data-typeindex='3'>
-            <picker-view-column>
-                <view wx:for='{{num_range[3]}}'>{{item}}</view>
-            </picker-view-column>
-        </picker-view>
-    </view>
-
-    <view class='generate' bindtap='onGenerate'>生成</view>
-</view>
-
-<view class='footbar buttonbar'>
-
-    <view class='foot_button' bindtap='onCheckedAll'>全选</view>
-
-    <view class='foot_button' style='width:250%'>
-        <input class='homework_name' placeholder='{{default_name}}' bindblur='onNameBlur'></input>
-    </view>
-
-    <view class='foot_button' bindtap='onSelectClass' style='width:150%'>
-        <block wx:if='{{class_list.length==0}}'>
-            选择班级
-        </block>
-        <block wx:else>
-            {{class_list.length}}个班
-        </block>
-    </view>
-
-    <view class='foot_button' bindtap='onAssign'>布置</view>
 </view>

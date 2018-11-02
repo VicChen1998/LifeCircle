@@ -13,7 +13,9 @@
         "pages/homework/teacher/detail/student",
         "pages/settings/myupload/modify/modify",
         "pages/settings/teacher/subject/subject",
-        "pages/settings/teacher/bankstat/bankstat"
+        "pages/settings/teacher/bankstat/bankstat",
+        "pages/homework/teacher/assign/help",
+        "pages/homework/teacher/assign/myupload"
     ],
     "window": {
         "backgroundTextStyle": "light",

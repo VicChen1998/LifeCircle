@@ -5,7 +5,9 @@
         <view class='navigationBarTitle'>我的课程</view>
     </view>
 
-    <form bindsubmit='onComfirm'>
+    <view hidden='{{hasLoad}}' class='hint'>加载中...</view>
+
+    <form bindsubmit='onComfirm' hidden='{{!hasLoad}}'>
         <checkbox-group name='subjects'>
             <view wx:for='{{subject_list}}' wx:for-item='subject' class='subject'>
                 <label>

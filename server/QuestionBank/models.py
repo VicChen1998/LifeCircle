@@ -1,4 +1,5 @@
 import random
+import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -326,6 +327,8 @@ class Homework(models.Model):
     teacher = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     # 发布日期
     release_date = models.DateField(auto_now_add=True)
+    # 截止日期
+    expire_date = models.DateField(default=datetime.date.today() + datetime.timedelta(days=7))
     # 有效性
     valid = models.BooleanField(default=True)
     # 班级
@@ -350,6 +353,7 @@ class Homework(models.Model):
             'valid': self.valid,
             'subject': self.subject.dict(),
             'release_date': self.release_date.strftime('%m-%d'),
+            'expire_date': self.expire_date.strftime('%m-%d'),
             'class': [clas.shortname for clas in self.clas.all()],
             'choice': [choice.dict(with_answer=False) for choice in self.choice.all()],
             'fill': [fill.dict(with_answer=False) for fill in self.fill.all()],
@@ -367,6 +371,7 @@ class Homework(models.Model):
             'valid': self.valid,
             'subject': self.subject.dict(),
             'release_date': self.release_date.strftime('%m-%d'),
+            'expire_date': self.expire_date.strftime('%m-%d'),
             'class': [clas.shortname for clas in self.clas.all()],
             'post_count': HomeworkSubmit.objects.filter(homework=self).count(),
             'choice_num': self.choice.count(),

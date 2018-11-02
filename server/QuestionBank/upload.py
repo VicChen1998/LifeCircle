@@ -107,6 +107,7 @@ def modify_fill(request):
 
     if question.author != user:
         response = {'status': 'fail', 'errMsg': 'not your question'}
+        return JsonResponse(response)
 
     subject = Subject.objects.get(id=request.POST['subject_id'])
 
@@ -140,6 +141,7 @@ def modify_discuss(request):
 
     if question.author != user:
         response = {'status': 'fail', 'errMsg': 'not your question'}
+        return JsonResponse(response)
 
     subject = Subject.objects.get(id=request.POST['subject_id'])
 

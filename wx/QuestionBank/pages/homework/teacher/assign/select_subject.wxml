@@ -6,9 +6,11 @@
     </view>
 
     <view class='subject_list'>
-        <view wx:for='{{subject_list}}' wx:for-item='subject' class='subject {{index==subject_index ? "selected" : ""}}' bindtap='onSelect' data-index='{{index}}'>
-            <text>{{subject.name}}</text>
-        </view>
+        <block wx:for='{{subject_list}}' wx:for-item='subject'>
+            <view class='subject {{index==subject_index ? "selected" : ""}}' bindtap='onSelect' data-index='{{index}}'>
+                <text>{{subject.name}}</text>
+            </view>
+        </block>
     </view>
 
     <button type='primary' class='confirm' bindtap='onConfirm'>确定</button>

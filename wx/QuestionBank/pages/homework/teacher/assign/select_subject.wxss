@@ -4,10 +4,11 @@
 }
 
 .subject {
-    min-width: 45%;
-    max-width: 45%;
-    padding: 0 2%;
+    min-width: 50%;
+    max-width: 50%;
     height: 100rpx;
+    padding: 0 2%;
+    box-sizing: border-box;    
     border: 1px solid #eee;
     text-align: center;
     display: flex;

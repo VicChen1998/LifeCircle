@@ -3,6 +3,7 @@ const util = require('../../../../utils/util.js')
 Page({
 
     data: {
+        hasLoad: false,
         subject_list: [],
     },
 
@@ -23,7 +24,8 @@ Page({
 
                 this.data.subject_list.sort(util.sortSubjectByCheckedAndName)
                 this.setData({
-                    subject_list: this.data.subject_list
+                    subject_list: this.data.subject_list,
+                    hasLoad: true
                 })           
             }
         })

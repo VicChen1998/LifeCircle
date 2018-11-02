@@ -1,0 +1,19 @@
+<view class='navigationBar' style='position: inherit'>
+    <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+    <view class='navigationBarTitle'>帮助</view>
+</view>
+
+<view style='padding:30rpx 30rpx'>
+
+    <view style='margin-top: 50rpx;'>
+        <view class='hint'>1. 拖动调整各题型数量</view>
+        <view class='hint'>2. 点击生成</view>
+        <view class='hint'>3. 勾选要保留的题目</view>
+        <view class='hint'>4. 重新生成剩余题目</view>
+        <view class='hint'>5. 命名作业（不填默认以日期命名）</view>
+        <view class='hint'>6. 选择班级</view>
+        <view class='hint'>7. 选择截止日期</view>
+        <view class='hint'>8. 点击布置作业或生成试卷</view>
+    </view>
+
+</view>

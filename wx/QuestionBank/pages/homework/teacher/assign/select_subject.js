@@ -9,11 +9,7 @@ Page({
     },
 
     onLoad: function(options) {
-        var subject_list = app.globalData.subject
-        subject_list.sort(util.sortbyName)
-        this.setData({
-            subject_list: app.globalData.subject
-        })
+        this.data.subject_list = app.globalData.subject
 
         wx.request({
             url: app.globalData.host + 'teacher/get_subject',
