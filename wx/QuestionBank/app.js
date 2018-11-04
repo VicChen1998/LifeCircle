@@ -97,6 +97,17 @@ App({
             path: '/pages/exercise/exercise',
             imageUrl: this.globalData.host + 'resource/image?name=relay.jpg'
         }
+    },
+
+    onNetworkError: function(errMsg = '连接服务器失败') {
+        this.showError(errMsg)
+    },
+
+    showError: function(errMsg) {
+        wx.showToast({
+            title: errMsg,
+            icon: 'none'
+        })
     }
 })
 

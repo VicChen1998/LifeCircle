@@ -45,7 +45,11 @@ Page({
         })
 
         // 索要科目列表
-        requireCallback.requireSubject(this, 0)
+        requireCallback.requireSubject(this, 0, () => {
+            if (this.data.choice) {
+                this.changeSubject(this.data.choice.subject.id)
+            }
+        })
         // 加载选择题
         this.choiceInit()
     },
@@ -155,8 +159,11 @@ Page({
                     })
                     // 更新学科信息为新题目的学科
                     this.changeSubject(response.data.choice.subject.id)
+                } else {
+                    this.onQuestionNotExist()
                 }
-            }
+            },
+            fail: app.onNetworkError
         })
     },
 
@@ -189,8 +196,11 @@ Page({
                         empty: ''
                     })
                     this.changeSubject(response.data.fill.subject.id)
+                } else {
+                    this.onQuestionNotExist()
                 }
-            }
+            },
+            fail: app.onNetworkError
         })
     },
 
@@ -220,8 +230,11 @@ Page({
                         checked: false,
                     })
                     this.changeSubject(response.data.judge.subject.id)
+                } else {
+                    this.onQuestionNotExist()
                 }
-            }
+            },
+            fail: app.onNetworkError
         })
     },
 
@@ -243,12 +256,17 @@ Page({
             url: app.globalData.host + 'exercise/get_discuss',
             data: data,
             success: response => {
-                this.setData({
-                    discuss: response.data.discuss,
-                    discussAnswerVisiable: false
-                })
-                this.changeSubject(response.data.discuss.subject.id)
-            }
+                if (response.data.status == 'success') {
+                    this.setData({
+                        discuss: response.data.discuss,
+                        discussAnswerVisiable: false
+                    })
+                    this.changeSubject(response.data.discuss.subject.id)
+                } else {
+                    this.onQuestionNotExist()
+                }
+            },
+            fail: app.onNetworkError
         })
     },
 
@@ -256,6 +274,10 @@ Page({
         this.setData({
             discussAnswerVisiable: true
         })
+    },
+
+    onQuestionNotExist: function() {
+        app.showError('题库里还没有' + this.data.subject_range[this.data.subject_index].name + '的题目')
     },
 
     onShareAppMessage: app.onShareAppMessage
