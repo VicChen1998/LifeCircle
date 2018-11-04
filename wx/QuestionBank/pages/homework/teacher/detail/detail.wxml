@@ -4,7 +4,7 @@
         <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
         <view class='navigationBarTitle'>作业缴交情况</view>
     </view>
-    
+
     <view class='tab'>
         <view style='display: flex;'>
             <block wx:for='{{tabs}}' wx:for-item='tab' wx:key='name'>
@@ -24,9 +24,72 @@
         </view>
     </view>
 
-    <view hidden='{{!tabs[1].show}}'>
 
+    <view hidden='{{!tabs[1].show}}' style='padding:30rpx 30rpx'>
 
+        <view hidden='{{homework.choice.length==0}}' class='type'>
+            <view class='type_title'>选择题</view>
+            <view wx:for='{{homework.choice}}' wx:for-item='choice' class='item'>
+                <view class='question'>
+                    <text>{{index+1}}. {{choice.question}}</text>
+                    <text class='choice_answer'>{{answer.choice[index]}}</text>
+                </view>
+                <view class='choice_options'>
+                    <text class='option'>A {{choice.option_A}}</text>
+                    <text class='option'>B {{choice.option_B}}</text>
+                    <text class='option'>C {{choice.option_C}}</text>
+                    <text class='option'>D {{choice.option_D}}</text>
+                </view>
+                <view class='choice_stat'>
+                    <view class='choice_stat_item'>
+                        <text class='choice_stat_title'>A {{choice_stat[index]['A']}}</text>
+                        <view class='stat_bar' style="width:{{choice_stat[index]['A'] / choice_stat[index]['sum'] * 100}}%"></view>
+                    </view>
+                    <view class='choice_stat_item'>
+                        <text class='choice_stat_title'>B {{choice_stat[index]['B']}}</text>
+                        <view class='stat_bar' style="width:{{choice_stat[index]['B'] / choice_stat[index]['sum'] * 100}}%"></view>
+                    </view>
+                    <view class='choice_stat_item'>
+                        <text class='choice_stat_title'>C {{choice_stat[index]['C']}}</text>
+                        <view class='stat_bar' style="width:{{choice_stat[index]['C'] / choice_stat[index]['sum'] * 100}}%"></view>
+                    </view>
+                    <view class='choice_stat_item'>
+                        <text class='choice_stat_title'>D {{choice_stat[index]['D']}}</text>
+                        <view class='stat_bar' style="width:{{choice_stat[index]['D'] / choice_stat[index]['sum'] * 100}}%"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 
+            <view hidden='{{homework.fill.length==0}}' class='type'>
+                <view class='type_title'>填空题</view>
+                <view wx:for='{{homework.fill}}' wx:for-item='fill' class='item fill_item'>
+                    <text class='question'>{{index+1}}. {{fill.question}}</text>
+                    <view style='width:100%'>
+                        <input class='fill_input' wx:for='{{submit.fill[index]}}' wx:for-index='subindex' value='{{submit.fill[index][subindex]}}'></input>
+                    </view>
+                </view>
+            </view>-->
+
+        <view hidden='{{homework.judge.length==0}}' class='type'>
+            <view class='type_title'>判断题</view>
+            <view wx:for='{{homework.judge}}' wx:for-item='judge' class='item'>
+                <view class='question'>
+                    <text>{{index+1}}. {{judge.question}}</text>
+                    <text class='choice_answer'>{{answer.judge[index]}}</text>
+                </view>
+                <view class='choice_stat'>
+                    <view class='choice_stat_item' style='width:48%; margin:0 1%;'>
+                        <text class='choice_stat_title'>T {{judge_stat[index]['T']}}</text>
+                        <view class='stat_bar' style="width:{{judge_stat[index]['T'] / judge_stat[index]['sum'] * 100}}%"></view>
+                    </view>
+                    <view class='choice_stat_item' style='width:48%; margin:0 1%;'>
+                        <text class='choice_stat_title'>F {{judge_stat[index]['F']}}</text>
+                        <view class='stat_bar' style="width:{{judge_stat[index]['F'] / judge_stat[index]['sum'] * 100}}%"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
 
     </view>
 </view>

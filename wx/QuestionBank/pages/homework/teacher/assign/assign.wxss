@@ -54,7 +54,7 @@
     text-align: center;
     position: fixed;
     bottom: 0;
-    background: #fff; 
+    background: #fff;
 }
 
 .buttonbar {
@@ -83,10 +83,21 @@ picker-view {
 }
 
 .generate {
+    width: 200rpx;
     height: 80rpx;
-    /* line-height: 80rpx; */
-    padding: 0 25rpx;
+    line-height: 80rpx;
+    margin: 0;
+    padding: 0;
+    background: #fff;
     border-left: 1px solid #eee;
+    border-radius: 0;
+    font-size: 32rpx;
+}
+
+
+.generate::after {
+    border: none;
+    border-radius: 0;
 }
 
 .foot_button {

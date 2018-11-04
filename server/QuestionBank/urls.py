@@ -58,7 +58,9 @@ urlpatterns = [
     # 作业缴交情况
     url(r'^homework/detail$', homework.detail),
     # 查看学生答案
-    url(r'^homework/detail/by_student$', homework.detail_by_student),
+    url(r'^homework/detail/of_student$', homework.detail_of_student),
+    # 查看答案分布
+    url(r'^homework/detail/of_stat$', homework.detail_of_stat),
     # 获取答案
     url(r'^homework/answer$', homework.answer),
     # 获取作业

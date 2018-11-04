@@ -10,7 +10,7 @@ Page({
 
     onLoad: function(options) {
         wx.request({
-            url: app.globalData.host + 'homework/detail/by_student',
+            url: app.globalData.host + 'homework/detail/of_student',
             data: {
                 'openid': app.globalData.userInfo.openid,
                 'homework_id': options.homework_id,

@@ -13,7 +13,11 @@ Page({
         currentTab: 0,
 
         homework: null,
+        answer: null,
         submits: null,
+
+        choice_stat: [],
+        judge_stat: [],
     },
 
     onLoad: function(options) {
@@ -44,6 +48,20 @@ Page({
                 })
             }
         })
+
+        wx.request({
+            url: app.globalData.host + 'homework/detail/of_stat',
+            data: {
+                'openid': app.globalData.userInfo.openid,
+                'homework_id': options.homework_id
+            },
+            success: response => {
+                this.setData({
+                    choice_stat: response.data.choice_stat,
+                    judge_stat: response.data.judge_stat
+                })
+            }
+        })
     },
 
     tabOnChange: function(event) {
@@ -58,9 +76,9 @@ Page({
 
     toDetailByStudent: function(event) {
         wx.navigateTo({
-            url: '/pages/homework/teacher/detail/student' 
-            + '?homework_id=' + this.data.homework.id
-            + '&student_id=' + event.target.dataset.student_id,
+            url: '/pages/homework/teacher/detail/student' +
+                '?homework_id=' + this.data.homework.id +
+                '&student_id=' + event.target.dataset.student_id,
         })
     },
 

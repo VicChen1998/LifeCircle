@@ -2,8 +2,8 @@ const util = require('/utils/util.js')
 
 App({
     globalData: {
-        host: 'https://www.dva-loveyou.top/questionbank/',
-        // host: 'http://localhost/questionbank/',
+        // host: 'https://www.dva-loveyou.top/questionbank/',
+        host: 'http://localhost/questionbank/',
 
         userInfo: null,
         hasUserInfo: false,
@@ -123,12 +123,9 @@ App({
  * Implement
  * 教师查看作业情况 按题目显示统计数据
  * 查看作业情况　网络延迟适配优化
- * 作业布置界面重写
  * 生成试卷
- * 作业布置界面帮助
- * 作业截止日期
  * 修改界面闪烁修复
- * 教师查看题库
+ * 教师查看题库题目
  * 锁定问题
  * 班级管理/题目审核
  * 答题排行

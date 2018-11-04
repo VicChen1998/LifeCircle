@@ -118,7 +118,8 @@
             </picker-view>
         </view>
 
-        <view class='generate' bindtap='onGenerate'>生成题目</view>
+        <!-- <view class='generate' bindtap='onGenerate'>生成题目</view> -->
+        <button class='generate' bindtap='onGenerate' loading='{{generating}}'>{{generating? "生成中" : "生成题目"}}</button>
     </view>
 
     <view class='buttonbar'>

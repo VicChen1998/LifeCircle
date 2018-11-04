@@ -6,6 +6,8 @@ Page({
         // 学科
         subject: null,
 
+        generating: false,
+
         // 4个题目数picker的range
         num_range: [
             [],
@@ -41,7 +43,7 @@ Page({
         // 4种类型题目查看detail的index
         show_detail: [-1, -1, -1, -1],
 
-        deadline_range: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+        deadline_range: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
         deadline_index: 0,
 
         name: '',
@@ -132,6 +134,10 @@ Page({
     },
 
     onGenerate: function(event) {
+        this.setData({
+            generating: true
+        })
+
         this.generate(0)
         this.generate(1)
         this.generate(2)
@@ -140,9 +146,15 @@ Page({
         this.setData({
             show_detail: [-1, -1, -1, -1]
         })
+
+        setTimeout(() => {
+            this.setData({
+                generating: false
+            })
+        }, 750)
     },
 
-    onToMyUpload: function (event) {
+    onToMyUpload: function(event) {
         wx.navigateTo({
             url: '/pages/homework/teacher/assign/myupload' + '?subject=' + JSON.stringify(this.data.subject),
         })
@@ -274,13 +286,13 @@ Page({
         })
     },
 
-    onGeneratePaper:function(event){
+    onGeneratePaper: function(event) {
         wx.showToast({
             title: '开发中...',
         })
     },
 
-    onToHelp:function(event){
+    onToHelp: function(event) {
         wx.navigateTo({
             url: '/pages/homework/teacher/assign/help'
         })

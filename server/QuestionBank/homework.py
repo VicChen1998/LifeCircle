@@ -139,7 +139,7 @@ def detail(request):
     return JsonResponse(response)
 
 
-def detail_by_student(request):
+def detail_of_student(request):
     user = User.objects.get(username=request.GET['openid'])
     profile = UserProfile.objects.get(user=user)
 
@@ -153,6 +153,42 @@ def detail_by_student(request):
         student=User.objects.get(username=request.GET['student_openid']))
 
     response = {'status': 'success', 'submit': submit.dict()}
+    return JsonResponse(response)
+
+
+def detail_of_stat(request):
+    user = User.objects.get(username=request.GET['openid'])
+    profile = UserProfile.objects.get(user=user)
+
+    # 检测是否教师
+    if not profile.isTeacher:
+        response = {'status': 'fail', 'errMsg': 'permission denied.'}
+        return JsonResponse(response)
+
+    homework = Homework.objects.get(id=request.GET['homework_id'])
+    homework_info = homework.info()
+
+    submits = HomeworkSubmit.objects.filter(homework=homework)
+
+    choice_stat = [{'A': 0, 'B': 0, 'C': 0, 'D': 0, 'sum': 0} for i in range(homework_info['choice_num'])]
+    judge_stat = [{'T': 0, 'F': 0, 'sum': 0} for i in range(homework_info['judge_num'])]
+
+    for s in submits:
+        choice_answers = json.loads(s.choice)
+        for i in range(len(choice_answers)):
+            c = choice_answers[i]
+            choice_stat[i][c] += 1
+            choice_stat[i]['sum'] += 1
+
+        judge_answers = json.loads(s.judge)
+        for i in range(len(judge_answers)):
+            j = judge_answers[i]
+            judge_stat[i][j] += 1
+            judge_stat[i]['sum'] += 1
+
+    response = {'status': 'success',
+                'choice_stat': choice_stat,
+                'judge_stat':judge_stat}
     return JsonResponse(response)
 
 

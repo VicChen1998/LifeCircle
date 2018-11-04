@@ -6,3 +6,56 @@
     text-align: center;
     flex-grow: 1;
 }
+
+.type_title {
+    font-size: 34rpx;
+    font-weight: bold;
+    margin-bottom: 15rpx;
+}
+
+.item {
+    margin-bottom: 30rpx;
+    font-size: 30rpx;
+}
+
+.question {
+    margin-bottom: 10rpx;
+}
+
+.choice_answer{
+    padding-left: 30rpx;
+    color: #0096ff;
+}
+
+.choice_options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.option {
+    margin-right: 20rpx;
+    font-size: 30rpx;
+    color: #666;
+}
+
+.choice_stat{
+    display: flex;
+    justify-content: space-between;
+}
+
+.choice_stat_item {
+    width: 23%;
+    margin: 0 1%;
+}
+
+.choice_stat_title{
+    margin: 0 10rpx;
+    float: left;
+}
+
+.stat_bar{
+    height: 30rpx;
+    background: #0096ff;
+
+}
