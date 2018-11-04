@@ -5,7 +5,11 @@
         <view class='navigationBarTitle'>{{submit.student.class.shortname}} {{submit.student.name}}</view>
     </view>
 
-    <view style='padding:30rpx 30rpx'>
+    <view hidden='{{hasLoad}}'>
+        <view class='hint'>加载中...</view>
+    </view>
+
+    <view hidden='{{!hasLoad}}' style='padding:30rpx 30rpx'>
         <view hidden='{{homework.choice.length==0}}' class='type'>
             <view class='type_title'>选择题</view>
             <view wx:for='{{homework.choice}}' wx:for-item='choice' class='item'>
@@ -47,8 +51,8 @@
             <view wx:for='{{homework.judge}}' wx:for-item='judge' class='item'>
                 <view class='question'>{{index+1}}. {{judge.question}}</view>
                 <radio-group style='width:240rpx;'>
-                    <radio style='width:120rpx;' value='T' checked='{{submit.judge[index] == "T" ? true : false}}' color='{{submit.judge[index] == answer.judge[index] ?  "#09BB07" : "#FF0000"}}' >T</radio>
-                    <radio style='width:120rpx;' value='F' checked='{{submit.judge[index] == "F" ? true : false}}' color='{{submit.judge[index] == answer.judge[index] ?  "#09BB07" : "#FF0000"}}' >F</radio>
+                    <radio style='width:120rpx;' value='T' checked='{{submit.judge[index] == "T" ? true : false}}' color='{{submit.judge[index] == answer.judge[index] ?  "#09BB07" : "#FF0000"}}'>T</radio>
+                    <radio style='width:120rpx;' value='F' checked='{{submit.judge[index] == "F" ? true : false}}' color='{{submit.judge[index] == answer.judge[index] ?  "#09BB07" : "#FF0000"}}'>F</radio>
                 </radio-group>
             </view>
         </view>

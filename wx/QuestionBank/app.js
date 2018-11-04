@@ -2,8 +2,8 @@ const util = require('/utils/util.js')
 
 App({
     globalData: {
-        // host: 'https://www.dva-loveyou.top/questionbank/',
-        host: 'http://localhost/questionbank/',
+        host: 'https://www.dva-loveyou.top/questionbank/',
+        // host: 'http://localhost/questionbank/',
 
         userInfo: null,
         hasUserInfo: false,

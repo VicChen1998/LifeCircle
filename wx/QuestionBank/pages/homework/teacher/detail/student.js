@@ -3,6 +3,8 @@ const app = getApp()
 Page({
 
     data: {
+        hasLoad: false,
+
         homework: null,
         answer: null,
         submit: null
@@ -23,7 +25,8 @@ Page({
                 submit.judge = JSON.parse(submit.judge)
                 submit.discuss = JSON.parse(submit.discuss)
                 this.setData({
-                    submit: submit
+                    submit: submit,
+                    hasLoad: true,
                 })
             }
         })
