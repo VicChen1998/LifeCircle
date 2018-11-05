@@ -50,12 +50,14 @@
 }
 
 .choice_stat_title{
+    height: 40rpx;
+    line-height: 40rpx;
     margin: 0 10rpx;
     float: left;
 }
 
 .stat_bar{
-    height: 30rpx;
+    margin: 5rpx 0;
+    height: 35rpx;
     background: #0096ff;
-
 }

@@ -14,6 +14,9 @@ const formatNumber = n => {
     return n[1] ? n : '0' + n
 }
 
+/* 获取近似的显示长度
+ * 英文字符算1个 中文字符算2个 
+ */
 const getAbsoluteLength = str => {
     var absolute = 0;
     for (var i = 0; i < str.length; i++) {
@@ -25,10 +28,12 @@ const getAbsoluteLength = str => {
     return absolute
 }
 
+// 根据课程名字拼音首字母排序
 const sortbyName = (p,q) => {
     return p.name.localeCompare(q.name, 'zh-Hans-CN', { sensitivity:'accent'})
 }
 
+// 先按是否是我的课程排序 再按拼音首字母排序
 const sortSubjectByCheckedAndName = (p,q) => {
     if((!p.checked && ! q.checked) || (p.checked && q.checked))
         return sortbyName(p,q)

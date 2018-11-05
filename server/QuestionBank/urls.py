@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from QuestionBank import auth, public, personal, teacher, exercise, upload, homework, resource
+from QuestionBank import auth, public, personal, teacher, exercise, upload, homework, paper, resource
 
 '''
 urls.py
@@ -67,5 +67,12 @@ urlpatterns = [
     url(r'^homework/get$', homework.get),
     # 上交
     url(r'^homework/submit$', homework.submit),
+
+    # 生成试卷
+    url(r'^paper/create$', paper.create_paper),
+    # 下载试卷
+    url(r'^paper/download$', paper.download),
+    # 获取列表
+    url(r'^paper/get_list', paper.get_list),
 
 ]

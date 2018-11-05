@@ -1,0 +1,26 @@
+.hint {
+    font-size: 28rpx;
+    margin: 5rpx auto 0;
+}
+
+.paper {
+    width: 90%;
+    padding: 0 5%;
+    height: 100rpx;
+    border-bottom: 1rpx solid #f4f4f4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    width: 150rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 32rpx;
+    border: none;
+}
+
+button::after {
+    border: none;
+}

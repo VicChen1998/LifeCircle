@@ -326,5 +326,11 @@ Page({
         wx.navigateTo({
             url: '/pages/settings/myupload/myupload'
         })
+    },
+
+    toMyPaper: function(event){
+        wx.navigateTo({
+            url: '/pages/settings/teacher/paper/paper',
+        })
     }
 })

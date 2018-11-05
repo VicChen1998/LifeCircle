@@ -1,0 +1,23 @@
+<view class='container' style='margin-bottom: 90rpx;'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>我的试卷</view>
+    </view>
+
+    <view>
+        <view style='margin-top:20rpx;'>
+            <view class='hint'>预览时点击右上角“发送”文件传输助手可以下载</view>
+            <view class='hint'>由于微信限制需要自己改名</view>
+        </view>
+
+        <view wx:for='{{paper_list}}' wx:for-item='paper' class='paper'>
+            <view>{{paper}}</view>
+            <view>
+                <button bindtap='preview' data-name='{{paper}}'>预览</button>
+            </view>
+        </view>
+
+    </view>
+
+</view>

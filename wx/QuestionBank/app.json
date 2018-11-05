@@ -15,7 +15,8 @@
         "pages/settings/teacher/subject/subject",
         "pages/settings/teacher/bankstat/bankstat",
         "pages/homework/teacher/assign/help",
-        "pages/homework/teacher/assign/myupload"
+        "pages/homework/teacher/assign/myupload",
+        "pages/settings/teacher/paper/paper"
     ],
     "window": {
         "backgroundTextStyle": "light",

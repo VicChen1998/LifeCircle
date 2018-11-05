@@ -287,8 +287,85 @@ Page({
     },
 
     onGeneratePaper: function(event) {
-        wx.showToast({
-            title: '开发中...',
+        var empty = true
+        for (var typeindex in this.data.questions) {
+            if (this.data.checked_index[typeindex].length != 0)
+                empty = false
+
+            if (this.data.questions[typeindex].length != this.data.checked_index[typeindex].length) {
+                wx.showToast({
+                    title: '有未选中的题目',
+                    icon: 'none'
+                })
+                return
+            }
+        }
+
+        if (empty) {
+            wx.showToast({
+                title: '未选择题目',
+                icon: 'none'
+            })
+            return
+        }
+
+        var questions = []
+        for (var typeindex in this.data.questions) {
+            questions.push([])
+            for (var i in this.data.questions[typeindex])
+                questions[typeindex].push(this.data.questions[typeindex][i].id)
+        }
+
+        var name = this.data.name
+        if (name.length == 0)
+            name = this.data.default_name
+
+        // 生成试卷docx
+        wx.showLoading({
+            title: '',
+        })
+
+        wx.request({
+            url: app.globalData.host + 'paper/create',
+            data: {
+                'openid': app.globalData.userInfo.openid,
+                'name': name,
+                'subject_id': this.data.subject.id,
+                'questions': JSON.stringify(questions),
+            },
+            method: 'POST',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: create_res => {
+                if (create_res.data.status == 'success') {
+
+                    wx.navigateBack({
+                        delta: 2
+                    })
+
+                    wx.navigateTo({
+                        url: '/pages/settings/teacher/paper/paper',
+                    })
+
+
+                    var filename = create_res.data.filename
+                    // 下载临时文件
+                    wx.downloadFile({
+                        url: app.globalData.host + 'paper/download' + '?openid=' + app.globalData.userInfo.openid + '&name=' + filename,
+                        success: download_res => {
+                            // 打开预览
+                            wx.openDocument({
+                                filePath: download_res.tempFilePath,
+                                complete: wx.hideLoading()
+                            })
+                        },
+                        fail: response => {
+                            console.log('fail')
+                        },
+                    })
+                }
+            }
         })
     },
 
