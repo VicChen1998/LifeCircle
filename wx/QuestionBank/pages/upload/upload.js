@@ -125,7 +125,7 @@ Page({
         }
 
         if(this.data.fillAnswer.length == 0){
-            this.showAlert('点击左下角加号挖空')
+            this.showAlert('点击右上角加号挖空')
             return
         }
 

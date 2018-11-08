@@ -79,7 +79,7 @@
 
                 <button form-type='submit'>提交</button>
             </form>
-            <view style='position:fixed; bottom:20rpx;'>
+            <view style='position:fixed; top:220rpx;right:30rpx;'>
                 <image src='/images/add.png' class='icon' bindtap='fillOnAddAnswer'></image>
                 <image src='/images/remove.png' class='icon' bindtap='fillOnDeleteAnswer'></image>
             </view>
