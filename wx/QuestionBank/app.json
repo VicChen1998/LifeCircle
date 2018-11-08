@@ -2,21 +2,33 @@
     "pages": [
         "pages/exercise/exercise",
         "pages/homework/homework_list",
+        "pages/homework/doHomework/doHomework",
+        "pages/homework/teacher/detail/detail",
+        "pages/homework/teacher/detail/student",
         "pages/upload/upload",
         "pages/settings/settings",
         "pages/settings/myupload/myupload",
-        "pages/homework/teacher/assign/assign",
-        "pages/homework/teacher/assign/select_class",
-        "pages/homework/teacher/assign/select_subject",
-        "pages/homework/teacher/detail/detail",
-        "pages/homework/doHomework/doHomework",
-        "pages/homework/teacher/detail/student",
-        "pages/settings/myupload/modify/modify",
-        "pages/settings/teacher/subject/subject",
-        "pages/settings/teacher/bankstat/bankstat",
-        "pages/homework/teacher/assign/help",
-        "pages/homework/teacher/assign/myupload",
-        "pages/settings/teacher/paper/paper"
+        "pages/settings/myupload/modify/modify"
+    ],
+    "subpackages": [
+        {
+            "root": "pages/homework/teacher/assign/",
+            "pages": [
+                "assign",
+                "select_class",
+                "select_subject",
+                "help",
+                "myupload"
+            ]
+        },
+        {
+            "root": "pages/settings/teacher/",
+            "pages": [
+                "subject/subject",
+                "bankstat/bankstat",
+                "paper/paper"
+            ]
+        }
     ],
     "window": {
         "backgroundTextStyle": "light",
