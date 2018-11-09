@@ -78,7 +78,7 @@ Page({
         wx.navigateTo({
             url: '/pages/homework/teacher/detail/student' +
                 '?homework_id=' + this.data.homework.id +
-                '&student_id=' + event.target.dataset.student_id,
+                '&student_id=' + event.currentTarget.dataset.student_id,
         })
     },
 
