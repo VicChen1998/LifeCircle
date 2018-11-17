@@ -28,6 +28,12 @@ def list_of_class(request):
 
 # 获取作业题目等具体内容
 def get(request):
+    # FIXME: 兼容接口 更新后删除
+    if 'openid' not in request.GET:
+        homework = Homework.objects.get(id=request.GET['homework_id'])
+        response = {'status': 'success', 'homework': homework.dict()}
+        return JsonResponse(response)
+    
     user = User.objects.get(username=request.GET['openid'])
 
     homework = Homework.objects.get(id=request.GET['homework_id'])

@@ -222,14 +222,6 @@ Page({
         for (var typeindex in this.data.questions) {
             if (this.data.checked_index[typeindex].length != 0)
                 empty = false
-
-            if (this.data.questions[typeindex].length != this.data.checked_index[typeindex].length) {
-                wx.showToast({
-                    title: '有未选中的题目',
-                    icon: 'none'
-                })
-                return
-            }
         }
 
         if (empty) {
@@ -251,13 +243,17 @@ Page({
         var questions = []
         for (var typeindex in this.data.questions) {
             questions.push([])
-            for (var i in this.data.questions[typeindex])
+            for (var i in this.data.checked_index[typeindex]) {
+                var index = this.data.checked_index[typeindex][i]
                 questions[typeindex].push(this.data.questions[typeindex][i].id)
+            }
         }
 
         var name = this.data.name
         if (name.length == 0)
             name = this.data.default_name
+
+
 
         wx.request({
             url: app.globalData.host + 'homework/assign',
@@ -291,14 +287,6 @@ Page({
         for (var typeindex in this.data.questions) {
             if (this.data.checked_index[typeindex].length != 0)
                 empty = false
-
-            if (this.data.questions[typeindex].length != this.data.checked_index[typeindex].length) {
-                wx.showToast({
-                    title: '有未选中的题目',
-                    icon: 'none'
-                })
-                return
-            }
         }
 
         if (empty) {
@@ -312,8 +300,10 @@ Page({
         var questions = []
         for (var typeindex in this.data.questions) {
             questions.push([])
-            for (var i in this.data.questions[typeindex])
-                questions[typeindex].push(this.data.questions[typeindex][i].id)
+            for (var i in this.data.checked_index[typeindex]) {
+                var index = this.data.checked_index[typeindex][i]
+                questions[typeindex].push(this.data.questions[typeindex][index].id)
+            }
         }
 
         var name = this.data.name
