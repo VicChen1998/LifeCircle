@@ -28,9 +28,18 @@ def list_of_class(request):
 
 # 获取作业题目等具体内容
 def get(request):
+    user = User.objects.get(username=request.GET['openid'])
+
     homework = Homework.objects.get(id=request.GET['homework_id'])
 
     response = {'status': 'success', 'homework': homework.dict()}
+
+    if HomeworkSubmit.objects.filter(student=user, homework=homework).count() != 0:
+        submit = HomeworkSubmit.objects.get(homework=homework, student=user).dict()
+        response['has_submit'] = True
+        response['submit'] = submit
+    else:
+        response['has_submit'] = False
 
     return JsonResponse(response)
 
@@ -188,7 +197,7 @@ def detail_of_stat(request):
 
     response = {'status': 'success',
                 'choice_stat': choice_stat,
-                'judge_stat':judge_stat}
+                'judge_stat': judge_stat}
     return JsonResponse(response)
 
 

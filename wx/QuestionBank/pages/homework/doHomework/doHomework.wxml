@@ -17,19 +17,19 @@
 
                 <radio-group bindchange='choiceOnChange' data-index='{{index}}'>
                     <label class='radio_item'>
-                        <radio value='A' />
+                        <radio value='A' checked='{{submit.choice[index]=="A"}}' />
                         <view class='radio_text'>A. {{choice.option_A}}</view>
                     </label>
                     <label class='radio_item'>
-                        <radio value='B' />
+                        <radio value='B' checked='{{submit.choice[index]=="B"}}'/>
                         <view class='radio_text'>B. {{choice.option_B}}</view>
                     </label>
                     <label class='radio_item'>
-                        <radio value='C' />
+                        <radio value='C' checked='{{submit.choice[index]=="C"}}'/>
                         <view class='radio_text'>C. {{choice.option_C}}</view>
                     </label>
                     <label class='radio_item'>
-                        <radio value='D' />
+                        <radio value='D' checked='{{submit.choice[index]=="D"}}'/>
                         <view class='radio_text'>D. {{choice.option_D}}</view>
                     </label>
                 </radio-group>
@@ -41,7 +41,7 @@
             <view wx:for='{{homework.fill}}' wx:for-item='fill' class='item fill_item'>
                 <text class='question'>{{index+1}}. {{fill.question}}</text>
                 <view style='width:100%'>
-                    <input class='fill_input' wx:for='{{fill.answer}}' wx:for-index='subindex' bindblur='fillOnBlur' data-index='{{index}}' data-subindex='{{subindex}}'></input>
+                    <input class='fill_input' wx:for='{{fill.answer}}' wx:for-index='subindex' value='{{submit.fill[index][subindex]}}' bindblur='fillOnBlur' data-index='{{index}}' data-subindex='{{subindex}}'></input>
                 </view>
             </view>
         </view>
@@ -51,8 +51,8 @@
             <view wx:for='{{homework.judge}}' wx:for-item='judge' class='item'>
                 <view class='question'>{{index+1}}. {{judge.question}}</view>
                 <radio-group style='width:240rpx;' bindchange='judgeOnChange' data-index='{{index}}'>
-                    <radio style='width:120rpx;' value='T'>T</radio>
-                    <radio style='width:120rpx;' value='F'>F</radio>
+                    <radio style='width:120rpx;' value='T' checked='{{submit.judge[index]=="T"}}'>T</radio>
+                    <radio style='width:120rpx;' value='F' checked='{{submit.judge[index]=="F"}}'>F</radio>
                 </radio-group>
             </view>
         </view>
@@ -62,14 +62,14 @@
             <view wx:for='{{homework.discuss}}' wx:for-item='discuss' class='item'>
                 <view class='question'>{{index+1}}. {{discuss.question}}</view>
 
-                <textarea auto-height='true' class='discuss_textarea' placeholder='答：' bindblur='discussOnBlur' data-index='{{index}}'></textarea>
+                <textarea auto-height='true' class='discuss_textarea' placeholder='答：' value='{{submit.discuss[index]}}' bindblur='discussOnBlur' data-index='{{index}}'></textarea>
             </view>
         </view>
 
-        <view class='placeholder'>这片空白是为了不让键盘挡住题目</view>
+        <view wx:if='{{!has_submit}}' class='placeholder'>这片空白是为了不让键盘挡住题目</view>
 
     </view>
 
-    <button type='primary' class='confirm' style='position:relative' bindtap='onSubmit'>提交</button>
+    <button wx:if='{{!has_submit}}' type='primary' class='confirm' style='position:relative' bindtap='onSubmit'>提交</button>
 
 </view>

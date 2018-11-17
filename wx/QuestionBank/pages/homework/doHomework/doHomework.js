@@ -15,6 +15,9 @@ Page({
         fill_answer: [],
         judge_answer: [],
         discuss_answer: [],
+
+        has_submit: false,
+        submit: {},
     },
 
     onLoad: function(options) {
@@ -22,6 +25,7 @@ Page({
         wx.request({
             url: app.globalData.host + 'homework/get',
             data: {
+                'openid': app.globalData.userInfo.openid,
                 'homework_id': options.homework_id
             },
             success: response => {
@@ -35,7 +39,7 @@ Page({
                 for (var i in this.data.homework.fill) {
                     this.data.homework.fill[i].answer = []
                     this.data.fill_answer.push([])
-                    for(var j = 0; j < this.data.homework.fill[i].answer_count; j++){
+                    for (var j = 0; j < this.data.homework.fill[i].answer_count; j++) {
                         this.data.homework.fill[i].answer.push(null)
                         this.data.fill_answer[i].push(null)
                     }
@@ -49,9 +53,25 @@ Page({
                     homework: this.data.homework,
                     hasLoad: true
                 })
+
+                if (response.data.has_submit) {
+                    let choice = JSON.parse(response.data.submit.choice)
+                    let fill = JSON.parse(response.data.submit.fill)
+                    let judge = JSON.parse(response.data.submit.judge)
+                    let discuss = JSON.parse(response.data.submit.discuss)
+                    let submit = {
+                        'choice': choice,
+                        'judge': judge,
+                        'fill': fill,
+                        'discuss': discuss
+                    }
+                    this.setData({
+                        has_submit: true,
+                        submit: submit
+                    })
+                }
             }
         })
-
     },
 
     /* 选择、判断 选中后更新答案数组数据
@@ -110,7 +130,7 @@ Page({
                 'discuss': JSON.stringify(this.data.discuss_answer),
             },
             success: response => {
-                if(response.data.status == 'success'){
+                if (response.data.status == 'success') {
                     wx.showToast({
                         title: '作业提交成功'
                     })
@@ -151,15 +171,19 @@ Page({
     },
 
     onBack: function(event) {
-        wx.showModal({
-            title: '答题进度将丢失',
-            content: '确定离开？',
-            confirmColor: '#ff0000',
-            success: result => {
-                if (result.confirm)
-                    wx.navigateBack()
-            }
-        })
+        if (!this.data.has_submit) {
+            wx.showModal({
+                title: '答题进度将丢失',
+                content: '确定离开？',
+                confirmColor: '#ff0000',
+                success: result => {
+                    if (result.confirm)
+                        wx.navigateBack()
+                }
+            })
+        } else{
+            wx.navigateBack()
+        }
     }
 
 })
