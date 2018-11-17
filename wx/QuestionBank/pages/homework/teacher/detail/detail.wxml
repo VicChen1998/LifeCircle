@@ -18,10 +18,13 @@
         </view>
     </view>
 
-    <view hidden='{{!tabs[0].show}}' style='display:flex; flex-wrap:wrap;;'>
-        <view class='student' wx:for='{{submits}}' wx:for-item='student' bindtap='toDetailByStudent' data-student_id='{{student.openid}}'>
-            <text>{{student.name}}</text>
+    <view hidden='{{!tabs[0].show}}'>
+        <view style='display:flex; flex-wrap:wrap;'>
+            <view class='student' wx:for='{{submits}}' wx:for-item='student' bindtap='toDetailByStudent' data-student_id='{{student.openid}}'>
+                <text>{{student.name}}</text>
+            </view>
         </view>
+
     </view>
 
 
