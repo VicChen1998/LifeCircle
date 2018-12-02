@@ -1,0 +1,39 @@
+.rank {
+    width: 100%;
+    padding: 10rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.rank_title {
+    position: fixed;
+    height: 60rpx;
+    background: #f8f8f8;
+    border-bottom: 1rpx solid #eee;
+}
+
+.index {
+    width: 10%;
+    font-size: 32rpx;
+}
+
+.name_and_id {
+    width: 40%;
+}
+
+.name {
+    font-size: 32rpx;
+}
+
+.student_id {
+    font-size: 25rpx;
+}
+
+.num {
+    width: 15%;
+}

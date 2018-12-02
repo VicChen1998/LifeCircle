@@ -2,7 +2,7 @@
 
     <view class='navigationBar'>
         <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
-        <view class='navigationBarTitle'>我的课程</view>
+        <view class='navigationBarTitle'>我的学科</view>
     </view>
 
     <view hidden='{{hasLoad}}' class='hint'>加载中...</view>

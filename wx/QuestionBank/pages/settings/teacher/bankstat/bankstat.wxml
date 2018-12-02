@@ -5,7 +5,9 @@
         <view class='navigationBarTitle'>题库统计</view>
     </view>
 
-    <view wx:for='{{stat_list}}' wx:for-item='stat' class='stat'>
+    <view class='hint' bindtap='toSubject'>仅显示您勾选为“我的学科”的题库统计 ></view>
+
+    <view wx:for='{{stat_list}}' wx:for-item='stat' class='stat' bindtap='toStatDetail' data-subject_id='{{stat.subject.id}}'>
         <view class='subject_name'>{{stat.subject.name}}</view>
         <view class='stat_info'>
             <view>选择{{stat.choice}}</view>

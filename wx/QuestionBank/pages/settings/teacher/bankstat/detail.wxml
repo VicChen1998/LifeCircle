@@ -1,0 +1,36 @@
+<view class='container'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>{{subject.name}}</view>
+    </view>
+
+    <view class='rank rank_title'>
+        <view class='index'></view>
+        <view class='name_and_id'>
+            <view class='name'></view>
+            <view class='student_id'></view>
+        </view>
+        <view class='num'>选择</view>
+        <view class='num'>填空</view>
+        <view class='num'>判断</view>
+        <view class='num'>简答</view>
+        <view class='num'>合计</view>
+    </view>
+
+    <view style='margin-top: 60rpx'>
+        <view wx:for='{{ranks}}' wx:for-item='rank' class='rank'>
+            <view class='index'>#{{index+1}}</view>
+            <view class='name_and_id'>
+                <view class='name'>{{rank.name}}</view>
+                <view class='student_id'>{{rank.student_id}}</view>
+            </view>
+            <view class='num'>{{rank.choice != 0 ? rank.choice : ''}}</view>
+            <view class='num'>{{rank.fill != 0 ? rank.fill : ''}}</view>
+            <view class='num'>{{rank.judge != 0 ? rank.judge : ''}}</view>
+            <view class='num'>{{rank.discuss != 0 ? rank.discuss : ''}}</view>
+            <view class='num'>{{rank.total}}</view>
+        </view>
+    </view>
+
+</view>

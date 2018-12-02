@@ -26,6 +26,7 @@
             "pages": [
                 "subject/subject",
                 "bankstat/bankstat",
+                "bankstat/detail",
                 "paper/paper"
             ]
         }

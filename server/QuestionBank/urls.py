@@ -30,7 +30,8 @@ urlpatterns = [
     url(r'^teacher/set_college$', teacher.set_college),
     url(r'^teacher/set_subject$', teacher.set_subject),
     url(r'^teacher/get_subject$', teacher.get_subject),
-    url(r'^teacher/bank_stat', teacher.bank_stat),
+    url(r'^teacher/bank_stat$', teacher.bank_stat),
+    url(r'^teacher/bank_stat/student$', teacher.bank_stat_by_student),
 
     # 提交题目
     url(r'^upload/choice$', upload.choice),

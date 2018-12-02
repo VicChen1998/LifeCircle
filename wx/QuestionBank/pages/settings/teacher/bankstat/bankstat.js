@@ -10,7 +10,9 @@ Page({
     onLoad: function(options) {
         wx.request({
             url: app.globalData.host + 'teacher/bank_stat',
-            data: {'openid': app.globalData.userInfo.openid},
+            data: {
+                'openid': app.globalData.userInfo.openid
+            },
             success: response => {
                 this.setData({
                     stat_list: response.data.stat,
@@ -20,7 +22,20 @@ Page({
         })
     },
 
-    onBack: function(){
+    toSubject: function() {
+        wx.navigateTo({
+            url: '/pages/settings/teacher/subject/subject',
+        })
+    },
+
+    toStatDetail: function(event) {
+        var subject_id = event.currentTarget.dataset.subject_id
+        wx.navigateTo({
+            url: '/pages/settings/teacher/bankstat/detail' + '?subject_id=' + subject_id,
+        })
+    },
+
+    onBack: function() {
         wx.navigateBack()
     }
 })
