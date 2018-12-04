@@ -2,7 +2,7 @@
 
     <view class='navigationBar'>
         <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
-        <view class='navigationBarTitle'>我出的题</view>
+        <view class='navigationBarTitle'>我的收藏</view>
     </view>
 
     <view hidden='{{hasLoad}}'>
@@ -11,13 +11,13 @@
 
     <view hidden='{{!hasLoad}}'>
 
-        <view class='hint'>长按修改题目</view>    
+        <view class='hint'>长按取消收藏</view>        
 
-        <view class='hint' style='margin-top:200rpx; border:none' hidden='{{!(choice_list.length==0 && fill_list.length==0 && judge_list.length==0 && discuss_list.length==0)}}'>还没有出过题哦</view>
+        <view class='hint' style='margin-top:200rpx; border:none' hidden='{{!(choice_list.length==0 && fill_list.length==0 && judge_list.length==0 && discuss_list.length==0)}}'>还没有收藏的题目</view>
 
         <view class='type' hidden='{{choice_list.length==0}}'>
             <view class='topbar'>选择</view>
-            <view wx:for='{{choice_list}}' wx:for-item='choice' class='item' data-type_index='0' data-index='{{index}}' bindtap='onDetail' bindlongpress='onModify'>
+            <view wx:for='{{choice_list}}' wx:for-item='choice' class='item' data-type_index='0' data-index='{{index}}' data-question_id='{{choice.id}}' bindtap='onDetail' bindlongpress='onUnStar'>
                 <image src='/images/more.png' class='more'></image>
                 <view class='question'>
                     <text>{{choice.question}}</text>
@@ -37,7 +37,7 @@
 
         <view class='type' hidden='{{fill_list.length==0}}'>
             <view class='topbar'>填空</view>
-            <view wx:for='{{fill_list}}' wx:for-item='fill' class='item' data-type_index='1' data-index='{{index}}' bindtap='onDetail' bindlongpress='onModify'>
+            <view wx:for='{{fill_list}}' wx:for-item='fill' class='item' data-type_index='1' data-index='{{index}}' data-question_id='{{fill.id}}' bindtap='onDetail' bindlongpress='onUnStar'>
                 <block wx:if='{{fill.comment.length > 0}}'>
                     <image src='/images/more.png' class='more'></image>
                 </block>
@@ -55,7 +55,7 @@
 
         <view class='type' hidden='{{judge_list.length==0}}'>
             <view class='topbar'>判断</view>
-            <view wx:for='{{judge_list}}' wx:for-item='judge' class='item' data-type_index='2' data-index='{{index}}' bindtap='onDetail' bindlongpress='onModify'>
+            <view wx:for='{{judge_list}}' wx:for-item='judge' class='item' data-type_index='2' data-index='{{index}}' data-question_id='{{judge.id}}' bindtap='onDetail' bindlongpress='onUnStar'>
                 <block wx:if='{{judge.comment.length > 0}}'>
                     <image src='/images/more.png' class='more'></image>
                 </block>
@@ -71,7 +71,7 @@
 
         <view class='type' hidden='{{discuss_list.length==0}}'>
             <view class='topbar'>简答</view>
-            <view wx:for='{{discuss_list}}' wx:for-item='discuss' class='item' data-type_index='3' data-index='{{index}}' bindtap='onDetail' bindlongpress='onModify'>
+            <view wx:for='{{discuss_list}}' wx:for-item='discuss' class='item' data-type_index='3' data-index='{{index}}' data-question_id='{{discuss.id}}' bindtap='onDetail' bindlongpress='onUnStar'>
                 <image src='/images/more.png' class='more'></image>
                 <view class='question'>{{discuss.question}}</view>
                 <view hidden='{{index!=show_detail[3]}}' class='comment'>

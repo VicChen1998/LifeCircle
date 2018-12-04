@@ -21,7 +21,12 @@ urlpatterns = [
 
     # 获取个人数据
     url(r'^personal/get_myupload$', personal.get_myupload),
-    url(r'^personal/get_answer_stat', personal.get_answer_stat),
+    url(r'^personal/get_answer_stat$', personal.get_answer_stat),
+    # 收藏
+    url(r'^personal/check_star$', personal.check_star),
+    url(r'^personal/set_star$', personal.set_star),
+    url(r'^personal/set_unstar$', personal.set_unstar),
+    url(r'^personal/get_mystar$', personal.get_mystar),
 
     # 上传个人信息
     url(r'^personal/set_userinfo$', personal.set_userinfo),
@@ -74,6 +79,6 @@ urlpatterns = [
     # 下载试卷
     url(r'^paper/download$', paper.download),
     # 获取列表
-    url(r'^paper/get_list', paper.get_list),
+    url(r'^paper/get_list$', paper.get_list),
 
 ]

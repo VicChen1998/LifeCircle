@@ -31,7 +31,7 @@ Page({
     toStatDetail: function(event) {
         var subject_id = event.currentTarget.dataset.subject_id
         wx.navigateTo({
-            url: '/pages/settings/teacher/bankstat/detail' + '?subject_id=' + subject_id,
+            url: '/pages/settings/teacher/bankstat/rank' + '?subject_id=' + subject_id,
         })
     },
 

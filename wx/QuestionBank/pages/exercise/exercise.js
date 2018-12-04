@@ -35,7 +35,9 @@ Page({
         choiceAnswerVisiable: false,
         fillAnswerVisiable: false,
         judgeAnswerVisiable: false,
-        discussAnswerVisiable: false
+        discussAnswerVisiable: false,
+
+        star: false,
     },
 
     onLoad: function(options) {
@@ -159,6 +161,8 @@ Page({
                     })
                     // 更新学科信息为新题目的学科
                     this.changeSubject(response.data.choice.subject.id)
+                    // 查询是否收藏
+                    this.getStar('choice', response.data.choice.id)
                 } else {
                     this.onQuestionNotExist()
                 }
@@ -196,6 +200,7 @@ Page({
                         empty: ''
                     })
                     this.changeSubject(response.data.fill.subject.id)
+                    this.getStar('fill', response.data.choice.id)
                 } else {
                     this.onQuestionNotExist()
                 }
@@ -230,6 +235,7 @@ Page({
                         checked: false,
                     })
                     this.changeSubject(response.data.judge.subject.id)
+                    this.getStar('judge', response.data.choice.id)
                 } else {
                     this.onQuestionNotExist()
                 }
@@ -262,6 +268,7 @@ Page({
                         discussAnswerVisiable: false
                     })
                     this.changeSubject(response.data.discuss.subject.id)
+                    this.getStar('discuss', response.data.choice.id)
                 } else {
                     this.onQuestionNotExist()
                 }
@@ -278,6 +285,87 @@ Page({
 
     onQuestionNotExist: function() {
         app.showError('题库里还没有' + this.data.subject_range[this.data.subject_index].name + '的题目')
+    },
+
+    getStar: function(typename, question_id) {
+        if (!app.globalData.hasUserInfo) {
+            setTimeout(() => {
+                this.getStar(typename, question_id)
+            }, 200)
+            return
+        }
+
+        wx.request({
+            url: app.globalData.host + 'personal/check_star',
+            data: {
+                'openid': app.globalData.userInfo.openid,
+                'type': typename,
+                'question_id': question_id
+            },
+            success: response => {
+                this.setData({
+                    star: response.data.is_star
+                })
+            }
+        })
+    },
+
+    onStar: function() {
+        this.setData({
+            star: true,
+        })
+
+        var typename = ['choice','fill','judge','discuss']
+
+        var curr_question
+        switch(this.data.currentTab){
+            case 0: curr_question = this.data.choice; break
+            case 1: curr_question = this.data.fill; break
+            case 2: curr_question = this.data.judge; break
+            case 3: curr_question = this.data.discuss; break
+        }
+
+        wx.request({
+            url: app.globalData.host + 'personal/set_star',
+            method: 'POST',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                'openid': app.globalData.userInfo.openid,
+                'type': typename[this.data.currentTab],
+                'question_id': curr_question.id
+            }
+        })
+    },
+
+    onUnstar: function() {
+        this.setData({
+            star: false,
+        })
+
+        var typename = ['choice', 'fill', 'judge', 'discuss']
+
+        var curr_question
+        switch (this.data.currentTab) {
+            case 0: curr_question = this.data.choice; break
+            case 1: curr_question = this.data.fill; break
+            case 2: curr_question = this.data.judge; break
+            case 3: curr_question = this.data.discuss; break
+        }
+
+        wx.request({
+            url: app.globalData.host + 'personal/set_unstar',
+            method: 'POST',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                'openid': app.globalData.userInfo.openid,
+                'type': typename[this.data.currentTab],
+                'question_id': curr_question.id
+            }
+        })
     },
 
     onShareAppMessage: app.onShareAppMessage

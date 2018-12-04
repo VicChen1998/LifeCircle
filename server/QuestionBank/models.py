@@ -168,6 +168,19 @@ class UserProfile(models.Model):
         db_table = 'UserProfile'
 
 
+# 教师验证
+class TeacherAuth(models.Model):
+    # 姓名
+    name = models.CharField(max_length=8)
+    # 教职工号
+    work_num = models.CharField(max_length=16)
+    # 绑定用户
+    teacher = models.ForeignKey(User, null=True, default=None, on_delete=models.SET_NULL)
+
+    class Meta:
+        db_table = 'TeacherAuth'
+
+
 # 选择题
 class Choice(models.Model):
     # 所属学科
@@ -315,6 +328,55 @@ class Discuss(models.Model):
         else:
             index = random.randint(0, Discuss.objects.count() - 1)
             return Discuss.objects.all()[index]
+
+
+# 题目收藏
+class ChoiceStar(models.Model):
+    # 题目
+    question = models.ForeignKey(Choice, on_delete=models.CASCADE)
+    # 用户
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'QB_Choice_Star'
+        # 联合主键
+        unique_together = ('question', 'user')
+
+
+class FillStar(models.Model):
+    # 题目
+    question = models.ForeignKey(Fill, on_delete=models.CASCADE)
+    # 用户
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'QB_Fill_Star'
+        # 联合主键
+        unique_together = ('question', 'user')
+
+
+class JudgeStar(models.Model):
+    # 题目
+    question = models.ForeignKey(Judge, on_delete=models.CASCADE)
+    # 用户
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'QB_Judge_Star'
+        # 联合主键
+        unique_together = ('question', 'user')
+
+
+class DiscussStar(models.Model):
+    # 题目
+    question = models.ForeignKey(Discuss, on_delete=models.CASCADE)
+    # 用户
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'QB_Discuss_Star'
+        # 联合主键
+        unique_together = ('question', 'user')
 
 
 # 作业

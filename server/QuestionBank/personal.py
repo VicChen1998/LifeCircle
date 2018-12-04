@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-from QuestionBank.models import User, UserProfile, Class, Subject, Choice, Fill, Judge, Discuss
+from QuestionBank.models import *
 
 '''
 personal.py
@@ -49,13 +49,72 @@ def get_myupload(request):
         response = {'choice_list': [choice.dict() for choice in Choice.objects.filter(author=user, subject=subject)],
                     'fill_list': [fill.dict() for fill in Fill.objects.filter(author=user, subject=subject)],
                     'judge_list': [judge.dict() for judge in Judge.objects.filter(author=user, subject=subject)],
-                    'discuss_list': [discuss.dict() for discuss in Discuss.objects.filter(author=user, subject=subject)]}
+                    'discuss_list': [discuss.dict() for discuss in
+                                     Discuss.objects.filter(author=user, subject=subject)]}
 
     response['status'] = 'success'
     return JsonResponse(response)
 
 
+# 获取答题统计
 def get_answer_stat(request):
     profile = UserProfile.objects.get(username=request.GET['openid'])
     response = {'answer_stat': profile.answer_stat()}
+    return JsonResponse(response)
+
+
+'''
+收藏相关
+'''
+
+question_type = {
+    'choice': ChoiceStar,
+    'fill': FillStar,
+    'judge': JudgeStar,
+    'discuss': DiscussStar
+}
+
+
+def check_star(request):
+    user = User.objects.get(username=request.GET['openid'])
+    QType = question_type[request.GET['type']]
+    question_id = request.GET['question_id']
+
+    is_star = QType.objects.filter(question_id=question_id, user=user).exists()
+
+    response = {'is_star': is_star}
+    return JsonResponse(response)
+
+
+def set_star(request):
+    user = User.objects.get(username=request.POST['openid'])
+    QType = question_type[request.POST['type']]
+    question_id = request.POST['question_id']
+
+    QType.objects.create(question_id=question_id, user=user)
+
+    response = {'status': 'success'}
+    return JsonResponse(response)
+
+
+def set_unstar(request):
+    user = User.objects.get(username=request.POST['openid'])
+    QType = question_type[request.POST['type']]
+    question_id = request.POST['question_id']
+
+    QType.objects.get(question_id=question_id, user=user).delete()
+
+    response = {'status': 'success'}
+    return JsonResponse(response)
+
+
+def get_mystar(request):
+    user = User.objects.get(username=request.GET['openid'])
+
+    response = {'choice_list': [star.question.dict() for star in ChoiceStar.objects.filter(user=user)],
+                'fill_list': [star.question.dict() for star in FillStar.objects.filter(user=user)],
+                'judge_list': [star.question.dict() for star in JudgeStar.objects.filter(user=user)],
+                'discuss_list': [star.question.dict() for star in DiscussStar.objects.filter(user=user)],
+                'status': 'success'}
+
     return JsonResponse(response)

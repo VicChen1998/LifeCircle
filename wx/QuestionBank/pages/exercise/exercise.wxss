@@ -1,3 +1,8 @@
+.star {
+    right: 25rpx;
+    top: 225rpx;
+}
+
 radio-group {
     display: flex;
     flex-wrap: wrap;

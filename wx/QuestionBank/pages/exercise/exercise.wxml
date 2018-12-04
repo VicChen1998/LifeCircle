@@ -30,7 +30,14 @@
             <text>{{subject_range[subject_index].name}}</text>
         </picker>
 
-
+        <!-- 收藏 -->
+        <block wx:if='{{star}}'>
+            <image class='star' src='/images/star_fill.png' bindtap='onUnstar'></image>
+        </block>
+        <block wx:else>
+            <image class='star' src='/images/star.png' bindtap='onStar'></image>
+        </block>
+        
         <!-- 选择题 -->
         <view class='tab_view' hidden='{{!tabs[0].show}}'>
 

@@ -8,7 +8,9 @@
         "pages/upload/upload",
         "pages/settings/settings",
         "pages/settings/myupload/myupload",
-        "pages/settings/myupload/modify/modify"
+        "pages/settings/myupload/modify/modify",
+        "pages/settings/mystar/mystar",
+        "pages/settings/auth/auth"
     ],
     "subpackages": [
         {
@@ -26,7 +28,7 @@
             "pages": [
                 "subject/subject",
                 "bankstat/bankstat",
-                "bankstat/detail",
+                "bankstat/rank",
                 "paper/paper"
             ]
         }

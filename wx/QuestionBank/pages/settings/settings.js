@@ -328,6 +328,13 @@ Page({
         })
     },
 
+    // 我的收藏
+    toMyStar: function(event) {
+        wx.navigateTo({
+            url: '/pages/settings/mystar/mystar',
+        })
+    },
+
     toMyPaper: function(event){
         wx.navigateTo({
             url: '/pages/settings/teacher/paper/paper',
