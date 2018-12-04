@@ -74,6 +74,12 @@
                 <view class='menu_title'>我的收藏</view>
                 <image src='/images/more.png' class='more'></image>
             </view>
+
+            <view class='menuitem' bindtap='toTeacherAuth' style='justify-content: space-between'>
+                <view class='menu_title'>教师入口</view>
+                <image src='/images/more.png' class='more'></image>
+            </view>
+
         </view>
     </block>
 
@@ -125,6 +131,7 @@
                 <view class='menu_title'>题库统计</view>
                 <image src='/images/more.png' class='more'></image>
             </view>
+
         </view>
 
     </block>

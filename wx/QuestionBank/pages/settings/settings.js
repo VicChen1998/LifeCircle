@@ -335,6 +335,13 @@ Page({
         })
     },
 
+    // 教师入口
+    toTeacherAuth: function(event){
+        wx.navigateTo({
+            url: '/pages/settings/auth/auth',
+        })
+    },
+
     toMyPaper: function(event){
         wx.navigateTo({
             url: '/pages/settings/teacher/paper/paper',

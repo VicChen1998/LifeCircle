@@ -9,7 +9,9 @@ urls.py
 
 urlpatterns = [
     # 登录
-    url(r'^signin', auth.signin),
+    url(r'^signin$', auth.signin),
+    # 教师身份验证
+    url(r'^teacher_auth$', auth.teacher_auth),
 
     # 获取公共数据
     url(r'^public/get_college$', public.get_college),

@@ -1,10 +1,11 @@
 import requests
 
 from django.http import JsonResponse
+from django.db.models import ObjectDoesNotExist
 
 from QuestionBank.settings import AppID, AppSecret
 
-from QuestionBank.models import User, UserProfile
+from QuestionBank.models import User, UserProfile, TeacherAuth
 
 '''
 auth.py
@@ -71,3 +72,31 @@ def get_openid(js_code):
     response = requests.get('https://api.weixin.qq.com/sns/jscode2session', params=data).json()
 
     return response['openid'] if 'openid' in response else False
+
+
+def teacher_auth(request):
+    name = request.POST['name']
+    work_num = request.POST['work_num']
+
+    user = User.objects.get(username=request.POST['openid'])
+
+    try:
+        record = TeacherAuth.objects.get(name=name, work_num=work_num)
+    except ObjectDoesNotExist:
+        response = {'status': 'error', 'errCode': -2, 'errMsg': 'does not exist.'}
+        return JsonResponse(response)
+
+    if record.teacher is not None:
+        response = {'status': 'error', 'errCode': -1, 'errMsg': 'has been bind.'}
+    else:
+        record.teacher = user
+        record.save()
+
+        profile = UserProfile.objects.get(user=user)
+        profile.isTeacher = True
+        profile.name = record.name
+        profile.save()
+
+        response = {'status': 'success'}
+
+    return JsonResponse(response)

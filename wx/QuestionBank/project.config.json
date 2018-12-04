@@ -12,7 +12,7 @@
 		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.0",
+	"libVersion": "2.4.1",
 	"appid": "wx14f3db85880237fd",
 	"projectname": "%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%87%BA%E9%A2%98%E5%BA%93",
 	"isGameTourist": false,

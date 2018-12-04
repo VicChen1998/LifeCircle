@@ -1,0 +1,54 @@
+.form {
+    padding: 30rpx;
+    box-sizing: border-box;
+}
+
+.item {
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title {
+    width: 200rpx;
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.value {
+    width: 420rpx;
+    height: 80rpx;
+    margin: 0 auto;
+    line-height: 80rpx;
+    text-align: center;
+    color: #666;
+    border-bottom: 1rpx solid #eee;
+}
+
+button {
+    margin-top: 100rpx;
+    width: 35%;
+}
+
+.success {
+    border-top: 1px solid #ddd;
+}
+
+.hint {
+    color: #666;
+}
+
+.exit {
+    width: 35%;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10rpx;
+    background: #f8f8f8;
+}

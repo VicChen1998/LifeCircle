@@ -1,0 +1,32 @@
+<view class='container' style='margin-bottom: 90rpx;'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>教师身份验证</view>
+    </view>
+
+    <view class='form'>
+        <form bindsubmit='submit'>
+            <view class='item'>
+                <view class='title'>姓名</view>
+                <input class='value' name='name' focus='true'></input>
+            </view>
+
+            <view class='item'>
+                <view class='title'>教职工号</view>
+                <input class='value' name='work_num'></input>
+            </view>
+
+            <button type='primary' form-type='submit' hidden='{{!showSubmitBt}}'>验证</button>
+        </form>
+    </view>
+
+    <view class='success' hidden='{{!showSuccessView}}'>
+
+        <view class='hint'>验证成功，请重新打开小程序</view>
+
+        <navigator class='exit' target='miniProgram' open-type='exit'>退出</navigator>
+
+    </view>
+
+</view>
