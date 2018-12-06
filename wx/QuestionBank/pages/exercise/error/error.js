@@ -37,6 +37,18 @@ Page({
                 'typename': this.data.typename,
                 'question_id': this.data.question_id,
                 'reason': event.detail.value.reason
+            },
+            success: response => {
+                if(response.data.status == 'success'){
+                    wx.showToast({
+                        title: '提交成功'
+                    })
+
+                    setTimeout(function() {
+                        wx.navigateBack()
+                    }, 1500)
+                }
+
             }
         })
     },

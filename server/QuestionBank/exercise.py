@@ -78,3 +78,11 @@ def report_error(request):
 
     response = {'status': 'success'}
     return JsonResponse(response)
+
+
+def get_error_reason(request):
+    report = ReportError.objects.get(type=request.GET['type'],
+                                     question_id=request.GET['question_id'])
+
+    response = {'status': 'success', 'reason': report.reason}
+    return JsonResponse(response)

@@ -27,7 +27,7 @@ Page({
                 if (response.data.status == 'success') {
 
                     var fill_list = response.data.fill_list
-                    for(var i in fill_list)
+                    for (var i in fill_list)
                         fill_list[i].answer = JSON.parse(fill_list[i].answer)
 
                     this.setData({
@@ -58,12 +58,36 @@ Page({
             this.setData({
                 show_detail: this.data.show_detail
             })
-        } else {
+        } 
+        // 显示
+        else {
             this.data.show_detail[type_index] = index
             this.setData({
                 show_detail: this.data.show_detail
             })
+
+            // 如有报错 加载报错信息
+            var types = [this.data.choice_list, this.data.fill_list, this.data.judge_list, this.data.discuss_list]
+            var question = types[type_index][index]
+            if (question.reported_error) {
+                var typename = ['choice', 'fill', 'judge', 'discuss']
+                wx.request({
+                    url: app.globalData.host + 'exercise/get_error_reason',
+                    data: {
+                        'type': typename[type_index],
+                        'question_id': question.id
+                    },
+                    success: response => {
+                        wx.showModal({
+                            title: '题目报错原因',
+                            content: response.data.reason,
+                        })
+                    }
+                })
+            }
         }
+
+        
     },
 
     onModify: function(event) {
