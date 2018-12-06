@@ -54,18 +54,18 @@ Page({
 
     onLoad: function(options) {
         // 初始化四个题型数量picker的range
-        for (var i = 0; i <= 20; i++) {
+        for (var i = 0; i <= 40; i++) {
             this.data.num_range[0].push(i)
             this.data.num_range[1].push(i)
             this.data.num_range[2].push(i)
         }
 
-        for (var i = 0; i <= 10; i++)
+        for (var i = 0; i <= 20; i++)
             this.data.num_range[3].push(i)
 
         // 初始化默认名称为日期
         var date = new Date()
-        var name = date.getMonth() + 1 + '月' + date.getDate() + '日作业'
+        var name = (date.getMonth() + 1) + '月' + date.getDate() + '日作业'
 
         this.setData({
             num_range: this.data.num_range,

@@ -10,7 +10,8 @@
         "pages/settings/myupload/myupload",
         "pages/settings/myupload/modify/modify",
         "pages/settings/mystar/mystar",
-        "pages/settings/auth/auth"
+        "pages/settings/auth/auth",
+        "pages/exercise/error/error"
     ],
     "subpackages": [
         {

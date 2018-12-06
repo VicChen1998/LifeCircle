@@ -22,6 +22,9 @@
 
     <view style='margin: 30rpx'>
 
+        <!-- 报错 -->
+        <image class='icon error' src='/images/error.png' bindtap='onReportError'></image>
+
         <!-- 科目选择组件 -->
         <picker range='{{subject_range}}' value='{{subject_index}}' range-key='name' class='subject_picker' bindchange='subjectOnChange'>
             <!-- 未设定科目时显示“随机” -->
@@ -32,12 +35,12 @@
 
         <!-- 收藏 -->
         <block wx:if='{{star}}'>
-            <image class='star' src='/images/star_fill.png' bindtap='onUnstar'></image>
+            <image class='icon star' src='/images/star_fill.png' bindtap='onUnstar'></image>
         </block>
         <block wx:else>
-            <image class='star' src='/images/star.png' bindtap='onStar'></image>
+            <image class='icon star' src='/images/star.png' bindtap='onStar'></image>
         </block>
-        
+
         <!-- 选择题 -->
         <view class='tab_view' hidden='{{!tabs[0].show}}'>
 
@@ -46,19 +49,19 @@
             <!-- 4个选项 -->
             <radio-group bindchange='choiceOnChange'>
                 <label class='radio_item'>
-                    <radio checked='{{checked}}' color='{{choice.answer == "A" ? "#09BB07" : "#FF0000"}}'/>
+                    <radio checked='{{checked}}' color='{{choice.answer == "A" ? "#09BB07" : "#FF0000"}}' />
                     <view class='radio_text'>A. {{choice.option_A}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio checked='{{checked}}' color='{{choice.answer == "B" ? "#09BB07" : "#FF0000"}}'/>
+                    <radio checked='{{checked}}' color='{{choice.answer == "B" ? "#09BB07" : "#FF0000"}}' />
                     <view class='radio_text'>B. {{choice.option_B}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio checked='{{checked}}' color='{{choice.answer == "C" ? "#09BB07" : "#FF0000"}}'/>
+                    <radio checked='{{checked}}' color='{{choice.answer == "C" ? "#09BB07" : "#FF0000"}}' />
                     <view class='radio_text'>C. {{choice.option_C}}</view>
                 </label>
                 <label class='radio_item'>
-                    <radio checked='{{checked}}' color='{{choice.answer == "D" ? "#09BB07" : "#FF0000"}}'/>
+                    <radio checked='{{checked}}' color='{{choice.answer == "D" ? "#09BB07" : "#FF0000"}}' />
                     <view class='radio_text'>D. {{choice.option_D}}</view>
                 </label>
             </radio-group>

@@ -11,7 +11,7 @@
 
     <view hidden='{{!hasLoad}}'>
 
-        <view class='hint'>长按修改题目</view>    
+        <view class='hint'>长按修改题目</view>
 
         <view class='hint' style='margin-top:200rpx; border:none' hidden='{{!(choice_list.length==0 && fill_list.length==0 && judge_list.length==0 && discuss_list.length==0)}}'>还没有出过题哦</view>
 
@@ -20,6 +20,7 @@
             <view wx:for='{{choice_list}}' wx:for-item='choice' class='item' data-type_index='0' data-index='{{index}}' bindtap='onDetail' bindlongpress='onModify'>
                 <image src='/images/more.png' class='more'></image>
                 <view class='question'>
+                    <image wx:if='{{choice.reported_error}}' class='warning' src='/images/warning.png'></image>
                     <text>{{choice.question}}</text>
                     <text class='choice_answer' hidden='{{index!=show_detail[0]}}'>{{choice.answer}}</text>
                 </view>
@@ -42,6 +43,7 @@
                     <image src='/images/more.png' class='more'></image>
                 </block>
                 <view class='question'>
+                    <image wx:if='{{fill.reported_error}}' class='warning' src='/images/warning.png'></image>
                     <text class='fill_question'>{{fill.question}}</text>
                 </view>
                 <view hidden='{{index!=show_detail[1]}}' class='comment'>
@@ -60,6 +62,7 @@
                     <image src='/images/more.png' class='more'></image>
                 </block>
                 <view class='question'>
+                    <image wx:if='{{judge.reported_error}}' class='warning' src='/images/warning.png'></image>
                     <text>{{judge.question}}</text>
                     <text class='choice_answer' hidden='{{index!=show_detail[2]}}'>{{judge.answer}}</text>
                 </view>
@@ -73,6 +76,7 @@
             <view class='topbar'>简答</view>
             <view wx:for='{{discuss_list}}' wx:for-item='discuss' class='item' data-type_index='3' data-index='{{index}}' bindtap='onDetail' bindlongpress='onModify'>
                 <image src='/images/more.png' class='more'></image>
+                <image wx:if='{{discuss.reported_error}}' class='warning' src='/images/warning.png'></image>
                 <view class='question'>{{discuss.question}}</view>
                 <view hidden='{{index!=show_detail[3]}}' class='comment'>
                     <text decode='true'>{{discuss.answer}}</text>

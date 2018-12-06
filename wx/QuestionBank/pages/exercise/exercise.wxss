@@ -3,6 +3,13 @@
     top: 225rpx;
 }
 
+.error {
+    height: 58rpx;
+    width: 58rpx;
+    left: 25rpx;
+    top: 230rpx;
+}
+
 radio-group {
     display: flex;
     flex-wrap: wrap;

@@ -62,8 +62,8 @@
     border-bottom: 1rpx solid #f0f0f0;
 }
 
-/* 收藏图标 */
-.star {
+/* 图标 */
+.icon {
     height: 70rpx;
     width: 70rpx;
     position: fixed;
@@ -102,6 +102,7 @@ view {
     line-height: 90rpx;
     position: fixed;
     bottom: 0;
+    left: 0;
     border-radius: 0;
     border: none;
     box-shadow: 0 -5rpx 5rpx #ccc;

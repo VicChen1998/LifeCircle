@@ -1,0 +1,22 @@
+<view class='container'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>问题报错</view>
+    </view>
+
+    <view style='padding:30rpx; box-sizing: border-box'>
+
+        <view class='title'>请描述错误原因</view>
+
+        <form bindsubmit='onSubmit'>
+            <textarea name='reason'></textarea>
+
+            <button type='primary' class='confirm' form-type='submit'>提交</button>
+
+        </form>
+
+    </view>
+
+
+</view>

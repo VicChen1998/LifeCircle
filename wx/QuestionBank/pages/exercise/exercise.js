@@ -368,5 +368,22 @@ Page({
         })
     },
 
+    onReportError: function(){
+
+        var typename = ['choice', 'fill', 'judge', 'discuss']
+
+        var curr_question
+        switch (this.data.currentTab) {
+            case 0: curr_question = this.data.choice; break
+            case 1: curr_question = this.data.fill; break
+            case 2: curr_question = this.data.judge; break
+            case 3: curr_question = this.data.discuss; break
+        }
+
+        wx.navigateTo({
+            url: '/pages/exercise/error/error' + '?typename=' + typename[this.data.currentTab] + '&question_id=' + curr_question.id,
+        })
+    },
+
     onShareAppMessage: app.onShareAppMessage
 })

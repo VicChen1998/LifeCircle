@@ -1,0 +1,10 @@
+textarea {
+    width: 95%;
+    margin: 0 auto;
+    padding-left: 20rpx;
+    border-left: 1rpx solid #ddd;
+}
+
+.title{
+    margin-bottom: 30rpx;
+}

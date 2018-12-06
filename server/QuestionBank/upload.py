@@ -2,7 +2,7 @@ import json
 
 from django.http import JsonResponse
 
-from QuestionBank.models import User, UserProfile, Subject, Choice, Fill, Judge, Discuss
+from QuestionBank.models import User, UserProfile, Subject, Choice, Fill, Judge, Discuss, ReportError
 
 '''
 upload.py
@@ -46,6 +46,11 @@ def modify_choice(request):
     question.option_D = request.POST['option_D']
     question.answer = request.POST['answer']
     question.comment = request.POST['comment']
+
+    if question.reported_error:
+        question.reported_error = False
+        ReportError.objects.get(type='choice', question_id=question.id).delete()
+
     question.save()
 
     response = {'status': 'success'}
@@ -80,6 +85,11 @@ def modify_judge(request):
     question.question = request.POST['question']
     question.answer = request.POST['answer']
     question.comment = request.POST['comment']
+
+    if question.reported_error:
+        question.reported_error = False
+        ReportError.objects.get(type='judge', question_id=question.id).delete()
+
     question.save()
 
     response = {'status': 'success'}
@@ -116,6 +126,11 @@ def modify_fill(request):
     question.answer = request.POST['answer']
     question.answer_count = request.POST['answer_count']
     question.comment = request.POST['comment']
+
+    if question.reported_error:
+        question.reported_error = False
+        ReportError.objects.get(type='fill', question_id=question.id).delete()
+
     question.save()
 
     response = {'status': 'success'}
@@ -148,6 +163,12 @@ def modify_discuss(request):
     question.subject = subject
     question.question = request.POST['question']
     question.answer = request.POST['answer']
+
+    if question.reported_error:
+        question.reported_error = False
+        ReportError.objects.get(type='discuss', question_id=question.id).delete()
+
+
     question.save()
 
     response = {'status': 'success'}

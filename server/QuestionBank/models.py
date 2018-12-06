@@ -198,6 +198,8 @@ class Choice(models.Model):
     comment = models.CharField(max_length=128)
     # 提交者
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    # 报错
+    reported_error = models.BooleanField(null=True, default=None)
 
     class Meta:
         db_table = 'QB_Choice'
@@ -213,6 +215,7 @@ class Choice(models.Model):
             'option_D': self.option_D,
             'answer': self.answer if with_answer else None,
             'comment': self.comment if with_answer else None,
+            'reported_error': self.reported_error
         }
 
     @staticmethod
@@ -237,6 +240,8 @@ class Judge(models.Model):
     comment = models.CharField(max_length=128)
     # 提交者
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    # 报错
+    reported_error = models.BooleanField(null=True, default=None)
 
     class Meta:
         db_table = 'QB_Judge'
@@ -248,6 +253,7 @@ class Judge(models.Model):
             'question': self.question,
             'answer': self.answer if with_answer else None,
             'comment': self.comment if with_answer else None,
+            'reported_error': self.reported_error
         }
 
     @staticmethod
@@ -274,6 +280,8 @@ class Fill(models.Model):
     comment = models.CharField(max_length=128)
     # 提交者
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    # 报错
+    reported_error = models.BooleanField(null=True, default=None)
 
     class Meta:
         db_table = 'QB_Fill'
@@ -286,6 +294,7 @@ class Fill(models.Model):
             'answer': self.answer if with_answer else None,
             'answer_count': self.answer_count,
             'comment': self.comment if with_answer else None,
+            'reported_error': self.reported_error
         }
 
     @staticmethod
@@ -308,6 +317,8 @@ class Discuss(models.Model):
     answer = models.CharField(max_length=512)
     # 提交者
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    # 报错
+    reported_error = models.BooleanField(null=True, default=None)
 
     class Meta:
         db_table = 'QB_Discuss'
@@ -318,6 +329,7 @@ class Discuss(models.Model):
             'subject': self.subject.dict(),
             'question': self.question,
             'answer': self.answer if with_answer else None,
+            'reported_error': self.reported_error
         }
 
     @staticmethod
@@ -328,6 +340,18 @@ class Discuss(models.Model):
         else:
             index = random.randint(0, Discuss.objects.count() - 1)
             return Discuss.objects.all()[index]
+
+
+class ReportError(models.Model):
+    # 题型
+    type = models.CharField(max_length=16)
+    # id
+    question_id = models.IntegerField()
+    # 报错原因
+    reason = models.CharField(max_length=256)
+
+    class Meta:
+        db_table = 'QB_ReportError'
 
 
 # 题目收藏

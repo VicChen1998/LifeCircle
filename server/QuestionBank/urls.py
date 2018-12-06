@@ -56,6 +56,8 @@ urlpatterns = [
     url(r'^exercise/get_judge$', exercise.get_judge),
     url(r'^exercise/get_fill$', exercise.get_fill),
     url(r'^exercise/get_discuss$', exercise.get_discuss),
+    # 报错
+    url(r'exercise/report_error$', exercise.report_error),
 
     # 作业
     # 作业列表
