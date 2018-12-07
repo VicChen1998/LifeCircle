@@ -43,6 +43,9 @@ textarea {
 .icon {
     width: 80rpx;
     height: 80rpx;
+    position: relative;
+    left: 0;
+    top: 0;
 }
 
 button {

@@ -45,12 +45,28 @@ def create_paper(request):
     index_i = 0
 
     # 选择
-    if len(choice_list) > 0:
+    choice_num = len(choice_list)
+    if choice_num > 0:
         doc.add_paragraph()
         doc.add_paragraph(index_str[index_i] + '选择题')
         index_i += 1
 
-        for i in range(len(choice_list)):
+        answer_indexs = []
+        for i in range(choice_num // 5):
+            begin = i * 5 + 1
+            end = (i + 1) * 5
+            answer_indexs.append(str(begin) + '-' + str(end) + ':')
+
+        if choice_num % 5 != 0:
+            answer_indexs.append(str(choice_num - choice_num % 5 + 1) + '-' + str(choice_num) + ':')
+
+        for i in range(0, len(answer_indexs), 2):
+            doc.add_paragraph(answer_indexs[i] + '\t\t\t\t\t\t' + answer_indexs[i + 1])
+
+        if len(answer_indexs) % 2 == 1:
+            doc.add_paragraph(answer_indexs[len(answer_indexs) - 1])
+
+        for i in range(choice_num):
             choice = Choice.objects.get(id=choice_list[i])
             doc.add_paragraph(str(i + 1) + '. ' + choice.question)
             if len(choice.option_A + choice.option_B + choice.option_C + choice.option_D) < 25:
