@@ -30,7 +30,8 @@
                 "subject/subject",
                 "bankstat/bankstat",
                 "bankstat/rank",
-                "paper/paper"
+                "paper/paper",
+                "paper/download"
             ]
         }
     ],

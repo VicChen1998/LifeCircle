@@ -13,11 +13,16 @@
     align-items: center;
 }
 
+.buttons_area{
+    display: flex;
+}
+
 button {
-    width: 150rpx;
+    width: 120rpx;
     height: 60rpx;
+    margin: 0 5rpx;
     line-height: 60rpx;
-    font-size: 32rpx;
+    font-size: 28rpx;
     border: none;
 }
 

@@ -13,8 +13,9 @@
 
         <view wx:for='{{paper_list}}' wx:for-item='paper' class='paper'>
             <view>{{paper}}</view>
-            <view>
+            <view class='buttons_area'>
                 <button bindtap='preview' data-name='{{paper}}'>预览</button>
+                <button bindtap='download' data-name='{{paper}}'>下载</button>
             </view>
         </view>
 

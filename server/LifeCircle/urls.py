@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-
+from LifeCircle import auth
 
 # 全局urls配置
 
@@ -24,5 +24,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # 匹配到^questionbank/的url交给QuestionBank.urls处理
-    url(r'^questionbank/', include('QuestionBank.urls'))
+    url(r'^questionbank/', include('QuestionBank.urls')),
+
+    # 业务域名校验
+    url(r'^CmTeSArXWL.txt$', auth.auth)
 ]

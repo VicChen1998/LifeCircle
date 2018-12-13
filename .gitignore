@@ -2,3 +2,5 @@
 server/venv/*
 server/QuestionBank/migrations/*
 *.pyc
+server/LifeCircle/CmTeSArXWL.txt
+server/QuestionBank/media/paper/*

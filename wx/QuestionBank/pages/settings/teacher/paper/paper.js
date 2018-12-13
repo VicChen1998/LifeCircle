@@ -37,9 +37,15 @@ Page({
                 })
             }
         })
+    },
 
-        console.log(event)
-        console.log(url)
+
+    download: function (event) {
+        var name = event.target.dataset.name
+
+        wx.navigateTo({
+            url: '/pages/settings/teacher/paper/download' + '?name=' + name,
+        })
     },
 
     onBack: function (event) {

@@ -1,0 +1,12 @@
+<view class='container' style='margin-bottom: 90rpx;'>
+
+    <view class='navigationBar'>
+        <image src='/images/back.png' class='navigationBack' bindtap='onBack'></image>
+        <view class='navigationBarTitle'>下载</view>
+    </view>
+
+    <view>
+        <web-view src='{{url}}'></web-view>
+    </view>
+
+</view>
