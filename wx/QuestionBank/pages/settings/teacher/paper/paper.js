@@ -43,8 +43,22 @@ Page({
     download: function (event) {
         var name = event.target.dataset.name
 
-        wx.navigateTo({
-            url: '/pages/settings/teacher/paper/download' + '?name=' + name,
+        var url = app.globalData.host + 'paper/download' + '?openid=' + app.globalData.userInfo.openid + '&name=' + name
+
+        wx.setClipboardData({
+            data: url,
+            success: res => {
+                wx.showModal({
+                    title: '下载链接已复制到剪贴板',
+                    content: '请打开手机浏览器粘贴链接进行下载',
+                })
+            },
+            fail: res => {
+                wx.showModal({
+                    title: '下载链接无法粘贴值剪贴板',
+                    content: url,
+                })
+            }
         })
     },
 
