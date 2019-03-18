@@ -17,16 +17,20 @@
 
 ### 部分功能界面展示
 
-* 刷题界面
-
-* 出题界面
-
-* 学生界面
-
-* 教师界面
-
-* 布置作业 / 生成试卷
-
-* 作业界面
-
-* 生成试卷预览
+<table>
+    <tr>
+        <td>刷题界面<img src="https://github.com/VicChen1998/LifeCircle/blob/master/readme_imgs/questions.png?raw=true"></td>
+        <td>出题界面<img src="https://github.com/VicChen1998/LifeCircle/blob/master/readme_imgs/upload_question.png?raw=true"></td>
+        <td>作业界面<img src="https://github.com/VicChen1998/LifeCircle/blob/master/readme_imgs/homework.png?raw=true"></td>
+    </tr>
+    <tr>
+        <td>布置作业 / 生成试卷<img src="https://github.com/VicChen1998/LifeCircle/blob/master/readme_imgs/assign_homework.png?raw=true"></td>
+        <td>布置作业 / 生成试卷<img src="https://github.com/VicChen1998/LifeCircle/blob/master/readme_imgs/assign_homework_2.png?raw=true"></td>
+        <td>生成试卷预览<img src="https://github.com/VicChen1998/LifeCircle/blob/master/readme_imgs/paper.png?raw=true"></td>
+    </tr>
+    <tr>
+        <td>学生界面<img src="https://github.com/VicChen1998/LifeCircle/blob/master/readme_imgs/student.png?raw=true"></td>
+        <td>教师界面<img src="https://github.com/VicChen1998/LifeCircle/blob/master/readme_imgs/teacher.png?raw=true"></td>
+    </tr>
+    
+</table>
